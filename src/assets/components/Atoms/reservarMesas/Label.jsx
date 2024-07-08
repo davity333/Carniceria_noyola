@@ -7,4 +7,3 @@ function Label({ htmlFor, children, size }) {
   }
   
   export default Label;
-  
