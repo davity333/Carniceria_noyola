@@ -31,7 +31,6 @@ const router = createBrowserRouter([
     element: <VerMesas></VerMesas>,
   },
   {
-  loginRegister
     path: "/login",
     element: <Login></Login>,
   },
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register></Register>,
   },
-  
+  {
     path: "/reservarMesas",
     element: <ReservarMesas></ReservarMesas>,
   },
