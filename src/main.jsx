@@ -6,9 +6,14 @@ import VerMesas from './Pages/VerMesas';
 import HomeAdmin from './Pages/HomeAdmin.jsx';
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-
-import { createBrowserRouter, RouterProvider,} from "react-router-dom";
-
+import AddProduct from './Pages/AddProduct.jsx';
+import ReservarMesas from './Pages/ReservarMesas.jsx';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Login from './Pages/Login.jsx';
+import Register from './Pages/Register.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,8 +34,22 @@ const router = createBrowserRouter([
   {
     path: "/homeAdmin",
     element: <HomeAdmin></HomeAdmin>
+  },{
+    path: "/login",
+    element: <Login></Login>,
   },
-  
+  {
+    path: "/register",
+    element: <Register></Register>,
+  },
+  {
+    path: "/reservarMesas",
+    element: <ReservarMesas></ReservarMesas>,
+  },
+  {
+    path: "/addProduct",
+    element: <AddProduct></AddProduct>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
