@@ -9,6 +9,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Login from './Pages/Login.jsx';
+import Register from './Pages/Register.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +28,15 @@ const router = createBrowserRouter([
     path: "/verMesas",
     element: <VerMesas></VerMesas>,
   },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
+  },
+  
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
