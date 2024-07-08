@@ -7,7 +7,7 @@ function InputPrincipal(){
 
         <div className="flex flex-1 justify-center">
 
-        <div className="w-full px-4 py-2 h-16 flex  justify-center relative">
+        <div className="w-full py-2 h-16 flex  justify-center ">
         <Lupa imagen={LupaSilueta}></Lupa>
         <Input />
         </div>

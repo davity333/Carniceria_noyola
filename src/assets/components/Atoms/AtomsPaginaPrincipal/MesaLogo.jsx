@@ -13,7 +13,7 @@ function MesaLogo(){
     return(
         
         <>
-         <img src={Mesa} onClick={handleClick} className='flex items-end m-10 cursor-pointer' />
+         <img src={Mesa} onClick={handleClick} className='flex items-end cursor-pointer' />
         </>
     );
 }

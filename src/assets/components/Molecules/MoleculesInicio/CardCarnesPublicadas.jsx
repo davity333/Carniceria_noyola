@@ -1,5 +1,6 @@
 import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSupermercado"
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { CardAddCarrito } from "../../../../data/CardAddCarrito";
 
 function CardCarnesPublicadas({children, src , price, productName}){
     
@@ -7,6 +8,16 @@ function CardCarnesPublicadas({children, src , price, productName}){
 
     const handleClick = () => {
         navigate('/pay');
+
+        const nuevoProducto = {
+            producto: "chorizo", 
+            precio: "$10", 
+            cantidad:"9 Gr", 
+            agregar:"+",
+            eliminar:"-"
+            };
+    
+            CardAddCarrito.Meat.push(nuevoProducto);
     };
 
     return(

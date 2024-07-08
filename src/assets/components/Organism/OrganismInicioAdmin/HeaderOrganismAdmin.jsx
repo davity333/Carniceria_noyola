@@ -1,9 +1,9 @@
 import Logo from "../../Atoms/AtomsPaginaPrincipal/Logo";
 import InputPrincipal from "../../Molecules/MoleculesInicio/InputPrincipal";
 import Header from "../../Atoms/AtomsPaginaPrincipal/header";
-import BotonesHeader from "../../Molecules/MoleculesInicio/BotonesHeader";
+import BotonesHeader from "../../Molecules/MoleculesInicioAdmin/BotonesHeader";
 import LineaGris from "../../Atoms/AtomsPaginaPrincipal/LineaGris";
-function HeaderOrganism(){
+function HeaderOrganismAdmin(){
 return(
 
     <>
@@ -11,12 +11,15 @@ return(
     <Logo></Logo>
     <InputPrincipal></InputPrincipal>
 
-    <BotonesHeader></BotonesHeader>
+    <BotonesHeader>
+    </BotonesHeader>
     
+
     </Header>
-    <LineaGris></LineaGris>
-    
+    <div className="opacity-70">
+    <LineaGris></LineaGris>  
+    </div>
     </>
 );
 }
-export default HeaderOrganism;
+export default HeaderOrganismAdmin;

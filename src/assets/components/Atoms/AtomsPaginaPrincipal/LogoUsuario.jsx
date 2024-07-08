@@ -4,7 +4,7 @@ function LogoUsuario(){
 return(
     
     <>
-      <img src={user} alt="Logo" className='flex items-end m-10'/>  
+      <img src={user} alt="Logo" className='flex items-end '/>  
     </>
 );
 }

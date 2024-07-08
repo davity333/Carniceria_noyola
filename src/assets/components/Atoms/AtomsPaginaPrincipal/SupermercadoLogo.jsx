@@ -3,7 +3,7 @@ function SupermercadoLogo(){
 return(
     
     <>
-        <img src={carritoDeSupermercadoSilueta} className='flex items-end m-10 ' />
+        <img src={carritoDeSupermercadoSilueta} className='flex items-end' />
     </>
 
 );
