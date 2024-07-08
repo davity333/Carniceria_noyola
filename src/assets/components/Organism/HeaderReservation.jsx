@@ -4,7 +4,7 @@ import Icon from '../Atoms/reservarMesas/Icon';
 
 const Header = () => {
   return (
-    <header className="flex flex-col md:flex-row items-center justify-between bg-customColor-fondo p-4 w-full">
+    <header className="flex flex-col md:flex-row items-center justify-between bg-customColor-came p-4 w-full">
       <Logo />
       <nav className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
         <NavItem text="Comprar" />

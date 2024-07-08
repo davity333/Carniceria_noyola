@@ -1,5 +1,5 @@
-import AddProductForm from "../assets/Organism/addProduct/ReservarMesa";
-import Header from "../assets/Organism/addProduct/HeaderAddProduct";
+import AddProductForm from "../assets/components/Organism/addProduct/ReservarMesa";
+import Header from "../assets/components/Organism/addProduct/HeaderAddProduct";
 const AddProduct =() => {
     return ( <>
     <div className="h-screen w-full">
