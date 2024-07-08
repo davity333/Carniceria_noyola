@@ -13,7 +13,7 @@ function CardsTables({img, solicitante, numeroPersonas, fechas, cantidadMesas, e
             <div className="flex flex-1 items-start justify-start">
                 <img src={img} alt="imagen" className="h-full object-cover p-3" />
 
-                <div className="flex flex-col text-2xl p-5">
+                <div className="flex flex-col text-2xl p-5 font-thin">
                     <p>Nombre del solicitante:</p>
 
                     <p>Numero de personas:</p>    

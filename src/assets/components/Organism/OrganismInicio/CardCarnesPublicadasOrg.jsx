@@ -9,7 +9,7 @@ function CardCarnesPublicadasOrg(){
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/all-meats');
+        navigate('/allMeats');
     };
 
 
