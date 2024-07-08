@@ -2,9 +2,6 @@ import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSuperme
 import { useNavigate } from 'react-router-dom';
 
 function CardsMeats({src,productName,price,children}){  {/*CARTA DE TODAS LAS CARNES PUBLICADAS */}
-
-
-
     return(
     <>
     <div  className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-96 h-2/4">
