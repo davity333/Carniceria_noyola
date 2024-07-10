@@ -2,16 +2,14 @@ import CarnesVentasOrg from "../assets/components/Organism/OrganismInicio/Carnes
 import CarneIntroductionOrg from "../assets/components/Organism/OrganismInicio/CarneIntroductionOrg";
 import HeaderOrganism from "../assets/components/Organism/OrganismInicioAdmin/HeaderOrganismAdmin";
 import CarnesVentasTextOrg from "../assets/components/Organism/OrganismInicio/CarnesVentasTextOrg";
-import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInicio/CardCarnesPublicadasOrg";
-import CardCarnesMasVendidasOrg from "../assets/components/Organism/OrganismInicio/CardCarnesMasVendidasOrg";
+import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInicioAdmin/CardCarnesPublicadasAdminOrg";
+import CardCarnesMasVendidasOrg from "../assets/components/Organism/OrganismInicioAdmin/HeaderOrganismAdmin";
 import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePaginaOrg";
 function HomeAdmin(){
     return(
         <>
-        <div className="bg-slate-600  h-full">
         <HeaderOrganism></HeaderOrganism>
         <CarneIntroductionOrg></CarneIntroductionOrg>
-        </div>
         <CarnesVentasOrg></CarnesVentasOrg>
         <CarnesVentasTextOrg></CarnesVentasTextOrg>
         <CardCarnesPublicadasOrg></CardCarnesPublicadasOrg>
