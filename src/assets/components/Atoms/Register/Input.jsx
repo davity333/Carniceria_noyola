@@ -1,9 +1,10 @@
-function Input({ id, name, type, placeholder, autoComplete, required }) {
+function Input({ id, name, type, placeholder, autoComplete, required,ref }) {
     return (
       <input
         id={id}
         name={name}
         type={type}
+        ref={ref}
         autoComplete={autoComplete}
         required={required}
         placeholder={placeholder}
