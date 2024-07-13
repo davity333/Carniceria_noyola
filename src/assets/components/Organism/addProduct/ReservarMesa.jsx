@@ -1,7 +1,13 @@
 import Logo from "../../Molecules/addProduct/meat.png";
 import Form from "../../Molecules/addProduct/Form";
 import Title from "../../Atoms/reservarMesas/Title";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+
 function AddProductForm() {
+  const navigate = useNavigate();
+  const click = () => {
+    navigate('/allMeats');
+};
   return (
     <>
       
@@ -18,7 +24,10 @@ function AddProductForm() {
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm w-1/2">
             <Form />
           </div>
+
+        
         </div>
+
   
     </>
   );

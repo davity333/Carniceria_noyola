@@ -2,17 +2,10 @@ import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSuperme
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { CardAddCarrito } from "../../../../data/CardAddCarrito";
 
-function CardCarnesPublicadas({children, src , price, productName}){
-    
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        alert("mira ese wey)")
-    };
+function CardCarnesPublicadas({children, src , price, productName, click}){
 
     return(
         <>
-
         <div className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-96 h-2/4">
         {children}
 
@@ -25,7 +18,8 @@ function CardCarnesPublicadas({children, src , price, productName}){
                 <p className="text-3xl text-gray-700">{price}</p>
             </div>
 
-        <div onClick={handleClick} className="bg-slate-700 m-8 rounded-lg flex items-center cursor-pointer"> {/*BOTON DE AGREGAR AL CARRITO*/}
+
+        <div onClick={click} className="bg-slate-700 m-8 rounded-lg flex items-center cursor-pointer"> {/*BOTON DE AGREGAR AL CARRITO*/}
 
         <div className="flex items-center ml-3">
           <SiluetaSupermercado/>

@@ -3,7 +3,8 @@ import InputPrincipal from "../../Molecules/MoleculesInicio/InputPrincipal";
 import Header from "../../Atoms/AtomsPaginaPrincipal/header";
 import BotonesHeader from "../../Molecules/MoleculesInicioAdmin/BotonesHeader";
 import LineaGris from "../../Atoms/AtomsPaginaPrincipal/LineaGris";
-function HeaderOrganismAdmin(){
+
+function HeaderOrganismAdmin({onClick}){
 return(
 
     <>
@@ -11,7 +12,7 @@ return(
     <Logo></Logo>
     <InputPrincipal></InputPrincipal>
 
-    <BotonesHeader>
+    <BotonesHeader onClick={onClick}>
     </BotonesHeader>
     
 
@@ -22,4 +23,5 @@ return(
     </>
 );
 }
+
 export default HeaderOrganismAdmin;

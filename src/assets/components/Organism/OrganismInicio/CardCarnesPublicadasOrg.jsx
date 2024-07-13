@@ -20,7 +20,7 @@ function CardCarnesPublicadasOrg(){
     {CardsCarnes.Meat.map((product, index) => (
 
         <div key={index} className="flex flex-col items-center">
-            <CardCarnesPublicadas src={product.image} productName={product.producto} price={product.precio}/>
+            <CardCarnesPublicadas src={product.image} productName={product.producto} price={product.precio} amount={product.cantidad}/>
         </div>
     ))}
 </div>

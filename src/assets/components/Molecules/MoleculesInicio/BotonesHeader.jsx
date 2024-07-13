@@ -2,6 +2,8 @@ import SupermercadoLogo from '../../Atoms/AtomsPaginaPrincipal/SupermercadoLogo'
 import LogoUsuario from '../../Atoms/AtomsPaginaPrincipal/LogoUsuario'
 import MesaLogo from '../../Atoms/AtomsPaginaPrincipal/MesaLogo';
 
+
+
 function BotonesHeader(){
 return(
     <>
@@ -16,6 +18,7 @@ return(
     <div className="m-7">
         <LogoUsuario></LogoUsuario>
     </div>
+
     </>
 );
 }

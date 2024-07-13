@@ -21,7 +21,7 @@ const CarnesFilas = chunkArray(TodasCarnes.AllMeats, 3); {/*DECLARO UNA CONSTANT
                 <div key={rowIndex} className="flex items-center justify-around mb-4"> {/* Añadir margen inferior entre filas */}
                     {chunk.map((product, index) => (
                         <div key={index} className="flex flex-col items-center ">
-                            <CardsMeats src={product.image} productName={product.producto} price={product.precio} />
+                            <CardsMeats src={product.image} productName={product.producto} price={product.precio} amount={product.cantidad}/>
                         </div>
                     ))}
                 </div>

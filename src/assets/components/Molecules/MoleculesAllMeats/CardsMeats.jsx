@@ -1,7 +1,7 @@
 import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSupermercado"
 import { useNavigate } from 'react-router-dom';
 
-function CardsMeats({src,productName,price,children}){  {/*CARTA DE TODAS LAS CARNES PUBLICADAS */}
+function CardsMeats({src,productName,price, amount,children}){  {/*CARTA DE TODAS LAS CARNES PUBLICADAS */}
     return(
     <>
     <div  className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-96 h-2/4">
@@ -13,6 +13,7 @@ function CardsMeats({src,productName,price,children}){  {/*CARTA DE TODAS LAS CA
 
         <div className="mt-4">
                 <p className="text-3xl font-bold">{productName}</p>
+                <p className="text-3xl text-[#8a2a2a] font-thin">{amount}</p>
                 <p className="text-3xl text-gray-700">{price}</p>
             </div>
 

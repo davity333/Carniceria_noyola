@@ -4,7 +4,7 @@ import { CardsCarnes } from "../../../../data/CardsCarnes";
 import Button from "../../Atoms/AtomsPaginaPrincipal/Button";
 import LineaSeparador from "../../Atoms/AtomsPaginaPrincipal/LineaSeparador";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-
+import { useState } from "react";
 function CardCarnesPublicadasOrg(){
     const navigate = useNavigate();
 
@@ -12,6 +12,12 @@ function CardCarnesPublicadasOrg(){
         navigate('/allMeats');
     };
 
+    const [dropDown, setDropDown] = useState(true)
+
+    const click = () => {
+        alert("hola")
+        setDropDown(!showCuadro);
+      };
 
     return(
         <>
@@ -20,7 +26,7 @@ function CardCarnesPublicadasOrg(){
     {CardsCarnes.Meat.map((product, index) => (
 
         <div key={index} className="flex flex-col items-center">
-            <CardCarnesPublicadas src={product.image} productName={product.producto} price={product.precio}/>
+            <CardCarnesPublicadas src={product.image} productName={product.producto} price={product.precio} click={click}/>
         </div>
     ))}
 </div>

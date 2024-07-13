@@ -1,6 +1,6 @@
 import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSupermercado";
 
-function CardCarnesMasVendidas({children, src, price, productName}){
+function CardCarnesMasVendidas({children, src, price, productName, amount}){
     return(
 
 
@@ -15,10 +15,11 @@ function CardCarnesMasVendidas({children, src, price, productName}){
 
         <div className="mt-4">
                 <p className="text-3xl font-bold">{productName}</p>
+                <p className="text-3xl text-[#8a2a2a] font-thin">{amount}</p>
                 <p className="text-3xl text-gray-700">{price}</p>
             </div>
 
-        <div className="bg-slate-700 m-8 rounded-lg flex items-center" >
+        <div className="bg-slate-700 m-5 rounded-lg flex items-center" >
 
         <div className="flex items-center ml-3">
           <SiluetaSupermercado/>
