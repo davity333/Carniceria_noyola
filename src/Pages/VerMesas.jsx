@@ -1,6 +1,6 @@
 import LineaSeparador from "../assets/components/Atoms/AtomsPaginaPrincipal/LineaSeparador";
 import TextEncabezado from "../assets/components/Molecules/MoleculesVerMesas/TextEncabezado";
-import Header from "../assets/components/Organism/OrganismInicio/HeaderOrganism";
+import Header from "../assets/components/Organism/OrganismInicioAdmin/HeaderOrganismAdmin";
 import Mesas from "../assets/components/Organism/OrgVerMesas/CardsOrg";
 function VerMesas(){
     return(

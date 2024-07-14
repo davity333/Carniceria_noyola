@@ -5,7 +5,7 @@ return(
     
     <>
     
-    <input type="text" className="w-1/2 px-4 py-2 h-14 flex justify-center">
+    <input type="text" className="w-128 px-4  h-14 focus:outline-none text-3xl font-thin rounded-full">
 
     </input>
     </>

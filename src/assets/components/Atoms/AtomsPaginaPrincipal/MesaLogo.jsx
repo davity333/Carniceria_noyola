@@ -6,14 +6,14 @@ function MesaLogo(){
     const handleClick = () => {
 
        
-            navigate('/verMesas'); 
+            navigate("/reservarMesas"); 
         
     };
 
     return(
         
         <>
-         <img src={Mesa} onClick={handleClick} className='flex items-end cursor-pointer' />
+         <img title='Reservar Mesa' src={Mesa} onClick={handleClick} className='flex items-end cursor-pointer' />
         </>
     );
 }

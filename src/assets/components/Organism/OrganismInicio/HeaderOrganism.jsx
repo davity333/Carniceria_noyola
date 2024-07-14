@@ -14,8 +14,9 @@ return(
     <BotonesHeader></BotonesHeader>
     
     </Header>
+    <div className="opacity-70">
     <LineaGris></LineaGris>
-    
+    </div>
     </>
 );
 }

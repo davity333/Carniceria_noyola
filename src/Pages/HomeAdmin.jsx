@@ -2,25 +2,32 @@ import CarnesVentasOrg from "../assets/components/Organism/OrganismInicio/Carnes
 import CarneIntroductionOrg from "../assets/components/Organism/OrganismInicio/CarneIntroductionOrg";
 import HeaderOrganism from "../assets/components/Organism/OrganismInicioAdmin/HeaderOrganismAdmin";
 import CarnesVentasTextOrg from "../assets/components/Organism/OrganismInicio/CarnesVentasTextOrg";
-import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInicioAdmin/CardCarnesPublicadasAdminOrg";
+import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInicio/CardCarnesPublicadasOrg";
 import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePaginaOrg";
-import RecuadroDropDown from "../assets/components/Atoms/AtomsPaginaPrincipal/RecuadroDropDown";
-import DropDown from "../assets/components/Molecules/MoleculesDropDown/DropDown";
+import DropDownOrg from "../assets/components/Organism/OrganismInicioAdmin/DropDownOptionsOrg";
+import DropDownAccount from "../assets/components/Organism/OrganismInicioAdmin/DrowDownAccountOrg";
 import { useState } from "react";
 
 function HomeAdmin(){
-    const [dropDown, setDropDown] = useState(false)
+    const [dropDownMenu, setDropDown] = useState(false);
+    const [dropDownAccount, setDropDownAccount] = useState(false);
 
-    const Click = () => {
-        setDropDown(!dropDown);
+    const ClickMenu = () => {
+        setDropDown(!dropDownMenu);
       };
+
+    const ClickAccount = () =>{
+        setDropDownAccount(!dropDownAccount)
+    }
+
     return(
         <>
-        
-        <div className="relative w-full h-full">
-       {dropDown && (<DropDown></DropDown>)}
+        <div className="w-full h-full ">
+       <HeaderOrganism menu={ClickMenu} account={ClickAccount}></HeaderOrganism>
        
-       <HeaderOrganism onClick={Click}></HeaderOrganism>
+       {dropDownAccount && (<DropDownAccount ></DropDownAccount>)}
+       {dropDownMenu && (<DropDownOrg ></DropDownOrg>)}
+
        <CarneIntroductionOrg></CarneIntroductionOrg>
        <CarnesVentasOrg></CarnesVentasOrg>
        <CarnesVentasTextOrg></CarnesVentasTextOrg>
@@ -32,6 +39,7 @@ function HomeAdmin(){
         </>
     );
 }
+
 export default HomeAdmin;
 
 /*

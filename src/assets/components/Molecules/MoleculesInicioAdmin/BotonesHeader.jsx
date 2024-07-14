@@ -3,20 +3,14 @@ import LogoUsuario from '../../Atoms/AtomsPaginaPrincipal/LogoUsuario'
 import MesaLogo from '../../Atoms/AtomsPaginaPrincipal/MesaLogo';
 import Menu from '../../Atoms/AtomsPaginaPrincipal/MenuLogo';
 
-function BotonesHeader({onClick}){
+function BotonesHeader({menu, account, prod}){
 return(
     <>
-    
-
-    <div className='m-10 cursor-pointer hover:bg-[#6d4545]'>
-    <SupermercadoLogo></SupermercadoLogo>
-    </div>
-
-    <div className="m-6 cursor-pointer hover:bg-[#6d4545]">
+    <div onClick={account} className="m-6 cursor-pointer hover:bg-[#2c2f1c84] px-2 py-2 rounded-3xl">
         <LogoUsuario></LogoUsuario>
     </div>
 
-    <div onClick={onClick} className="m-7 cursor-pointer hover:bg-[#6d4545]">
+    <div onClick={menu} title='Menu' className="m-7 cursor-pointer hover:bg-[#2c2f1c84] rounded-3xl">
         <Menu></Menu>
     </div>
 

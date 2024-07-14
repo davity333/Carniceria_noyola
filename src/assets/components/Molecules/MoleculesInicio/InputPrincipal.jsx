@@ -1,15 +1,23 @@
 import Input from "../../Atoms/AtomsPaginaPrincipal/Input";
-import Lupa from "../../Atoms/AtomsPaginaPrincipal/Img";
+import Img from "../../Atoms/AtomsPaginaPrincipal/Img";
 import LupaSilueta from '/lupa.png'
-function InputPrincipal(){
+import { useState } from "react";
+function InputPrincipal({children}){
+
+ 
+
     return(
         <>
 
         <div className="flex flex-1 justify-center">
 
-        <div className="w-full py-2 h-16 flex  justify-center ">
-        <Lupa imagen={LupaSilueta}></Lupa>
+        <div  className="w-auto py-2 h-16 flex  justify-center bg-white rounded-full 
+        hover:shadow-[0px_7px_5px_2px_#0000004f]">
+
+                <Img imagen={LupaSilueta}/>
+
         <Input />
+        {children}
         </div>
 
         </div>   
