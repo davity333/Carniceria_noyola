@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function LoginForm() {
   return (
     <>
-    <div className="bg-[#C29292]">
+    <div className="bg-[#c96969]">
       <section className="bg-white h-screen w-full ">
         <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8 shadow-lg shadow-cyan-500/50">
         <div className="shadow-lg shadow-black-500/50 flex flex-col w-1/3 rounded-md ">

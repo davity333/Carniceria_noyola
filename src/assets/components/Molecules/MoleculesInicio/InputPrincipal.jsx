@@ -11,8 +11,7 @@ function InputPrincipal({children}){
 
         <div className="flex flex-1 justify-center">
 
-        <div  className="w-auto py-2 h-16 flex  justify-center bg-white rounded-full 
-        hover:shadow-[0px_7px_5px_2px_#0000004f]">
+        <div  className="w-auto py-2 h-16 flex  justify-center">
 
                 <Img imagen={LupaSilueta}/>
 
