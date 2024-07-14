@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
+import TableStatus from './Pages/PageTableStatu.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,8 +49,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/addProduct",
-    element: <AddProduct></AddProduct>
-  }
+    element: <AddProduct></AddProduct>,
+  },
+  {
+    path: "/tableStatus",
+    element: <TableStatus></TableStatus>,
+  },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
