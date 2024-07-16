@@ -4,6 +4,12 @@ body {
   font-family: "Amatic SC", sans-serif;
   font-weight: bold;
 }
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Regular.ttf') format('truetype'),
+       url('/fonts/Inter-Bold.ttf') format('truetype') weight 700;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

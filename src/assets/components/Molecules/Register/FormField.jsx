@@ -1,7 +1,8 @@
-import Input from '../../Atoms/Register/Input';
-import PasswordInput from '../../Atoms/Register/PasswordInput';
+import React from "react";
+import Input from "../../Atoms/Register/Input";
+import PasswordInput from "../../Atoms/Register/PasswordInput";
 
-function FormField({ id, name, type, placeholder, autoComplete, required, label }) {
+function FormField({ id, name, type, placeholder, autoComplete, required, label, innerRef }) {
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-medium leading-6 text-gray-700">
@@ -15,6 +16,7 @@ function FormField({ id, name, type, placeholder, autoComplete, required, label 
             placeholder={placeholder}
             autoComplete={autoComplete}
             required={required}
+            ref={innerRef}
           />
         ) : (
           <Input
@@ -24,6 +26,7 @@ function FormField({ id, name, type, placeholder, autoComplete, required, label 
             placeholder={placeholder}
             autoComplete={autoComplete}
             required={required}
+            ref={innerRef}
           />
         )}
       </div>

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState, forwardRef } from "react";
 
-function PasswordInput({ id, name, placeholder, autoComplete, required }) {
+const PasswordInput = forwardRef(({ id, name, placeholder, autoComplete, required }, ref) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -12,6 +12,7 @@ function PasswordInput({ id, name, placeholder, autoComplete, required }) {
       <input
         id={id}
         name={name}
+        ref={ref}
         type={showPassword ? "text" : "password"}
         autoComplete={autoComplete}
         required={required}
@@ -30,6 +31,6 @@ function PasswordInput({ id, name, placeholder, autoComplete, required }) {
       </div>
     </div>
   );
-}
+});
 
 export default PasswordInput;

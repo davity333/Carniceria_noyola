@@ -3,7 +3,9 @@ import './index.css'
 import PagePay from './Pages/PagePay';
 import AllMeats from "./Pages/AllMeats";
 import VerMesas from './Pages/VerMesas';
-import HomeAdmin from './Pages/HomeAdmin.jsx';
+import AddProduct from './Pages/AddProduct.jsx';
+import ReservarMesas from './Pages/ReservarMesas.jsx';
+import ProductModal from './assets/components/Organism/OrganismAllMeats/ProductModal.jsx';
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import AddProduct from './Pages/AddProduct.jsx';
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+  },
+  {
+    path: "/payComplete",
+    element: <ProductModal></ProductModal>,
   },
   {
     path: "/pay",
