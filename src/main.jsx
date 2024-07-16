@@ -15,6 +15,7 @@ import {
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
 import TableStatus from './Pages/PageTableStatu.jsx'
+import AllMeatsAdmin from './Pages/AllMeatsAdmin.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/allMeats",
     element: <AllMeats></AllMeats>,
+  },
+  {
+    path: "/allMeatsAdmin",
+    element: <AllMeatsAdmin></AllMeatsAdmin>,
   },
   {
     path: "/verMesas",

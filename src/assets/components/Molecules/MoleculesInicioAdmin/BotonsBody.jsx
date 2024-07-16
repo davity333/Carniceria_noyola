@@ -1,6 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import administrar from '/administrar.png'
 import canita from '/CarnitaAbajo.png'
 function BotonsBody(){
+    const navegar = useNavigate();
+
+    const showProducts = () => {
+        navegar("/allMeatsAdmin");
+    }
+    
+    const lookTables = () => {
+        navegar("/verMesas");
+    }
+    
+    const addProduct = () => {
+        navegar("/addProduct");
+    }
+
     return(
         <>
          <div className="flex justify-center items-center">
@@ -10,13 +25,13 @@ function BotonsBody(){
         <div className="flex text-5xl justify-evenly items-center font-light">
 
         {/*BOTONES DE LA PRIMERA FILA*/}
-        <div className="p-6">
+        <div onClick={addProduct} className="p-6">
         <button className="bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
         shadow-[1px_5px_6px_5px_rgba(0,0,0,0.19)]
         hover:bg-[#c69696]">Agregar producto</button>
         </div>
 
-        <div className="p-6">
+        <div onClick={lookTables} className="p-6">
         <button className="bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
         shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)]
         hover:bg-[#c69696]">Mesas reservadas</button>
@@ -50,7 +65,7 @@ function BotonsBody(){
         hover:bg-[#c69696]">Eliminar producto</button>
         </div>
 
-        <div className="p-6">
+        <div onClick={showProducts} className="p-6">
         <button className="bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
         shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)]
         hover:bg-[#c69696]">Ver productos</button>
@@ -58,8 +73,8 @@ function BotonsBody(){
         </div>
 
         <div className="mt-20">
-  <img src={canita} alt="logo" className='w-full shadow-[-1px_-6px_8px_4px_rgba(0,0,0,0.24)]' />
-</div>
+            <img src={canita} alt="logo" className='w-full shadow-[-1px_-6px_8px_4px_rgba(0,0,0,0.24)]' />
+        </div>
         </>
     );
 }
