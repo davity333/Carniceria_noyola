@@ -12,7 +12,7 @@ function LogoVistaAdmin(){
     return(
         <>
         <>
-      <img onClick={handleClick} className="mt-3 ml-6 h-32 cursor-pointer" src={logo} alt="Logo" />  
+      <img onClick={handleClick} className="mt-3 ml-6 h-32 cursor-pointer" src={logo} alt="Inicio" title='Home'/>  
     </>
         </>
     );
