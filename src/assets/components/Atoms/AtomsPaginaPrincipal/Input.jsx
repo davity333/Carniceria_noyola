@@ -5,9 +5,8 @@ return(
     
     <>
     
-    <input type="text" className="w-1/2 px-4 py-2 h-14 border rounded">
-
-    </input>
+    <input type="text" 
+               className="w-full px-4 h-12 focus:outline-none text-lg md:text-3xl font-thin rounded-full hover:shadow-[0px 7px 5px 2px #0000004f]" />
     </>
 );
 }

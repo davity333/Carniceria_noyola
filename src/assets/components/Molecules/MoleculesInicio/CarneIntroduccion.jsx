@@ -5,7 +5,7 @@ function CarneIntroduccion({children}){
     return(
         <>
 
-         <div className="relative w-full h-auto min-h-screen">
+         <div className="relative w-full h-auto sm:w-full">
             <PrimerFotoCarne encabezado={EncabezadoFoto}>
             {children}
             </PrimerFotoCarne>      

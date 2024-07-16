@@ -31,6 +31,7 @@ function LoginForm() {
         </div>
       </div>
     </section>
+
   );
 }
 

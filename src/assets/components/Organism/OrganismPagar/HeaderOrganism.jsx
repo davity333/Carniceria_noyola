@@ -1,21 +1,23 @@
-import Header from '../../Atoms/AtomsPagar/header';
-import Logo from '../../Molecules/MoleculesPagar/LogoPrincipal';
-import InputInicial from '../../Molecules/MoleculesPagar/InputPrincipal';
-import BotonesHeader from '../../Molecules/MoleculesPagar/BotonesHeader';
-import LineaGris from '../../Atoms/AtomsPagar/LineaGris';
-
+import Logo from "../../Atoms/AtomsPaginaPrincipal/Logo";
+import InputPrincipal from "../../Molecules/MoleculesInicio/InputPrincipal";
+import Header from "../../Atoms/AtomsPaginaPrincipal/header";
+import BotonesHeader from "../../Molecules/MoleculesInicio/BotonesHeader";
+import LineaGris from "../../Atoms/AtomsPaginaPrincipal/LineaGris";
 function HeaderOrganism(){
-    return(
-        <>
-        <Header>
-            <Logo></Logo>
-            <InputInicial></InputInicial>
+return(
 
-            <BotonesHeader></BotonesHeader>
+    <>
+    <Header>
+    <Logo></Logo>
+    <InputPrincipal></InputPrincipal>
 
-        </Header>
-        <LineaGris></LineaGris>
-        </>
-    );
+    <BotonesHeader></BotonesHeader>
+    
+    </Header>
+    <div className="opacity-70">
+    <LineaGris></LineaGris>
+    </div>
+    </>
+);
 }
 export default HeaderOrganism;

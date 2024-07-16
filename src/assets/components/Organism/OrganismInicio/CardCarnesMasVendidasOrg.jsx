@@ -9,7 +9,7 @@ function CardCarnesMasVendidasOrg(){
     {CarnesMejores.MeatSold.map((product, index) => (
 
         <div key={index} className="flex flex-col items-center">
-            <CardCarnesMasVendidas src={product.image} productName={product.producto} price={product.precio}/>
+            <CardCarnesMasVendidas src={product.image} productName={product.producto} price={product.precio} amount={product.cantidad}/>
         </div>
     ))}
 </div>

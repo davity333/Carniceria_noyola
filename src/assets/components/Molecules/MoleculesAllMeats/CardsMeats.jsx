@@ -1,5 +1,4 @@
 import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSupermercado";
-
 function CardsMeats({ src, productName, price, children, onClick }) {
   return (
     <div 

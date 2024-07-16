@@ -1,26 +1,15 @@
-import LineaSeparador from "../assets/components/Atoms/AtomsPaginaPrincipal/LineaSeparador";
-import TextEncabezado from "../assets/components/Molecules/MoleculesVerMesas/TextEncabezado";
-import Header from "../assets/components/Organism/OrganismInicio/HeaderOrganism";
-import Mesas from "../assets/components/Organism/OrgVerMesas/CardsOrg";
+
+import ControlTable from "../assets/components/Organism/OrganismInicioAdmin/ControlTable";
 function VerMesas(){
     return(
         
         <>
-        <div className="bg-[#C29292] min-h-screen">
-        <Header></Header>
-
-        <TextEncabezado></TextEncabezado>
-
-        <div className="flex justify-center">
-        <LineaSeparador></LineaSeparador>
-        </div>
-
-        <div className="p-4">
-        <Mesas></Mesas>
-        </div>
-        
+        <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
+        <ControlTable></ControlTable> 
+        <div className=" min-h-screen w-full"></div>
         </div>
         </>
     );
 }
 export default VerMesas;
+//       
