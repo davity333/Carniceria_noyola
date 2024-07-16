@@ -1,33 +1,58 @@
+import { useState } from 'react';
 import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
 import { TodasCarnes } from "../../../../data/CardsCarnes";
+import ProductModal from './ProductModal';
 
-function chunkArray(array, chunkSize) {
-    const chunks = [];
-    for (let i = 0; i < array.length; i += chunkSize) {
-        chunks.push(array.slice(i, i + chunkSize));
+function CardsAllMeatsOrg() {
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = (product) => {
+    const existingProduct = selectedProducts.find(p => p.producto === product.producto);
+    if (existingProduct) {
+      setSelectedProducts(selectedProducts.map(p => 
+        p.producto === product.producto ? { ...p, quantity: p.quantity + 1 } : p
+      ));
+    } else {
+      setSelectedProducts([...selectedProducts, { ...product, quantity: 1 }]);
     }
-    return chunks;
-}
+    setIsModalOpen(true);
+  };
 
+  const updateQuantity = (product, quantity) => {
+    if (quantity === 0) {
+      setSelectedProducts(selectedProducts.filter(p => p.producto !== product.producto));
+    } else {
+      setSelectedProducts(selectedProducts.map(p => 
+        p.producto === product.producto ? { ...p, quantity } : p
+      ));
+    }
+  };
 
-function CardsAllMeatsOrg(){ {/* MAPEO DE LAS CARTAS DONDE APARECERAN TODAS LAS CARNES EN VENTAS*/}
-
-const CarnesFilas = chunkArray(TodasCarnes.AllMeats, 3); {/*DECLARO UNA CONSTANTE PARA PODER DIVIDIR
-    TODAS LAS CARDS EN 3 ELEMENTOS DE CADA FILA*/}
-
-    return(
-        <>
-            {CarnesFilas.map((chunk, rowIndex) => (
-                <div key={rowIndex} className="flex items-center justify-around mb-4"> {/* Añadir margen inferior entre filas */}
-                    {chunk.map((product, index) => (
-                        <div key={index} className="flex flex-col items-center ">
-                            <CardsMeats src={product.image} productName={product.producto} price={product.precio} />
-                        </div>
-                    ))}
-                </div>
-            ))}
-        </>
-    );
+  return (
+    <>
+      <div className=" font-light m-auto grid grid-cols-1 w-[100%] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
+        {
+          TodasCarnes.AllMeats.map((item, index) => (
+            <CardsMeats 
+              key={index}
+              price={item.precio}
+              productName={item.producto}
+              src={item.image}
+              onClick={() => handleCardClick(item)}
+            />
+          ))
+        }
+      </div>
+      {isModalOpen && (
+        <ProductModal 
+          selectedProducts={selectedProducts} 
+          onClose={() => setIsModalOpen(false)} 
+          updateQuantity={updateQuantity} 
+        />
+      )}
+    </>
+  );
 }
 
 export default CardsAllMeatsOrg;

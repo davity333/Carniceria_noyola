@@ -5,6 +5,7 @@ import AllMeats from "./Pages/AllMeats";
 import VerMesas from './Pages/VerMesas';
 import AddProduct from './Pages/AddProduct.jsx';
 import ReservarMesas from './Pages/ReservarMesas.jsx';
+import ProductModal from './assets/components/Organism/OrganismAllMeats/ProductModal.jsx';
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+  },
+  {
+    path: "/payComplete",
+    element: <ProductModal></ProductModal>,
   },
   {
     path: "/pay",

@@ -6,7 +6,7 @@ function Form() {
   const emailRef = useRef('');
   const passwordRef = useRef('')
   const handerLogin = (e) => {
-    fetch(`${import.meta.env.VITE_URL_C}/users/login`,{
+    fetch(`${import.meta.env.VITE_URL}/users/login`,{
       method:'POST',
       headers: {
           'Content-Type':'application/json',
@@ -32,9 +32,11 @@ function Form() {
   .catch(error=>{
       console.log(error);
   })
+  e.preventDefault();
   }
   return (
-    <form className="space-y-6" action="#" method="POST">
+    <>
+    <form className="space-y-6">
       <FormField
         id="email"
         name="email"
@@ -42,7 +44,7 @@ function Form() {
         placeholder="ej. jesus@gmail.com"
         autoComplete="email"
         required={true}
-        ref={emailRef}
+        reff={emailRef}
         label="Correo electrónico"
       />
       <FormField
@@ -50,20 +52,20 @@ function Form() {
         name="password"
         type="password"
         placeholder="Contraseña"
-        ref={passwordRef}
+       reff={passwordRef}
         autoComplete="current-password"
         required={true}
         label="Contraseña"
       />
       <div>
         <Button
-          type="submit"
           handerClick={handerLogin}
           >
           Iniciar sesión
         </Button>
       </div>
     </form>
+    </>
   );
 }
 

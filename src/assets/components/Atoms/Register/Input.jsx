@@ -1,10 +1,13 @@
-function Input({ id, name, type, placeholder, autoComplete, required,ref }) {
+import { useRef } from "react";
+
+function Input({ id, name, type, placeholder, autoComplete, required, reff}) {
+  reff = useRef('');
     return (
       <input
         id={id}
         name={name}
         type={type}
-        ref={ref}
+        ref={reff}
         autoComplete={autoComplete}
         required={required}
         placeholder={placeholder}

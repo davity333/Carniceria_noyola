@@ -5,10 +5,8 @@ function AllMeats(){
         <>
         <div className="bg-[#C29292] font-Raleway min-h-screen">
         <HeaderOrg></HeaderOrg>
-
-        <div className="flex flex-col items-center">
         <CardsAllMeatsOrg></CardsAllMeatsOrg>
-        </div>
+        
         <div className="p-10"></div>
         </div>
 
