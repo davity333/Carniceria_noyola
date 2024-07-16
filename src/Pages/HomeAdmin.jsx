@@ -7,6 +7,8 @@ import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePagina
 import DropDownOrg from "../assets/components/Organism/OrganismInicioAdmin/DropDownOptionsOrg";
 import DropDownAccount from "../assets/components/Organism/OrganismInicioAdmin/DrowDownAccountOrg";
 import { useState } from "react";
+import HeaderHome from "../assets/components/Organism/OrganismInicioAdmin/HeaderHome";
+import TitleHeaders from "../assets/components/Molecules/MoleculesInicioAdmin/TitleHeader";
 
 function HomeAdmin(){
     const [dropDownMenu, setDropDown] = useState(false);
@@ -22,12 +24,7 @@ function HomeAdmin(){
 
     return(
         <>
-        <div className="w-full h-full ">
-       <HeaderOrganism menu={ClickMenu} account={ClickAccount}></HeaderOrganism>
-       
-       {dropDownAccount && (<DropDownAccount ></DropDownAccount>)}
-       {dropDownMenu && (<DropDownOrg ></DropDownOrg>)}
-   </div>
+       <HeaderHome></HeaderHome>
         
         </>
     );
