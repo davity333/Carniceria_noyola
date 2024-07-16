@@ -1,13 +1,10 @@
-import HeaderText from "../../Molecules/MoleculesTableStatus/HeaderText";
-import TableStatu from "../../Molecules/MoleculesTableStatus/TableStatu";
-
+import Title from "../../Molecules/MoleculesTableStatusUser/Title";
 
 function OrgTableStatus(){
     return(
-        <>
-          <HeaderText></HeaderText>
-
-          
+        <>  
+        <Title></Title>
+        
         </>
     );
 }
