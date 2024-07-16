@@ -9,17 +9,13 @@ function InputPrincipal({children}){
     return(
         <>
 
-        <div className="flex flex-1 justify-center">
-
-        <div  className="w-auto py-2 h-16 flex  justify-center">
-
-                <Img imagen={LupaSilueta}/>
-
-        <Input />
-        {children}
+<div className="flex flex-1 justify-center">
+            <div className="w-3/5 sm:w-auto py-2 h-16 flex justify-center">
+                <Img imagen={LupaSilueta} />
+                <Input />
+                {children}
+            </div>
         </div>
-
-        </div>   
 
         </>
     );

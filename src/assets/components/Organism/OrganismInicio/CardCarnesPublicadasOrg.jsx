@@ -16,20 +16,20 @@ function CardCarnesPublicadasOrg(){
     return(
         <>
 
-<div className="flex items-center justify-around">
+<div className="flex items-center justify-around flex-wrap">
     {CardsCarnes.Meat.map((product, index) => (
 
-        <div key={index} className="flex flex-col items-center">
+        <div key={index} className="flex flex-col items-center ">
             <CardCarnesPublicadas src={product.image} productName={product.producto} price={product.precio} amount={product.cantidad}/>
         </div>
     ))}
 </div>
 
-                    <div onClick={handleClick} className=" p-12 text-5xl flex justify-center drop-shadow-xl ">
-                        <Button Button="VER TODO"></Button>
+                    <div onClick={handleClick} className=" p-12 text-3xl flex justify-center drop-shadow-xl sm:text-5xl justify-center">
+                        <Button Button="VER TODOS"></Button>
                     </div>
 
-            <div className="flex items-center justify-center -mt-3">
+            <div className="flex items-center justify-center -mt-3 ">
             <LineaSeparador/>
             </div>
 

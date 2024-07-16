@@ -27,13 +27,6 @@ function HomeAdmin(){
        
        {dropDownAccount && (<DropDownAccount ></DropDownAccount>)}
        {dropDownMenu && (<DropDownOrg ></DropDownOrg>)}
-
-       <CarneIntroductionOrg></CarneIntroductionOrg>
-       <CarnesVentasOrg></CarnesVentasOrg>
-       <CarnesVentasTextOrg></CarnesVentasTextOrg>
-       <CardCarnesPublicadasOrg ></CardCarnesPublicadasOrg>
-       
-       <PiePaginaOrg></PiePaginaOrg>
    </div>
         
         </>

@@ -9,7 +9,6 @@ function CardsTables({img, solicitante, numeroPersonas, fechas, cantidadMesas, e
         
         <CardBlanca>
         <div className="flex h-full">
-
             <div className="flex flex-1 items-start justify-start">
                 <img src={img} alt="imagen" className="h-full object-cover p-3" />
 
@@ -37,20 +36,22 @@ function CardsTables({img, solicitante, numeroPersonas, fechas, cantidadMesas, e
 
             </div>  
 
+            
+
                
                     <div className="flex justify-end items-end p-2 mb-auto">
-                        <ButtonCard>{eliminar}</ButtonCard>  {/* BOTON GRIS DE ELIMINAR */}
+                        <ButtonCard>{eliminar}</ButtonCard>  {/* BOTON DE ACEPTAR*/}
                         {children}
                     </div>
+        </div>  
 
-                        <div className="flex p-2  w-12 mt-auto cursor-pointer
-                            filter hover:drop-shadow-custom-blue">
-                            <Img imagen={basura}></Img>
-                        </div>
-                        
-
-        </div>       
+        <select name="select">
+            <option value="value1">Confirmada</option>
+            <option value="value2" selected>Pendientes</option>
+            <option value="value3">Eliminadas</option>
+        </select> 
     </CardBlanca>
+   
     </>
     );
 }

@@ -9,7 +9,7 @@ function CardCarnesMasVendidas({children, src, price, productName, amount}){
 <div className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-96 h-2/4">
         {children}
 
-        <div className="flex items-center justify-center h-full">
+        <div className="flex flex-col items-center justify-center h-full">
             <img className="flex items-center justify-center" src={src} alt="" />
         </div>
 

@@ -1,5 +1,5 @@
 import { CardsTables } from "../../../../data/CardsTables";
-import Cards from "../../Molecules/MoleculesVerMesas/CardTables";
+import Cards from "../../Molecules/MoleculesControlMesas/CardTables";
 
 function CardsOrg(){
 

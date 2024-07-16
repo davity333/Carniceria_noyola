@@ -8,7 +8,7 @@ function HeaderOrganismAdmin({menu, account}){
 return(
 
     <>
-    <div className="sm: w-full">
+    
     <Header>
         
     <Logo></Logo>
@@ -22,7 +22,7 @@ return(
     <div className="opacity-70">
     <LineaGris></LineaGris>
     </div>
-    </div>
+    
     </>
 );
 }
