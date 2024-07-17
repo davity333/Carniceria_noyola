@@ -63,6 +63,9 @@ importers:
       eslint-plugin-react-refresh:
         specifier: ^0.4.7
         version: 0.4.7(eslint@8.57.0)
+      typografy:
+        specifier: ^0.0.1
+        version: 0.0.1
       vite:
         specifier: ^5.3.1
         version: 5.3.2
@@ -716,6 +719,10 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+  commander@2.8.1:
+    resolution: {integrity: sha512-+pJLBFVk+9ZZdlAOB5WuIElVPPth47hILFkmGym57aq8kwxsowvByvB0DHs1vQAhyMZzdcpTtF0VDKGkSDR4ZQ==}
+    engines: {node: '>= 0.6.x'}
+
   commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
@@ -1040,6 +1047,9 @@ packages:
   gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
 
+  graceful-readlink@1.0.1:
+    resolution: {integrity: sha512-8tLu60LgxF6XpdbK8OW3FA+IfTNBn1ZHGHKF4KQbEeSkajYw5PlYJcKluntgegDPTg8UkHjpet1T82vk6TQ68w==}
+
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
@@ -1225,6 +1235,11 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+
+  isutf8@1.0.11:
+    resolution: {integrity: sha512-p+ny8ibN42QU0TjUhx6gKSAe2R/u4X62FAmg6EVEeAQQx+83BWWzqGQMYAMrSG+0AZ69oFQ1c4OEvHmcDO8siA==}
+    engines: {node: '>= 0.10'}
+    hasBin: true
 
   iterator.prototype@1.1.2:
     resolution: {integrity: sha512-DR33HMMr8EzwuRL8Y9D3u2BMj8+RqSE850jfGu59kS7tbmPLzGkZmVSfyCFSDxuZiEY6Rzt3T2NA/qU+NwVj1w==}
@@ -1807,6 +1822,11 @@ packages:
   typed-array-length@1.0.6:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
+
+  typografy@0.0.1:
+    resolution: {integrity: sha512-8a8G8Ijeup0HkG9104UFxVO9DcN26A8ciH/4oM2jRGs6CUEoDJXN6aZ3/238VaeHp0bbHGaqhRSoMAzy96O0ow==}
+    engines: {node: '>= 0.10'}
+    hasBin: true
 
   unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
@@ -2589,6 +2609,10 @@ snapshots:
 
   color-name@1.1.4: {}
 
+  commander@2.8.1:
+    dependencies:
+      graceful-readlink: 1.0.1
+
   commander@4.1.1: {}
 
   concat-map@0.0.1: {}
@@ -3048,6 +3072,8 @@ snapshots:
     dependencies:
       get-intrinsic: 1.2.4
 
+  graceful-readlink@1.0.1: {}
+
   graphemer@1.4.0: {}
 
   has-bigints@1.0.2: {}
@@ -3214,6 +3240,10 @@ snapshots:
   isarray@2.0.5: {}
 
   isexe@2.0.0: {}
+
+  isutf8@1.0.11:
+    dependencies:
+      commander: 2.8.1
 
   iterator.prototype@1.1.2:
     dependencies:
@@ -3877,6 +3907,11 @@ snapshots:
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
+
+  typografy@0.0.1:
+    dependencies:
+      commander: 2.8.1
+      isutf8: 1.0.11
 
   unbox-primitive@1.0.2:
     dependencies:

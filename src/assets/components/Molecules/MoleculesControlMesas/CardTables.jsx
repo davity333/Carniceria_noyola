@@ -8,6 +8,7 @@ function CardsTables({img, solicitante, numeroPersonas, fechas, cantidadMesas, e
         <>
         
         <CardBlanca>
+            
         <div className="flex h-full">
             <div className="flex flex-1 items-start justify-start">
                 <img src={img} alt="imagen" className="h-full object-cover p-3" />
@@ -40,16 +41,16 @@ function CardsTables({img, solicitante, numeroPersonas, fechas, cantidadMesas, e
 
                
                     <div className="flex justify-end items-end p-2 mb-auto">
-                        <ButtonCard>{eliminar}</ButtonCard>  {/* BOTON DE ACEPTAR*/}
-                        {children}
-                    </div>
-        </div>  
-
-        <select name="select">
+                    <div className="flex justify-end items-end p-2 mb-auto">
+                    <select name="select" className="h-5">
             <option value="value1">Confirmada</option>
             <option value="value2" selected>Pendientes</option>
             <option value="value3">Eliminadas</option>
         </select> 
+        </div>
+                    </div>
+
+        </div>  
     </CardBlanca>
    
     </>

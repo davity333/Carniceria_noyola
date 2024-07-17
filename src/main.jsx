@@ -8,8 +8,6 @@ import ReservarMesas from './Pages/ReservarMesas.jsx';
 import ProductModal from './assets/components/Organism/OrganismAllMeats/ProductModal.jsx';
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import AddProduct from './Pages/AddProduct.jsx';
-import ReservarMesas from './Pages/ReservarMesas.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,6 +16,7 @@ import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
 import AllMeatsAdmin from './Pages/AllMeatsAdmin.jsx';
 import PageTableStatus from './Pages/PageTableStatus.jsx';
+import HomeAdmin from './Pages/HomeAdmin.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
