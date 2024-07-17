@@ -21,7 +21,7 @@ function Form() {
         const fileName = selectedFile.name;
     
         const newFileText = `Archivo seleccionado: ${fileName}`;
-        setFileText(newFileText); // Actualizar el estado fileText con el nombre del archivo
+        setFileText(newFileText); //
         console.log(newFileText);
     }
 
