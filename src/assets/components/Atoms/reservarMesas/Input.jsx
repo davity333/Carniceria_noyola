@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { forwardRef } from "react";
 
-function Input({ id, name, type, placeholder, autoComplete, required, onChange, value }) {
+const Input = forwardRef(({ id, name, type, placeholder, autoComplete, required }, ref) => {
   return (
     <input
       id={id}
       name={name}
       type={type}
+      ref={ref}
       autoComplete={autoComplete}
       required={required}
       placeholder={placeholder}
-      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-customColor-border sm:text-sm sm:leading-6"
-      onChange={onChange}
-      value={value}
+      className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
     />
   );
-}
+});
 
 export default Input;
