@@ -17,6 +17,7 @@ import Register from './Pages/Register.jsx';
 import AllMeatsAdmin from './Pages/AllMeatsAdmin.jsx';
 import PageTableStatus from './Pages/PageTableStatus.jsx';
 import HomeAdmin from './Pages/HomeAdmin.jsx';
+import Pdf from './Pages/Pdf.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
     path: "/tableStatus",
     element: <PageTableStatus></PageTableStatus>
   },
+  {
+    path: "/pdf",
+    element: <Pdf></Pdf>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
