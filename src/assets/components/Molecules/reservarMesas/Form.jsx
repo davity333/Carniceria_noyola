@@ -1,45 +1,65 @@
 import FormField from './FormField';
 import Button from '../../Atoms/reservarMesas/Button';
 import toast, { Toaster } from 'react-hot-toast';
-import { useState } from 'react';
-function Form() {
-      const [solicitante, setSolcicitante] = useState('');
-      const [numero, setNumero] = useState('');
-      const [fecha, setFecha] = useState ('');
-      const [cantidad, setCantidad] = useState ('');
-      const handerReservar = ()=>{
-        //----------------------------------------------//
-        e.preventDefault (); // preventDefault es para que no se actualice cuando se hace clic en el botón
-       
+import { useRef } from 'react';
 
-    fetch(`${import.meta.env.VITE_URL}/Reservation`, { // METODO, CABEZARA Y BODY
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*' // ES PARA PERMITIR Y RESTRINGIR QUE DOMINIOS Y SITIOS WEB SON ACCESIBLES
-        },
-        body: JSON.stringify({
-            'name': solicitante,
-            'amount': stock,
-            'price' : price,
-        })
+function Form() {
+  const solicitanteRef = useRef('');
+  const dateRef = useRef('');
+  const amountPersonRef = useRef(0);
+  const amountTablesRef = useRef(0);
+
+  const handerReservar = (e) => {
+    e.preventDefault();
+    const solicitante = solicitanteRef.current.value;
+    const amountTables = Number.parseInt(amountTablesRef.current.value);
+    const amountPerson = Number.parseInt(amountPersonRef.current.value);
+    const date = dateRef.current.value;
+
+    // Validar que todos los campos estén llenos y tengan valores válidos
+    if (!solicitante || !date || isNaN(amountTables) || isNaN(amountPerson) || amountTables <= 0 || amountPerson <= 0) {
+      toast.error('Por favor, complete todos los campos correctamente.');
+      return;
+    }
+
+    console.log(solicitante, amountPerson, amountTables, date);
+
+    fetch(`${import.meta.env.VITE_URL}/reservation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        'name': solicitante,
+        'amount_tables': amountTables,
+        'description': 'Reservacion',
+        'amount_persons': amountPerson,
+        'reservationDate': date,
+        'status': 'Pendiente',
+        'created_by': solicitante,
+        'updated_by': solicitante,
+      })
     })
     .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Error al realizar la solicitud');
-        }
+      if (response.ok) {
+        toast.success('Mesa agregada correctamente');
+        return response.json();
+      } else {
+        throw new Error('Error al realizar la solicitud');
+      }
     })
     .then(data => {
-        console.log(data);
+      console.log(data);
     })
     .catch(error => {
-        console.log(error);
+      console.log(error);
+      toast.error('Algo malo ocurrió')
     });
-  }
+  };
+
   return (
-    <form className="space-y-4">
+    <form className="space-y-4" onSubmit={handerReservar}>
       <FormField
         id="name"
         name="name"
@@ -48,17 +68,17 @@ function Form() {
         autoComplete="text"
         required={true}
         label="Nombre del solicitante"
-        value={solicitante}
+        innerRef={solicitanteRef}
       />
       <FormField
         id="noPeople"
         name="noPeople"
-        type="text"
+        type="number"
         placeholder="ej. 6"
         autoComplete="current-text"
         required={true}
         label="Número de personas"
-        value={numero}
+        innerRef={amountPersonRef}
       />
       <FormField
         id="date"
@@ -68,9 +88,9 @@ function Form() {
         autoComplete="s"
         required={true}
         label="Hora"
-        value={fecha}
+        innerRef={dateRef}
       />
-         <FormField
+      <FormField
         id="amount"
         name="amount"
         type="number"
@@ -78,13 +98,14 @@ function Form() {
         autoComplete="number-current"
         required={true}
         label="Cantidad de mesas"
-        value={cantidad}
+        innerRef={amountTablesRef}
       />
-      
       <div>
-        <Button type="submit" onClick={handerReservar
- } children={"Reservar mesa"}></Button>
-        <Toaster></Toaster>
+        <Button children={"Reservar mesa"} />
+        <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
       </div>
     </form>
   );
