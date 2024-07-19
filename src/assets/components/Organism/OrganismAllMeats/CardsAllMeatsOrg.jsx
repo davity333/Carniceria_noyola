@@ -3,7 +3,18 @@ import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
 import { TodasCarnes } from "../../../../data/CardsCarnes";
 import ProductModal from './ProductModal';
 
+function chunkArray(array, chunkSize) {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+      chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
+}
+
 function CardsAllMeatsOrg() {
+        const CarnesFilas = chunkArray(TodasCarnes.AllMeats, 3); {/*DECLARO UNA CONSTANTE PARA PODER DIVIDIR
+    TODAS LAS CARDS EN 3 ELEMENTOS DE CADA FILA*/}
+  
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

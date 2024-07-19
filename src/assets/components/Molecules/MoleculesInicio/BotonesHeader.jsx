@@ -1,23 +1,14 @@
-import SupermercadoLogo from '../../Atoms/AtomsPaginaPrincipal/SupermercadoLogo';
-import LogoUsuario from '../../Atoms/AtomsPaginaPrincipal/LogoUsuario'
-import MesaLogo from '../../Atoms/AtomsPaginaPrincipal/MesaLogo';
 
+import Menu from '/MenuLogo.png'
+import login from "/loginSilueta.png"
 
-
-function BotonesHeader(){
+function BotonesHeader({onClick}){
 return(
     <>
-    <div className='hidden md:block m-7 hover:bg-[#2c2f1c84] px-1 py-1 rounded-full'>
-    <MesaLogo></MesaLogo>
-</div>
 
-<div className='hidden md:block m-7 hover:bg-[#2c2f1c66] px-2 py-2 rounded-full'>
-    <SupermercadoLogo></SupermercadoLogo>
-</div>
+<img src={login} alt="Logo" className='hidden sm:block m-7 hover:bg-[#2c2f1c84] py-2 px-2 rounded-full flex items-end cursor-pointer justify-between items-center md:justify-start' title='Usuario' />  
 
-<div className="hidden md:block m-7 hover:bg-[#2c2f1c84] px-2 py-2 rounded-full">
-    <LogoUsuario></LogoUsuario>
-</div>
+<img onClick={onClick} src={Menu} alt="menu" className='m-1 hover:bg-[#2c2f1c66]  rounded-full w-12 cursor-pointer flex justify-between items-center md:justify-start sm:m-7' title="Menu" />
     </>
 );
 }

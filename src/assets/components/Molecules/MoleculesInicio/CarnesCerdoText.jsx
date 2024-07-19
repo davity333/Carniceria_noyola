@@ -1,21 +1,21 @@
-import SiluetaCarneCerdo from "../../Atoms/AtomsPaginaPrincipal/SiluetaCarneCerdo";
-import SiluetaCerdo from "../../Atoms/AtomsPaginaPrincipal/SiluetaCerdo";
-import TextContent from "../../Atoms/AtomsPaginaPrincipal/TextContent";
 
+import TextContent from "../../Atoms/AtomsPaginaPrincipal/TextContent";
+import cerdo from '/SiluetaCerdo.png'
+import carne from '/SiluetaCarne.png'
 function CarnesCerdoText(){
     return(
         <>
-         <div className="relative w-full h-40 flex items-center justify-center">
-            <div className="absolute left-0 h-40 flex items-center">
-                <SiluetaCarneCerdo />
-            </div>
+         <div className="relative w-full h-14 flex items-center justify-center md:flex md:items-center md:justify-evenly">
             
-            <div className="text-5xl text-white z-10 mb-16">
+            <img src={carne} className="h-10 w-3 m-10 ml-1 sm:h-36 sm:w-auto hidden sm:h-40 sm:block md:h-24"/>
+            
+            
+            <div className="text-white font-extralight flex justify-center">
                 <TextContent Content="CARNES DE CERDO"/>
             </div>
 
-            <div className="absolute right-0 h-40 flex items-center">
-                <SiluetaCerdo />
+            <div className="right-0 h-40 flex items-center">
+            <img src={cerdo} className='m-10 hidden sm:block md:h-24 md:mr-6'/>
             </div>
         </div>
         </>

@@ -4,7 +4,7 @@ import Header from "../../Atoms/AtomsPaginaPrincipal/header";
 import BotonesHeader from "../../Molecules/MoleculesInicioAdmin/BotonesHeader";
 import LineaGris from "../../Atoms/AtomsPaginaPrincipal/LineaGris";
 
-function HeaderOrganismAdmin({menu, account}){
+function HeaderOrganismAdmin({menu}){
 return(
 
     <>
@@ -14,7 +14,7 @@ return(
     <Logo></Logo>
     <InputPrincipal></InputPrincipal>
 
-    <BotonesHeader menu={menu} account={account}>
+    <BotonesHeader menu={menu} >
     </BotonesHeader>
     
 

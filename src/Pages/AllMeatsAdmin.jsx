@@ -1,4 +1,5 @@
 import CardsAllMeatsOrg from "../assets/components/Organism/OrganismAllMeats/CardsAllMeatsOrg";
+import CardsAllMeatsAdminOrg from "../assets/components/Organism/OrganismAllMeats/CardAllMeatsAdminOrg";
 import HeaderAdmin from "../assets/components/Molecules/MoleculesInicioAdmin/HeaderAdmin";
 import canita from '/CarnitaAbajo.png'
 function AllMeatsAdmin(){
@@ -8,7 +9,7 @@ function AllMeatsAdmin(){
         <HeaderAdmin titule="Carnes agregadas"></HeaderAdmin>
 
         <div className="flex flex-col items-center mt-14">
-        <CardsAllMeatsOrg></CardsAllMeatsOrg>
+        <CardsAllMeatsAdminOrg></CardsAllMeatsAdminOrg>
         </div>
         <div className="p-10"></div>
 

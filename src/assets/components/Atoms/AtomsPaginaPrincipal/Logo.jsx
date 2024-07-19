@@ -12,7 +12,10 @@ function Logo(){
 return(
     
     <>
-      <img onClick={handleClick} className="mt-3 ml-2 h-16 cursor-pointer sm:h-32 sm:ml-6" src={logo} alt="Logo" />  
+      <img onClick={handleClick} className="mt-3 ml-2 h-14 cursor-pointer
+      filter hover:drop-shadow-custom-red
+      sm:h-32 sm:ml-6" src={logo} alt="Logo" title='Inicio'
+      />  
     </>
 );
 }

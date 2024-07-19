@@ -1,11 +1,11 @@
-import PiePagina from "../../Molecules/MoleculesInicio/PiePagina";
-import LineaGris from "../../Atoms/AtomsPaginaPrincipal/LineaGris";
+
+import pie from '/carniceria.jpg'
 
 function PiePaginaOrg(){
     return(
         <>
-         <LineaGris></LineaGris>
-         <PiePagina></PiePagina>
+         
+         <img src={pie} alt="log" className="w-full sm:h-[40rem] md:h-[35rem]"/>
         </>
     );
 

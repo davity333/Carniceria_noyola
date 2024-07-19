@@ -3,7 +3,7 @@ function Img({imagen}){
 return(
     
     <>
-     <img src={imagen} alt="Logo" /> 
+     <img src={LupaSilueta} alt="Logo" /> 
     </>
 
 );

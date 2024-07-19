@@ -1,7 +1,7 @@
 import CardCarnesMasVendidad from "../../Molecules/MoleculesInicio/CardCarnesMasVendidas";
 import CardCarnesPublicadas from "../../Molecules/MoleculesInicio/CardCarnesPublicadas";
 import { CardsCarnes } from "../../../../data/CardsCarnes";
-import Button from "../../Atoms/AtomsPaginaPrincipal/Button";
+
 import LineaSeparador from "../../Atoms/AtomsPaginaPrincipal/LineaSeparador";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -25,13 +25,10 @@ function CardCarnesPublicadasOrg(){
     ))}
 </div>
 
-                    <div onClick={handleClick} className=" p-12 text-3xl flex justify-center drop-shadow-xl sm:text-5xl justify-center">
-                        <Button Button="VER TODOS"></Button>
-                    </div>
+    <button className="flex bg-red-200 m-5 px-6 py-2 rounded-[3rem] mx-auto text-2xl text-red-900
+     hover:bg-[#dea1a1] sm:px-32 sm:py-5 sm:m-10 sm:text-4xl sm:hover:bg-[#dea1a1] sm:mx-auto">VER TODO</button>
 
-            <div className="flex items-center justify-center -mt-3 ">
-            <LineaSeparador/>
-            </div>
+  
 
         </>
     );

@@ -8,7 +8,7 @@ function CardCarnesMasVendidasOrg(){
         <div className="flex items-center justify-around">
     {CarnesMejores.MeatSold.map((product, index) => (
 
-        <div key={index} className="flex flex-col items-center">
+        <div key={index} className="flex items-center ">
             <CardCarnesMasVendidas src={product.image} productName={product.producto} price={product.precio} amount={product.cantidad}/>
         </div>
     ))}
@@ -19,7 +19,6 @@ function CardCarnesMasVendidasOrg(){
                     </div>
 
             <div className="flex items-center justify-center -mt-3">
-            <LineaSeparador/>
             </div>
 
         </>

@@ -4,7 +4,7 @@ import style from './Styles.module.css'
 function Header({children}){
 return(
 <>
-    <header id={style.header} className='flex h-36 items-center px-4 w-full ' >
+    <header id={style.header} className='flex h-20 items-center px-4 w-full sm:h-36' >
         {children}
     </header>
 </>

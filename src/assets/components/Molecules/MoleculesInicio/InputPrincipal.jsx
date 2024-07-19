@@ -10,11 +10,15 @@ function InputPrincipal({children}){
         <>
 
 <div className="flex flex-1 justify-center">
-            <div className="w-3/5 sm:w-auto py-2 h-16 flex justify-center">
-                <Img imagen={LupaSilueta} />
+
+            <div className="w-3/5 sm:w-auto py-2 h-14 flex justify-end sm:flex sm:justify-center">
+
+            <img src={LupaSilueta} alt="Logo" /> 
+
                 <Input />
                 {children}
             </div>
+
         </div>
 
         </>

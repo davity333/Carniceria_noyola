@@ -8,12 +8,9 @@ function CarneIntroduction({children}){
         <div className="">
         <Encabezado encabezado={EncabezadoFoto}>
         {children}
-        
         </Encabezado>
         </div>
-
         <LineaGris></LineaGris>
-        
         </>
 
     );

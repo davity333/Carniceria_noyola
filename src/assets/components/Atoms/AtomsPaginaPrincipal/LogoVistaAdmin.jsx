@@ -12,7 +12,8 @@ function LogoVistaAdmin(){
     return(
         <>
         <>
-      <img onClick={handleClick} className="mt-3 ml-6 h-32 cursor-pointer" src={logo} alt="Inicio" title='Home'/>  
+      <img onClick={handleClick} className="mt-3 ml-6 h-32 cursor-pointer
+      filter hover:drop-shadow-custom-red" src={logo} alt="Inicio" title='Home'/>  
     </>
         </>
     );

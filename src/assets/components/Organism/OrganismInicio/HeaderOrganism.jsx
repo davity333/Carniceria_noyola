@@ -3,7 +3,7 @@ import InputPrincipal from "../../Molecules/MoleculesInicio/InputPrincipal";
 import Header from "../../Atoms/AtomsPaginaPrincipal/header";
 import BotonesHeader from "../../Molecules/MoleculesInicio/BotonesHeader";
 import LineaGris from "../../Atoms/AtomsPaginaPrincipal/LineaGris";
-function HeaderOrganism(){
+function HeaderOrganism({onClick}){
 return(
 
     <>
@@ -11,12 +11,10 @@ return(
     <Logo></Logo>
     <InputPrincipal></InputPrincipal>
 
-    <BotonesHeader></BotonesHeader>
+    <BotonesHeader onClick={onClick}></BotonesHeader>
     
     </Header>
-    <div className="opacity-70">
-    <LineaGris></LineaGris>
-    </div>
+
     </>
 );
 }

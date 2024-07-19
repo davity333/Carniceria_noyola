@@ -1,19 +1,36 @@
-import CarnesVentasOrg from "../assets/components/Organism/OrganismInicio/CarnesVentaOrg";
+
 import CarneIntroductionOrg from "../assets/components/Organism/OrganismInicio/CarneIntroductionOrg";
 import HeaderOrganism from "../assets/components/Organism/OrganismInicio/HeaderOrganism";
 import CarnesVentasTextOrg from "../assets/components/Organism/OrganismInicio/CarnesVentasTextOrg";
 import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInicio/CardCarnesPublicadasOrg";
-import CardCarnesMasVendidasOrg from "../assets/components/Organism/OrganismInicio/CardCarnesMasVendidasOrg";
 import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePaginaOrg";
+import { useState } from "react";
+import DropDownOptionsOrg from "../assets/components/Organism/OrganismInicio/DropDownOptionsOrg";
+import LineaGris from "../assets/components/Atoms/AtomsPaginaPrincipal/LineaGris";
 function Home(){
+
+    const [dropDownMenu, setDropDown] = useState(false);
+
+    const clickDown = () =>{
+        if(dropDownMenu){
+            setDropDown(false);
+        }else{
+
+            setDropDown(!false);
+        }
+
+    }
+    
     return(
         <>
-        <HeaderOrganism></HeaderOrganism>
+        <HeaderOrganism onClick={clickDown}></HeaderOrganism>
+        {dropDownMenu && (<DropDownOptionsOrg onClick={clickDown}></DropDownOptionsOrg>)}
+
         <CarneIntroductionOrg></CarneIntroductionOrg>
-        <CarnesVentasOrg></CarnesVentasOrg>
+
         <CarnesVentasTextOrg></CarnesVentasTextOrg>
         <CardCarnesPublicadasOrg></CardCarnesPublicadasOrg>
-        <CardCarnesMasVendidasOrg></CardCarnesMasVendidasOrg>
+
         <PiePaginaOrg></PiePaginaOrg>
         </>
     );

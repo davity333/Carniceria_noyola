@@ -8,7 +8,6 @@ function TextCarritoOrg(){
         <TextCarrito></TextCarrito>
 
         <div className="flex items-center justify-center -m-5">
-        <LineaSeparador></LineaSeparador>
         </div>
 
         </div>
