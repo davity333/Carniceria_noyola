@@ -1,4 +1,4 @@
-import Logo from "/SiluetaCarne.png";
+import Logo from "/logoReservarMesa.png"
 import Form from "../Molecules/reservarMesas/Form";
 import Title from "../Atoms/reservarMesas/Title";
 function ReservarMesaForm() {
@@ -6,7 +6,7 @@ function ReservarMesaForm() {
     <>
       
         <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8 w-full ">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
             <img
               className="mx-auto h-1/3 w-1/3 "
               src={Logo}

@@ -7,11 +7,13 @@ function CardCarnesPublicadas({children, src , price, productName}){
     return(
         <>
         <div 
-      className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-80 h-auto max-h-[500px] flex flex-col items-center justify-between"
+      className="h-44 w-36 drop-shadow-xl product-card bg-neutral-300 p-5 m-1 rounded-lg text-center max-h-[500px] flex flex-col items-center justify-between
+      sm:h-auto sm:w-80 sm:p-8 sm:m-4 "
     >
       {children}
       <div className="flex items-center justify-center h-40 sm:h-48 md:h-56">
-        <img className="flex items-center justify-center max-h-full max-w-full" src={src} alt={productName} />
+        <img className="flex items-center justify-center h-20 max-w-full
+        sm:h-52" src={src} alt={productName} />
       </div>
       <div className="mt-4">
         <p className="text-xl sm:text-2xl md:text-3xl font-bold">{productName}</p>

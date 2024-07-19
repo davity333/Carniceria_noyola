@@ -1,79 +1,90 @@
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App.jsx';
+import './index.css';
 import PagePay from './Pages/PagePay';
 import AllMeats from "./Pages/AllMeats";
 import VerMesas from './Pages/VerMesas';
 import AddProduct from './Pages/AddProduct.jsx';
 import ReservarMesas from './Pages/ReservarMesas.jsx';
 import ProductModal from './assets/components/Organism/OrganismAllMeats/ProductModal.jsx';
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
 import AllMeatsAdmin from './Pages/AllMeatsAdmin.jsx';
 import PageTableStatus from './Pages/PageTableStatus.jsx';
 import HomeAdmin from './Pages/HomeAdmin.jsx';
 import Pdf from './Pages/Pdf.jsx';
+import ThankYou from './assets/components/Organism/OrganismAllMeats/ThankYou.jsx';
+import PurchaseConfirmation from './assets/components/Organism/OrganismAllMeats/PurchaseConfirmation.jsx';
+import { AuthProvider } from './assets/components/Molecules/Register/AuthContext.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: <App />,
   },
   {
     path: "/payComplete",
-    element: <ProductModal></ProductModal>,
+    element: <ProductModal />,
+  },
+  {
+    path: "/thank-you",
+    element: <ThankYou />,
+  },
+  {
+    path: "/confirmationPay",
+    element: <PurchaseConfirmation />,
   },
   {
     path: "/pay",
-    element: <PagePay></PagePay>,
+    element: <PagePay />,
   },
   {
     path: "/allMeats",
-    element: <AllMeats></AllMeats>,
+    element: <AllMeats />,
   },
   {
     path: "/allMeatsAdmin",
-    element: <AllMeatsAdmin></AllMeatsAdmin>,
+    element: <AllMeatsAdmin />,
   },
   {
     path: "/verMesas",
-    element: <VerMesas></VerMesas>,
+    element: <VerMesas />,
   },
   {
     path: "/homeAdmin",
-    element: <HomeAdmin></HomeAdmin>
-  },{
+    element: <HomeAdmin />
+  },
+  {
     path: "/login",
-    element: <Login></Login>,
+    element: <Login />,
   },
   {
     path: "/register",
-    element: <Register></Register>,
+    element: <Register />,
   },
   {
     path: "/reservarMesas",
-    element: <ReservarMesas></ReservarMesas>,
+    element: <ReservarMesas />,
   },
   {
     path: "/addProduct",
-    element: <AddProduct></AddProduct>,
+    element: <AddProduct />,
   },
   {
     path: "/tableStatus",
-    element: <PageTableStatus></PageTableStatus>
+    element: <PageTableStatus />,
   },
   {
     path: "/pdf",
-    element: <Pdf></Pdf>
+    element: <Pdf />,
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <RouterProvider router={router} />
-</React.StrictMode>
-)
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </React.StrictMode>
+);

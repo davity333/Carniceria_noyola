@@ -20,9 +20,11 @@ function HeaderAdmin({children, titule}){
         <LogoVistaAdmin></LogoVistaAdmin>
     </div>
 
-        <p className='text-center flex justify-center text-6xl text-[#ffffff]
-        [text-shadow:_2px_4px_6px_rgba(131,131,131,0.82)] font-extralight'>{titule}</p>
-    <img title='Cerrar sesión' src={cerrar} onClick={cerrarSesion} className='h-16 m-7 cursor-pointer' />
+        <p className='text-center flex justify-center text-3xl text-[#ffffff]
+        [text-shadow:_2px_4px_6px_rgba(131,131,131,0.82)] font-extralight
+        sm:text-6xl md:text-5xl lg:text-6xl'>{titule}</p>
+
+    <img title='Cerrar sesión' src={cerrar} onClick={cerrarSesion} className='h-10 m-3 cursor-pointer sm:h-16 sm:m-7' />
 </header>
         </>
     );

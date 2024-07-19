@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
 import { TodasCarnes } from "../../../../data/CardsCarnes";
 import ProductModal from './ProductModal';
@@ -17,7 +18,10 @@ function CardsAllMeatsOrg() {
   
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const openShoppingCart = () =>{
+    isModalOpen
+  }
   const handleCardClick = (product) => {
     const existingProduct = selectedProducts.find(p => p.producto === product.producto);
     if (existingProduct) {
@@ -40,9 +44,13 @@ function CardsAllMeatsOrg() {
     }
   };
 
+  const handlePay = () => {
+    navigate('/confirmationPay', { state: { selectedProducts } });
+  };
+
   return (
     <>
-      <div className=" font-light m-auto grid grid-cols-1 w-[100%] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
+      <div className="font-light m-auto grid grid-cols-1 w-[100%] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
         {
           TodasCarnes.AllMeats.map((item, index) => (
             <CardsMeats 
@@ -60,8 +68,10 @@ function CardsAllMeatsOrg() {
           selectedProducts={selectedProducts} 
           onClose={() => setIsModalOpen(false)} 
           updateQuantity={updateQuantity} 
+          handlePay={handlePay}
         />
       )}
+      <button onClick={openShoppingCart}>Carrito</button>
     </>
   );
 }

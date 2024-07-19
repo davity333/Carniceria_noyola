@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import administrar from '/administrar.png'
 import canita from '/CarnitaAbajo.png'
+import AddStock from '../addStockProduct/AddStock';
 function BotonsBody(){
     const navegar = useNavigate();
 
@@ -70,6 +71,7 @@ function BotonsBody(){
         shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)]
         hover:bg-[#c69696]">Ver productos</button>
         </div>
+            <AddStock></AddStock>
         </div>
 
         <div className="mt-20">
