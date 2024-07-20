@@ -2,24 +2,37 @@ import React, { useState } from 'react';
 import CardBlanca from "../../Atoms/AtomsPagar/CardBlanca";
 import basura from "/basura.png";
 import { toast, Toaster } from 'react-hot-toast';
+import { getUser } from '../../../../../User';
 
 function CardsTables({ img, solicitante, numeroPersonas, fechas, cantidadMesas, state, id, deleted, onStatusChange }) {
     const [status, setStatus] = useState(state);
+    const [showModal, setShowModal] = useState(false);
+    const name = getUser().name;
+
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
 
     const deleteReservation = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${import.meta.env.VITE_URL}/reservations/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_URL}/reservations/delete/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ deleted: 1 })
+                body: JSON.stringify({ deleted: 1, updated_by: name })
             });
 
             if (response.ok) {
                 toast.success('Se eliminó correctamente');
+                // Aquí puedes manejar la eliminación de la reserva del estado o lista
+                closeModal(); // Cerrar el modal después de eliminar
             } else {
                 const errorData = await response.json();
                 console.error('Falló al eliminar la reservación:', response.statusText, errorData);
@@ -96,11 +109,35 @@ function CardsTables({ img, solicitante, numeroPersonas, fechas, cantidadMesas, 
                         <option value="Pendiente">Pendiente</option>
                         <option value="Cancelada">Cancelada</option>
                     </select>
-                    <button onClick={deleteReservation} className="h-10 w-10 flex items-center justify-center bg-red-500 text-white rounded-md hover:bg-red-600">
+                    <button onClick={openModal} className="h-10 w-10 flex items-center justify-center bg-red-500 text-white rounded-md hover:bg-red-600">
                         <img src={basura} alt="Eliminar" className="h-5 w-5" />
                     </button>
                 </div>
             </div>
+
+            {showModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-5 rounded-lg shadow-lg">
+                        <h2 className="text-lg font-semibold">Confirmación</h2>
+                        <p>¿Estás seguro que deseas eliminar esta reserva?</p>
+                        <div className="flex justify-end space-x-3 mt-4">
+                            <button
+                                onClick={closeModal}
+                                className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                onClick={deleteReservation}
+                                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                            >
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <Toaster />
         </CardBlanca>
     );

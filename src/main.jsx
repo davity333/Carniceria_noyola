@@ -18,6 +18,7 @@ import Pdf from './Pages/Pdf.jsx';
 import ThankYou from './assets/components/Organism/OrganismAllMeats/ThankYou.jsx';
 import PurchaseConfirmation from './assets/components/Organism/OrganismAllMeats/PurchaseConfirmation.jsx';
 import { AuthProvider } from './assets/components/Molecules/Register/AuthContext.jsx';
+import AddEmploye from './Pages/AddEmploye.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
   {
     path: "/pdf",
     element: <Pdf />,
+  },
+  {
+    path: "/addEmploye",
+    element: <AddEmploye />,
   }
 ]);
 

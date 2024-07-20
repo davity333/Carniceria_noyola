@@ -8,6 +8,9 @@ function BotonsBody(){
     const showProducts = () => {
         navegar("/allMeatsAdmin");
     }
+    const employe = () => {
+        navegar('/addEmploye')
+    }
     
     const lookTables = () => {
         navegar("/verMesas");
@@ -49,6 +52,11 @@ function BotonsBody(){
         hover:bg-[#c69696]">Actualizar producto</button>
         </div>
 
+        <div onClick={employe} className="p-6">
+        <button className="bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
+        shadow-[1px_5px_6px_5px_rgba(0,0,0,0.19)]
+        hover:bg-[#c69696]">Administracion de empleados</button>
+        </div>
         <div className="p-6">
         <button className="bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
         shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)]
