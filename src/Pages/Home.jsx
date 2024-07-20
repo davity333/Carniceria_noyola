@@ -6,25 +6,40 @@ import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInici
 import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePaginaOrg";
 import { useState } from "react";
 import DropDownOptionsOrg from "../assets/components/Organism/OrganismInicio/DropDownOptionsOrg";
-import LineaGris from "../assets/components/Atoms/AtomsPaginaPrincipal/LineaGris";
+import DropDownUserOrg from "../assets/components/Organism/OrganismInicio/DropDownUserOrg";
+
 function Home(){
 
     const [dropDownMenu, setDropDown] = useState(false);
+    const [dropDownUser, setDropDownUser] = useState(false);
 
-    const clickDown = () =>{
+    const clickDown = () =>{            //DropDown Menu
         if(dropDownMenu){
             setDropDown(false);
         }else{
-
+            setDropDownUser(false);
             setDropDown(!false);
+        }
+
+    }
+
+
+    const clickDownUser = () =>{        //DropDown Usuario
+        if(dropDownUser){
+            setDropDownUser(false);
+        }else{
+            setDropDown(false)
+            setDropDownUser(!false);
         }
 
     }
     
     return(
         <>
-        <HeaderOrganism onClick={clickDown}></HeaderOrganism>
+        <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
         {dropDownMenu && (<DropDownOptionsOrg onClick={clickDown}></DropDownOptionsOrg>)}
+
+        {dropDownUser && (<DropDownUserOrg></DropDownUserOrg>)}
 
         <CarneIntroductionOrg></CarneIntroductionOrg>
 

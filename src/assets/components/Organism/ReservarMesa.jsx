@@ -12,10 +12,10 @@ function ReservarMesaForm() {
               src={Logo}
               alt="Carnitas Noyola"
             />
-            <Title text={"Hola reserva una mesa"}></Title>
+            <Title text={"Reserva tu mesa aqui"}></Title>
           </div>
   
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm w-1/2">
+          <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm w-1/2">
             <Form />
           </div>
         </div>

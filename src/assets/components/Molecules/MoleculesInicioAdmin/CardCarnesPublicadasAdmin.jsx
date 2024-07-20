@@ -7,7 +7,7 @@ function CardCarnesPublicadas({children, src , price, productName}){
     return(
         <>
         <div 
-      className="h-44 w-36 drop-shadow-xl product-card bg-neutral-300 p-5 m-1 rounded-lg text-center max-h-[500px] flex flex-col items-center justify-between
+      className="h-44 w-28 drop-shadow-xl product-card bg-neutral-300 p-5 m-1 rounded-lg text-center max-h-[500px] flex flex-col items-center justify-between
       sm:h-auto sm:w-80 sm:p-8 sm:m-4 "
     >
       {children}
@@ -17,7 +17,7 @@ function CardCarnesPublicadas({children, src , price, productName}){
       </div>
       <div className="mt-4">
         <p className="text-xl sm:text-2xl md:text-3xl font-bold">{productName}</p>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-700">{price}</p>
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-700">{"$ :"+price}</p>
       </div>
       
     </div>

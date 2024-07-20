@@ -50,7 +50,8 @@ function CardsAllMeatsOrg() {
 
   return (
     <>
-      <div className="font-light m-auto grid grid-cols-1 w-[100%] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
+      <div className="font-light m-auto grid grid-cols-1 w-[100%] 
+       sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
         {
           TodasCarnes.AllMeats.map((item, index) => (
             <CardsMeats 

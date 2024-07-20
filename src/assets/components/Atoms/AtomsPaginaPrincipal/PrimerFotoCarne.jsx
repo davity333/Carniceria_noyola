@@ -1,10 +1,9 @@
-import carne from '/carneCerdo.png'
 
-function PrimerFotoCarne({children, encabezado}){
+function PrimerFotoCarne({children, encabezadoHome}){
 return(
     <>
-    <div className="relative w-full h-32 sm:h-screen" style={{ 
-        backgroundImage: `url(${carne})`, 
+    <div className="relative w-full h-40 sm:h-screen" style={{ 
+        backgroundImage: `url(${encabezadoHome})`, 
         backgroundSize: 'cover',
         backgroundPosition: 'center'
     }}>

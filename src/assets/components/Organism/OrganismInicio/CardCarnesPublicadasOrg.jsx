@@ -25,10 +25,8 @@ function CardCarnesPublicadasOrg(){
     ))}
 </div>
 
-    <button className="flex bg-red-200 m-5 px-6 py-2 rounded-[3rem] mx-auto text-2xl text-red-900
+    <button onClick={handleClick} className="flex bg-red-200 m-5 px-6 py-2 rounded-[3rem] mx-auto text-2xl text-red-900
      hover:bg-[#dea1a1] sm:px-32 sm:py-5 sm:m-10 sm:text-4xl sm:hover:bg-[#dea1a1] sm:mx-auto">VER TODO</button>
-
-  
 
         </>
     );

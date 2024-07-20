@@ -1,16 +1,17 @@
-import Encabezado from "../../Atoms/AtomsPaginaPrincipal/PrimerFotoCarne"
-import EncabezadoFoto from '/AllMeats.png';
-import LineaGris from "../../Atoms/AtomsPaginaPrincipal/LineaGris";
-
-function CarneIntroduction({children}){
+import CarneIntroduccion from "../../Molecules/MoleculesInicio/CarneIntroduccion";
+import TextContent from "../../Atoms/AtomsPaginaPrincipal/TextContent";
+import encabezadoFoto from '/AllMeats.png';
+function CarneIntroduction({children, encabezado}){
     return(
         <>
-        <div className="">
-        <Encabezado encabezado={EncabezadoFoto}>
-        {children}
-        </Encabezado>
+        <div className="bg-zinc-500	 h-2  px-1"></div>
+        <CarneIntroduccion encabezadoHome={encabezadoFoto}></CarneIntroduccion>
+        <div className="bg-zinc-500	 h-2  px-1"></div>
+
+        <div className="text-white m-5  sm:m-20">
+        <TextContent Content="Explora una amplia gama de cortes de cerdo frescos y deliciosos, perfectos 
+        para cualquier ocasión y preparados para satisfacer todos tus gustos culinarios."/>
         </div>
-        <LineaGris></LineaGris>
         </>
 
     );

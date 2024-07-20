@@ -6,7 +6,7 @@ import OrgTableStatus from "../assets/components/Organism/OrganismTableStatus/Or
 function PageTableStatus(){
     return(
         <>
-        <div className=" bg-[#bcaa90] h-screen">
+        <div className=" bg-[#bcaa90] h-min-screen">
         <HeaderOrg></HeaderOrg>
         <Title></Title>
 
