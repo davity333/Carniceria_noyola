@@ -1,88 +1,143 @@
-import FormField from './FormField';
+import React, { useRef, useState } from 'react';
+import FormField from './../Register/FormField';
 import Button from '../../Atoms/reservarMesas/Button';
 import toast, { Toaster } from 'react-hot-toast';
-import { useState } from 'react';
-import { TodasCarnes } from '../../../../data/CardsCarnes';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 function Form() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-      navigate('/allMeats');
-      }
+    navigate('/allMeats');
+  };
 
-      const [nameProduct, setNameProducto] = useState('');
-      const [price, setPrecio] = useState('');
-      const [stock, setStock] = useState('');
+  const nameProduct = useRef('');
+  const price = useRef('');
+  const stock = useRef('');
+  const file = useRef(null);
 
-   
-      const selectImage = (e) => {
-        const selectedFile = e.target.files[0];
-        const fileName = selectedFile.name;
-    
-        const newFileText = `Archivo seleccionado: ${fileName}`;
-        setFileText(newFileText); //
-        console.log(newFileText);
+  const [errors, setErrors] = useState({
+    nameProduct: '',
+    price: '',
+    stock: '',
+    file: ''
+  });
+
+  const selectImage = (e) => {
+    const selectedFile = e.target.files[0];
+    file.current = selectedFile;
+    const fileName = selectedFile.name;
+    const newFileText = `Archivo seleccionado: ${fileName}`;
+    console.log(newFileText);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      file: ''
+    }));
+  };
+
+  const validateNameProduct = () => {
+    if (!nameProduct.current.value.match(/^[a-zA-Z\s]+$/)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        nameProduct: 'El nombre del producto debe contener solo letras y espacios'
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        nameProduct: ''
+      }));
+    }
+  };
+
+  const validatePrice = () => {
+    if (!price.current.value.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        price: 'El precio debe ser un número válido'
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        price: ''
+      }));
+    }
+  };
+
+  const validateStock = () => {
+    if (!stock.current.value.match(/^[0-9]+$/)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        stock: 'El stock debe ser un número entero válido'
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        stock: ''
+      }));
+    }
+  };
+
+  const validateFile = () => {
+    if (!file.current) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        file: 'Debes subir una imagen del producto'
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        file: ''
+      }));
+    }
+  };
+
+  const addProducts = async (e) => {
+    e.preventDefault();
+
+    if (!nameProduct.current.value || !price.current.value || !stock.current.value || !file.current) {
+      toast.error("No puedes dejar campos vacíos");
+      validateNameProduct();
+      validatePrice();
+      validateStock();
+      validateFile();
+      return;
     }
 
-      const click = (e) => {
-        
+    if (errors.nameProduct || errors.price || errors.stock || errors.file) {
+      toast.error('Por favor corrige los errores antes de enviar');
+      return;
+    }
 
-        const newProduct = {
-          producto: nameProduct,
-          precio: "$"+price,
-          cantidad: stock + " kg",
-        }   
+    const formData = new FormData();
+    formData.append('description', nameProduct.current.value);
+    formData.append('amount', stock.current.value);
+    formData.append('price', price.current.value);
+    if (file.current) {
+      formData.append('productImage', file.current);
+    }
 
-        //----------------------------------------------//
-
-        e.preventDefault(); // preventDefault es para que no se actualice cuando se hace clic en el botón
-
-    fetch(`${import.meta.env.VITE_URL}/products`, { // METODO, CABEZARA Y BODY
+    try {
+      const response = await fetch(`${import.meta.env.VITE_URL}/products`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*' // ES PARA PERMITIR Y RESTRINGIR QUE DOMINIOS Y SITIOS WEB SON ACCESIBLES
-        },
-        body: JSON.stringify({
-            'description': nameProduct,
-            'amount': stock,
-            'price' : price,
-        })
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Error al realizar la solicitud');
-        }
-    })
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
-    });
+        body: formData,
+      });
 
-
-        /*----------------------------------------------*/
-
-        if(nameProduct === ''|| price === '' || stock === ''){
-          toast.error("no puedes dejar campos vacios")
-        }else if(price <= 0){
-          toast.error('Ingresa un precio valido')
-        }else if(stock <= 0){
-          toast.error('Ingresa un stock valido')
-        }else{
-          toast.success('Producto agregado correctamente')
-          TodasCarnes.AllMeats.push(newProduct);
-        }
-
+      if (!response.ok) {
+        throw new Error('Error al realizar la solicitud');
       }
-      
+
+      const data = await response.json();
+      console.log(data);
+
+      toast.success('Producto agregado correctamente');
+    } catch (error) {
+      console.error(error);
+      toast.error('Error al agregar el producto');
+    }
+  };
 
   return (
-    <form className="space-y-4">
+    <form className="space-y-4" onSubmit={addProducts}>
       <FormField
         id="type"
         name="type"
@@ -91,10 +146,10 @@ function Form() {
         autoComplete="text"
         required={true}
         label="Tipo de carne"
-        value={nameProduct}
-        onChange={(e) => setNameProducto(e.target.value)}
-        
+        innerRef={nameProduct}
+        onBlur={validateNameProduct}
       />
+      {errors.nameProduct && <p className="text-[#5b1313]">{errors.nameProduct}</p>}
       <FormField
         id="price"
         name="price"
@@ -103,38 +158,41 @@ function Form() {
         autoComplete="current-text"
         required={true}
         label="Precio"
-        value={price}
-        onChange={(e) => setPrecio(e.target.value)}
+        innerRef={price}
+        onBlur={validatePrice}
       />
+      {errors.price && <p className="text-white">{errors.price}</p>}
       <FormField
         id="stock"
         name="stock"
         type="number"
-        placeholder="ej. 7 (kg)"
+        placeholder="ej. 7"
         autoComplete="current-text"
         required={true}
         label="Stock del producto"
-        value={stock}
-        onChange={(e) => setStock(e.target.value)}
+        innerRef={stock}
+        onBlur={validateStock}
       />
-         <FormField
+      {errors.stock && <p className="text-white">{errors.stock}</p>}
+      <FormField
         id="picture"
         name="picture"
         type="file"
-        placeholder=""
         autoComplete=""
         required={true}
         label="Subir foto"
         onChange={selectImage}
+        onBlur={validateFile}
       />
-      
+      {errors.file && <p className="text-white">{errors.file}</p>}
       <div>
-        <Button type="submit" onClick={click} children={"Agregar producto"}></Button>
-        <Toaster></Toaster>
+        <Button type="submit" children={"Agregar producto"}></Button>
+        <Toaster />
       </div>
-      <button onClick={handleClick} className="flex justify-center items-end m-4 text-yellow-100">VER PRODUCTOS</button>
+      <button onClick={handleClick} className="flex justify-center items-end m-4 text-yellow-100">
+        VER PRODUCTOS
+      </button>
     </form>
-    
   );
 }
 
