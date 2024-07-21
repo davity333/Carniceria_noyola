@@ -1,51 +1,60 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
-import { TodasCarnes } from "../../../../data/CardsCarnes";
 import ProductModal from './ProductModal';
-
-function chunkArray(array, chunkSize) {
-  const chunks = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-      chunks.push(array.slice(i, i + chunkSize));
-  }
-  return chunks;
-}
+import { getSelectedProducts, addProduct, updateProductQuantity, getProductsToPost } from '../../../../../selectedProducts';
 
 function CardsAllMeatsOrg() {
-        const CarnesFilas = chunkArray(TodasCarnes.AllMeats, 3); {/*DECLARO UNA CONSTANTE PARA PODER DIVIDIR
-    TODAS LAS CARDS EN 3 ELEMENTOS DE CADA FILA*/}
-  
+  const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-  const openShoppingCart = () =>{
-    isModalOpen
-  }
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${import.meta.env.VITE_URL}/products`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+        } else {
+          const errorData = await response.json();
+          console.error('Failed to fetch products:', response.statusText, errorData);
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    setSelectedProducts(getSelectedProducts());
+  }, []);
+
   const handleCardClick = (product) => {
-    const existingProduct = selectedProducts.find(p => p.producto === product.producto);
-    if (existingProduct) {
-      setSelectedProducts(selectedProducts.map(p => 
-        p.producto === product.producto ? { ...p, quantity: p.quantity + 1 } : p
-      ));
-    } else {
-      setSelectedProducts([...selectedProducts, { ...product, quantity: 1 }]);
-    }
+    addProduct(product);
+    setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
     setIsModalOpen(true);
+    console.log(getProductsToPost());
   };
 
-  const updateQuantity = (product, quantity) => {
-    if (quantity === 0) {
-      setSelectedProducts(selectedProducts.filter(p => p.producto !== product.producto));
-    } else {
-      setSelectedProducts(selectedProducts.map(p => 
-        p.producto === product.producto ? { ...p, quantity } : p
-      ));
-    }
+  const handleUpdateQuantity = (product, quantity) => {
+    updateProductQuantity(product, quantity);
+    setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
   };
 
   const handlePay = () => {
-    navigate('/confirmationPay', { state: { selectedProducts } });
+    const productsToPost = getProductsToPost();
+    navigate('/confirmationPay', { state: { selectedProducts, productsToPost } });
   };
 
   return (
@@ -53,12 +62,13 @@ function CardsAllMeatsOrg() {
       <div className="font-light m-auto grid grid-cols-1 w-[100%] 
        sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
         {
-          TodasCarnes.AllMeats.map((item, index) => (
+          products.map((item, index) => (
             <CardsMeats 
               key={index}
-              price={item.precio}
-              productName={item.producto}
-              src={item.image}
+              price={item.price}
+              productName={item.description}
+              amount={item.amount}
+              src={'/SiluetaCerdo.png'}
               onClick={() => handleCardClick(item)}
             />
           ))
@@ -68,11 +78,11 @@ function CardsAllMeatsOrg() {
         <ProductModal 
           selectedProducts={selectedProducts} 
           onClose={() => setIsModalOpen(false)} 
-          updateQuantity={updateQuantity} 
+          updateQuantity={handleUpdateQuantity} 
           handlePay={handlePay}
         />
       )}
-      <button onClick={openShoppingCart}>Carrito</button>
+      <button onClick={() => setIsModalOpen(true)}>       <img src="/SiluetaSupermercadoBoton.png" alt="" /></button>
     </>
   );
 }

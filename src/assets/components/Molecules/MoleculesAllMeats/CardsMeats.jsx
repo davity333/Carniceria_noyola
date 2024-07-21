@@ -1,5 +1,5 @@
 import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSupermercado";
-function CardsMeats({ src, productName, price, children, onClick }) {
+function CardsMeats({ src, productName, price, children, onClick,amount }) {
   return (
     <div 
       className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-36 h-auto max-h-[250px] flex flex-col col items-center justify-between
@@ -13,6 +13,7 @@ function CardsMeats({ src, productName, price, children, onClick }) {
       <div className="mt-4">
         <p className="text-xl sm:text-2xl md:text-3xl font-bold">{productName}</p>
         <p className="text-lg sm:text-xl md:text-2xl text-gray-700">{"$"+price}</p>
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-700">{'Cantidad: '+amount}</p>
       </div>
       <div className="relative mt-4 sm:mt-6 md:mt-8 rounded-lg flex items-center justify-center p-2 sm:p-3 md:p-4 cursor-pointer group bg-slate-700 overflow-hidden">
         <div className="flex items-center ml-1 sm:ml-2 md:ml-3 relative z-10">
