@@ -136,7 +136,7 @@ function FormRegister() {
         label="Nombre"
         onBlur={onBlurName}
       />
-      {error && <p className="text-[#6b1b1b] text-xs italic text-[10px]">{error}</p>}
+      {error && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{error}</p>}
 
 <FormField
         id="lastname"
@@ -149,7 +149,7 @@ function FormRegister() {
         label="Apellido"
         onBlur={onBlurName}
         />
-        {errorLast && <p className="text-[#6b1b1b] text-xs italic text-[13px]">{errorLast}</p>}
+        {errorLast && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{errorLast}</p>}
 
 <FormField
         id="cellphone"
@@ -162,7 +162,7 @@ function FormRegister() {
         label="Número de teléfono"
         onBlur={onBlurPhone}
       />
-      {errorNumber && <p className="text-[#6b1b1b] text-xs italic text-[13px]">{errorNumber}</p>}
+      {errorNumber && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{errorNumber}</p>}
 
       <FormField
         id="email"
@@ -175,7 +175,7 @@ function FormRegister() {
         label="Correo electrónico"
         onBlur={onBlurEmail}
       />
-      {errorEmail && <p className="text-[#6b1b1b] text-xs italic text-[13px]">{errorEmail}</p>}
+      {errorEmail && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{errorEmail}</p>}
 
       
       <FormField

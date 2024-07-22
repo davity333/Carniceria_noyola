@@ -19,6 +19,7 @@ import ThankYou from './assets/components/Organism/OrganismAllMeats/ThankYou.jsx
 import PurchaseConfirmation from './assets/components/Organism/OrganismAllMeats/PurchaseConfirmation.jsx';
 import { AuthProvider } from './assets/components/Molecules/Register/AuthContext.jsx';
 import AddEmploye from './Pages/AddEmploye.jsx';
+import ConfirmationPay from './Pages/ConfirmationPay.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/confirmationPay",
-    element: <PurchaseConfirmation />,
+    element: <ConfirmationPay />,
   },
   {
     path: "/pay",

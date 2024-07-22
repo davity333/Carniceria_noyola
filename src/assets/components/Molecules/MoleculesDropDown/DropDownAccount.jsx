@@ -17,7 +17,8 @@ function DropDownAccount({children}){
             {children}
             <div className="flex-col ">
 
-                <div className=" font-medium font-mono text-[1.1rem] text-white">
+                <div className=" font-medium font-mono text-[1.1rem] text-white
+                ">
                 <p onClick={clickLogin} className="cursor-pointer hover:bg-red-900 p-5">Iniciar sesión</p>
                 <p onClick={clickRegister} className="cursor-pointer hover:bg-red-900 p-5">Registrarse</p>
                     </div>

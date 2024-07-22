@@ -1,14 +1,9 @@
-
-import CarneIntroductionOrg from "../assets/components/Organism/OrganismInicio/CarneIntroductionOrg";
+import PurchaseConfirmation from "../assets/components/Organism/OrganismAllMeats/PurchaseConfirmation";
 import HeaderOrganism from "../assets/components/Organism/OrganismInicio/HeaderOrganism";
-import CarnesVentasTextOrg from "../assets/components/Organism/OrganismInicio/CarnesVentasTextOrg";
-import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInicio/CardCarnesPublicadasOrg";
-import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePaginaOrg";
-import { useState } from "react";
 import DropDownOptionsOrg from "../assets/components/Organism/OrganismInicio/DropDownOptionsOrg";
 import DropDownUserOrg from "../assets/components/Organism/OrganismInicio/DropDownUserOrg";
-
-function Home(){
+import { useState } from "react";
+function ConfirmationPay() {
 
     const [dropDownMenu, setDropDown] = useState(false);
     const [dropDownUser, setDropDownUser] = useState(false);
@@ -33,24 +28,23 @@ function Home(){
         }
 
     }
-    
-    return(
-        <>
-        <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
 
-        <div>
+    return (  
+        <>
+        <div className="bg-[#C29292] h-[100vh] w-full">
+        <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
         {dropDownMenu && (<DropDownOptionsOrg onClick={clickDown}></DropDownOptionsOrg>)}
-        </div>
 
         {dropDownUser && (<DropDownUserOrg></DropDownUserOrg>)}
 
-        <CarneIntroductionOrg></CarneIntroductionOrg>
-
-        <CarnesVentasTextOrg></CarnesVentasTextOrg>
-        <CardCarnesPublicadasOrg></CardCarnesPublicadasOrg>
-
-        <PiePaginaOrg></PiePaginaOrg>
+        <div className="m-10">
+        <PurchaseConfirmation></PurchaseConfirmation>
+        </div>
+        </div>
         </>
     );
 }
-export default Home;
+
+<>
+</>;
+export default ConfirmationPay;

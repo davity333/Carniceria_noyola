@@ -1,5 +1,4 @@
 import Input from "../../Atoms/AtomsPaginaPrincipal/Input";
-import Img from "../../Atoms/AtomsPaginaPrincipal/Img";
 import LupaSilueta from '/lupa.png'
 import { useState } from "react";
 function InputPrincipal({children}){
