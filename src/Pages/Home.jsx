@@ -7,11 +7,12 @@ import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePagina
 import { useState } from "react";
 import DropDownOptionsOrg from "../assets/components/Organism/OrganismInicio/DropDownOptionsOrg";
 import DropDownUserOrg from "../assets/components/Organism/OrganismInicio/DropDownUserOrg";
-
+import LupaSilueta from '/lupa.png'
 function Home(){
 
     const [dropDownMenu, setDropDown] = useState(false);
     const [dropDownUser, setDropDownUser] = useState(false);
+    const [buscador, setBuscador] = useState(false);
 
     const clickDown = () =>{            //DropDown Menu
         if(dropDownMenu){
@@ -33,10 +34,32 @@ function Home(){
         }
 
     }
+
+    
+
+    const clickBuscador = () => {
+        if(buscador){
+            setBuscador(false);
+        }else{
+            setBuscador(!false)
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////
+   
+
+
+
+    ///////////////////////////////////////////////////////////////
     
     return(
         <>
-        <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
+        <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser} onClickLupa={clickBuscador}></HeaderOrganism>
+        
+        {buscador && (<input type="text" className="w-full h-10 block hover:border hover: border-black sm:hidden" placeholder="Buscar" />)}
+
+        {buscador && (<img src={LupaSilueta}  alt="Logo"  className="absolute -mt-9 ml-[86%] cursor-pointer w-8 block
+        filter brightness-75 grayscale-0 sm:hidden"/>)}
 
         <div>
         {dropDownMenu && (<DropDownOptionsOrg onClick={clickDown}></DropDownOptionsOrg>)}

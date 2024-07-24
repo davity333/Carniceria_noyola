@@ -1,7 +1,7 @@
 import Input from "../../Atoms/AtomsPaginaPrincipal/Input";
 import LupaSilueta from '/lupa.png'
 import { useState } from "react";
-function InputPrincipal({children}){
+function InputPrincipal({children, onClickLupa}){
 
  
 
@@ -12,7 +12,7 @@ function InputPrincipal({children}){
 
             <div className="w-3/5 sm:w-auto py-2 h-14 flex justify-end sm:flex sm:justify-center">
 
-            <img src={LupaSilueta} alt="Logo" /> 
+            <img src={LupaSilueta} onClick={onClickLupa}  alt="Logo"  className="cursor-pointer"/> 
 
                 <Input />
                 {children}

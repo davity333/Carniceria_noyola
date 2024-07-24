@@ -74,7 +74,7 @@ const router = createBrowserRouter([
     element: <AddProduct />,
   },
   {
-    path: "/tableStatus",
+    path: "/estadoMesa",
     element: <PageTableStatus />,
   },
   {
