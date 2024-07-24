@@ -3,6 +3,7 @@ import FormField from './../Register/FormField';
 import Button from '../../Atoms/reservarMesas/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../../../../User';
 
 function Form() {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ function Form() {
   const addProducts = async (e) => {
     e.preventDefault();
 
-    if (!nameProduct.current.value || !price.current.value || !stock.current.value || !file.current) {
+    if (!nameProduct.current.value || !price.current.value || !stock.current.value ) {
       toast.error("No puedes dejar campos vacíos");
       validateNameProduct();
       validatePrice();
@@ -103,7 +104,7 @@ function Form() {
       return;
     }
 
-    if (errors.nameProduct || errors.price || errors.stock || errors.file) {
+    if (errors.nameProduct || errors.price || errors.stock) {
       toast.error('Por favor corrige los errores antes de enviar');
       return;
     }
@@ -112,8 +113,10 @@ function Form() {
     formData.append('description', nameProduct.current.value);
     formData.append('amount', stock.current.value);
     formData.append('price', price.current.value);
+    formData.append('created_by',getUser().name)
+    formData.append('updated_by',getUser().name)
     if (file.current) {
-      formData.append('productImage', file.current);
+      formData.append('image', file.current);
     }
 
     try {

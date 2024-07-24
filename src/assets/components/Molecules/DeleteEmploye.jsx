@@ -10,7 +10,7 @@ function DeleteEmployee() {
     async function fetchEmployees() {
       setIsLoading(true);
       try {
-        const response = await fetch(`${import.meta.env.VITE_URL}/users`);
+        const response = await fetch(`${import.meta.env.VITE_URL}/users/userRole/1`);
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
@@ -25,10 +25,13 @@ function DeleteEmployee() {
   const deleteEmployee = async (id) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_URL}/users/${id}`, {
-        method: 'DELETE',
+      const response = await fetch(`${import.meta.env.VITE_URL}/users/deleted/${id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
+        },
+        body :{
+          deleted:1
         }
       });
 
@@ -90,7 +93,7 @@ function DeleteEmployee() {
               ))}
             </tbody>
           </table>
-          <Toaster position="top-center" reverseOrder={false} />
+          <Toaster position="top-center"/>
         </div>
       </div>
     </>

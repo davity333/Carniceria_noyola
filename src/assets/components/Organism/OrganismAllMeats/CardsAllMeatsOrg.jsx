@@ -14,7 +14,7 @@ function CardsAllMeatsOrg() {
     const fetchProducts = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${import.meta.env.VITE_URL}/products`, {
+        const response = await fetch(`${import.meta.env.VITE_URL}/products/product`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ function CardsAllMeatsOrg() {
               price={item.price}
               productName={item.description}
               amount={item.amount}
-              src={'/SiluetaCerdo.png'}
+              src={item.image}
               onClick={() => handleCardClick(item)}
             />
           ))
