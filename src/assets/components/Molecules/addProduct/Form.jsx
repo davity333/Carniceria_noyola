@@ -78,19 +78,6 @@ function Form() {
     }
   };
 
-  const validateFile = () => {
-    if (!file.current) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        file: 'Debes subir una imagen del producto'
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        file: ''
-      }));
-    }
-  };
 
   const addProducts = async (e) => {
     e.preventDefault();
@@ -100,7 +87,6 @@ function Form() {
       validateNameProduct();
       validatePrice();
       validateStock();
-      validateFile();
       return;
     }
 
@@ -128,11 +114,12 @@ function Form() {
       if (!response.ok) {
         throw new Error('Error al realizar la solicitud');
       }
-
+      if(response.ok){
       const data = await response.json();
       console.log(data);
 
       toast.success('Producto agregado correctamente');
+      }
     } catch (error) {
       console.error(error);
       toast.error('Error al agregar el producto');
@@ -185,7 +172,7 @@ function Form() {
         required={true}
         label="Subir foto"
         onChange={selectImage}
-        onBlur={validateFile}
+        onBlur={'validateFile'}
       />
       {errors.file && <p className="text-white">{errors.file}</p>}
       <div>
