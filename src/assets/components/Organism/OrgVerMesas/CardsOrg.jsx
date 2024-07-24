@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import CardsTables from "../../Molecules/MoleculesControlMesas/CardTables";
+import NewCard from "./CardReservations";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { toast, Toaster } from 'react-hot-toast';
 import { format } from 'date-fns';
+
 function CardsOrg() {
     const [cardsData, setCardsData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,9 +17,8 @@ function CardsOrg() {
                 setLoading(false);
                 return;
             }
-
             try {
-                const response = await fetch(`${import.meta.env.VITE_URL}/reservations`, {
+                const response = await fetch(`${import.meta.env.VITE_URL}/reservations/reservationsUsers`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -28,6 +28,7 @@ function CardsOrg() {
 
                 if (response.ok) {
                     const data = await response.json();
+                    console.log('Fetched data:', data);
                     setCardsData(data);
                 } else {
                     const errorData = await response.json();
@@ -56,9 +57,28 @@ function CardsOrg() {
     if (loading) {
         return <div>Loading...</div>;
     }
+
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return format(date, 'dd/MM/yyyy HH:mm');
+    };
+
+    const renderCards = (status) => {
+        return cardsData
+            .filter(product => product.status.toLowerCase() === status)
+            .map((product, index) => (
+                <NewCard
+                    key={index}
+                    id={product.reservation_id}
+                    img={'/mesa.png'}
+                    solicitante={product.solicitante}
+                    numeroPersonas={product.amount_persons}
+                    fechas={formatDate(product.reservationsDate)}
+                    cantidadMesas={product.amount_tables}
+                    state={product.status}
+                    onStatusChange={handleStatusChange}
+                />
+            ));
     };
 
     return (
@@ -71,60 +91,19 @@ function CardsOrg() {
                 </TabList>
 
                 <TabPanel>
-                    {cardsData
-                        .filter(product => product.status === 'Confirmada')
-                        .map((product, index) => (
-                            <CardsTables
-                                key={index}
-                                id={product.reservation_id}
-                                img={'/mesa.png'}
-                                solicitante={product.description}
-                                numeroPersonas={product.amount_persons}
-                                fechas={formatDate(product.reservationsDate)}
-                                cantidadMesas={product.amount_tables}
-                                state={product.status}
-                                deleted={product.deleted}
-                                onStatusChange={handleStatusChange}
-                            />
-                        ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {renderCards('confirmada')}
+                    </div>
                 </TabPanel>
-
                 <TabPanel>
-                    {cardsData
-                        .filter(product => product.status === 'Pendiente')
-                        .map((product, index) => (
-                            <CardsTables
-                                key={index}
-                                id={product.reservation_id}
-                                img={'/mesa.png'}
-                                solicitante={product.description}
-                                numeroPersonas={product.amount_persons}
-                                fechas={product.reservationsDate}
-                                cantidadMesas={product.amount_tables}
-                                state={product.status}
-                                deleted={product.deleted}
-                                onStatusChange={handleStatusChange}
-                            />
-                        ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {renderCards('pendiente')}
+                    </div>
                 </TabPanel>
-
                 <TabPanel>
-                    {cardsData
-                        .filter(product => product.status === 'Cancelada')
-                        .map((product, index) => (
-                            <CardsTables
-                                key={index}
-                                id={product.reservation_id}
-                                img={'/mesa.png'}
-                                solicitante={product.description}
-                                numeroPersonas={product.amount_persons}
-                                fechas={product.reservationsDate}
-                                cantidadMesas={product.amount_tables}
-                                state={product.status}
-                                deleted={product.deleted}
-                                onStatusChange={handleStatusChange}
-                            />
-                        ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {renderCards('cancelada')}
+                    </div>
                 </TabPanel>
             </Tabs>
             <Toaster />

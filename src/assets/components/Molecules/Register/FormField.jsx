@@ -1,5 +1,3 @@
-import React from 'react';
-
 function FormField({ id, name, type, placeholder, autoComplete, required, innerRef, label, onBlur,onChange }) {
   return (
     <div>
