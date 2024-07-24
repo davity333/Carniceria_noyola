@@ -67,12 +67,16 @@ function DeleteEmployee() {
           </div>
         </div>
       )}
-      <div className="min-h-screen bg-blue-700 text-white flex flex-col items-center py-10">
-        <h1 className="text-4xl font-bold mb-6">Bienvenido</h1>
-        <div className="w-full max-w-4xl bg-blue-400 p-8 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4">Delete Employee</h2>
-          <table className="min-w-full bg-blue-300 text-black rounded-lg overflow-hidden">
-            <thead className="bg-gray-200">
+      <div className="min-h-screen bg-[#a84747]
+       text-white flex flex-col items-center py-10">
+        <h1 className="text-4xl font-bold mb-6
+        [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
+        <div className="w-full max-w-4xl bg-[#d6ad94] p-8
+        shadow-[-17px_-6px_24px_-9px_rgba(0,0,0,0.49)]">
+          <h2 className="text-3xl font-semibold mb-4
+          [text-shadow:_0px_1px_4px_rgba(0,0,0,0.68)]">Registros de personal</h2>
+          <table className="min-w-full bg-[#dabebe] text-black rounded-lg overflow-hidden">
+            <thead className="bg-[#ffffff]">
               <tr>
                 <th className="py-3 px-4">Nombre</th>
                 <th className="py-3 px-4">Email</th>

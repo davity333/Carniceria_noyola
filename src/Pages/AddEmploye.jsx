@@ -6,7 +6,7 @@ function AddEmploye() {
     <div className="h-screen w-full">
     
     <HeaderOrganism></HeaderOrganism>
-    <section className="bg-customColor-came h-auto w-full">
+    <section className="bg-[#bc5151] h-auto w-full">
         
        
     <AddEmployeForm></AddEmployeForm>
