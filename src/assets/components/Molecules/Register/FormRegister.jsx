@@ -124,7 +124,9 @@ function FormRegister() {
   {/*-----------------------------------------------------------------*/}
 
   return (
-    <form className="space-y-[3%]" onSubmit={handleRegister}>
+    <form className="space-y-[2%]" onSubmit={handleRegister}>
+
+      <div className=''>
       <FormField
         id="name"
         name="name"
@@ -136,9 +138,11 @@ function FormRegister() {
         label="Nombre"
         onBlur={onBlurName}
       />
+      </div>
       {error && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{error}</p>}
 
-<FormField
+       <div>
+       <FormField
         id="lastname"
         name="lastname"
         type="text"
@@ -149,9 +153,11 @@ function FormRegister() {
         label="Apellido"
         onBlur={onBlurName}
         />
+        </div>
         {errorLast && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{errorLast}</p>}
 
-<FormField
+        <div className=''>
+        <FormField
         id="cellphone"
         name="cellphone"
         type="text"
@@ -162,8 +168,10 @@ function FormRegister() {
         label="Número de teléfono"
         onBlur={onBlurPhone}
       />
+        </div>
       {errorNumber && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{errorNumber}</p>}
 
+      <div>
       <FormField
         id="email"
         name="email"
@@ -175,9 +183,10 @@ function FormRegister() {
         label="Correo electrónico"
         onBlur={onBlurEmail}
       />
+      </div>
       {errorEmail && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{errorEmail}</p>}
 
-      
+      <div>
       <FormField
         id="password"
         name="password"
@@ -190,11 +199,16 @@ function FormRegister() {
         onBlur={onBlurPassword}
         
       />
+      </div>
+
       <div>
         <Toaster />
+
+        <div className='flex justify-center'>
         <Button>
           Registrarse
         </Button>
+        </div>
       </div>
     </form>
   );

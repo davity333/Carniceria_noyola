@@ -1,4 +1,3 @@
-import CardCarnesMasVendidad from "../../Molecules/MoleculesInicio/CardCarnesMasVendidas";
 import CardCarnesPublicadas from "../../Molecules/MoleculesInicio/CardCarnesPublicadas";
 import { CardsCarnes } from "../../../../data/CardsCarnes";
 

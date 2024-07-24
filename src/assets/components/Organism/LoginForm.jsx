@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 function LoginForm() {
   return (
     <>
-    <div className="flex flex-col w-1/3 rounded-3xl bg-white p-8
-        shadow-[0px_7px_14px_10px_rgb(0, 0, 0)]">
+    <div className="flex flex-col w-4/5 rounded-3xl bg-white p-8
+        shadow-[0px_7px_14px_10px_rgb(0, 0, 0)]
+        sm:w-1/3">
           
             <div className="flex items-center mb-5 justify-center">
                 <img src={Logo} className="w-10 h-10 mr-2 filter brightness-50 opacity-100" alt="Logo" />

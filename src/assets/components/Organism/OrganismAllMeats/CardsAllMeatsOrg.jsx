@@ -68,7 +68,7 @@ function CardsAllMeatsOrg() {
               price={item.price}
               productName={item.description}
               amount={item.amount}
-              src={'/SiluetaCerdo.png'}
+              src={item.image}
               onClick={() => handleCardClick(item)}
             />
           ))

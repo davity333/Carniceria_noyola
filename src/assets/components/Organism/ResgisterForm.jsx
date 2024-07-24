@@ -8,11 +8,13 @@ function RegisterForm() {
       
     
         <div className="flex justify-center items-center h-screen">
-        <div className="shadow-lg shadow-black-500/50 flex flex-col w-1/3 rounded-3xl 
-        bg-white shadow-[0px_7px_14px_10px_rgb(0, 0, 0)]">
+          
+        <div className="shadow-lg shadow-black-500/50 flex flex-col w-4/5 rounded-3xl 
+        bg-white shadow-[0px_7px_14px_10px_rgb(0, 0, 0)]
+        sm:w-[33%] p-4 sm:p-0 md:p-4">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             
-          <div className="flex items-center mt-9 justify-center gap-2">
+          <div className="flex items-center mt-5 justify-center gap-2 sm:mt-9">
             <img src={usuario} alt="logo" className="w-10 h-10 mr-2" />
             <h2 className=" text-center text-3xl font-bold leading-9 tracking-tight text-[rgb(243,52,52)]">
                 Registrate
