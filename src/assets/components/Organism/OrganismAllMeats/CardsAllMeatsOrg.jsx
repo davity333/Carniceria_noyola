@@ -82,7 +82,10 @@ function CardsAllMeatsOrg() {
           handlePay={handlePay}
         />
       )}
-      <button onClick={() => setIsModalOpen(true)}>       <img src="/SiluetaSupermercadoBoton.png" alt="" /></button>
+
+      <div className=' flex justify-end m-4'>
+      <img src="/CarritoLogo.png" className='w-[10%]' alt="logo" />
+      </div>
     </>
   );
 }
