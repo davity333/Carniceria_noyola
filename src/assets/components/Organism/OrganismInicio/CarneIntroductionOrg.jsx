@@ -2,7 +2,7 @@ import CarneIntroduccion from "../../Molecules/MoleculesInicio/CarneIntroduccion
 import Text from "../../Atoms/AtomsPaginaPrincipal/Text";
 import TextContent from "../../Atoms/AtomsPaginaPrincipal/TextContent";
 import carne from '/carneCerdo.png'
-import style from '../../../../../font.module.css'
+import style from './../fonts.module.css'
 
 function CarneIntroductionOrg(){
     return(
