@@ -25,7 +25,7 @@ function FormRegister() {
       "number_phone": cellphoneRef.current.value,
       "created_by": nameRef.current.value,
       "updated_by": nameRef.current.value,
-      "role_id_fk": 2
+      "role_id_fk": 3
     };
 
     console.log("Payload:", payload);

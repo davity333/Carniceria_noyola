@@ -5,9 +5,9 @@ export const getSelectedProducts = () => {
 };
 
 export const addProduct = (product) => {
-  const existingProduct = selectedProducts.find(p => p.product_id === product.product_id);
-  if (existingProduct) {
-    existingProduct.quantity += 1;
+  const existProduct = selectedProducts.find(p => p.product_id === product.product_id);
+  if (existProduct) {
+    existProduct.quantity += 1;
   } else {
     selectedProducts.push({ ...product, quantity: 1 });
   }
@@ -21,7 +21,7 @@ export const updateProductQuantity = (product, quantity) => {
 
 export const getProductsToPost = () => {
   return selectedProducts.map(p => ({
-    id: p.product_id,
+    product_id: p.product_id,
     amount: p.quantity,
     price: p.price
   }));

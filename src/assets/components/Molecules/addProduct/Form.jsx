@@ -3,6 +3,7 @@ import FormField from './../Register/FormField';
 import Button from '../../Atoms/reservarMesas/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../../../../User';
 
 function Form() {
   const navigate = useNavigate();
@@ -77,33 +78,19 @@ function Form() {
     }
   };
 
-  const validateFile = () => {
-    if (!file.current) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        file: 'Debes subir una imagen del producto'
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        file: ''
-      }));
-    }
-  };
 
   const addProducts = async (e) => {
     e.preventDefault();
 
-    if (!nameProduct.current.value || !price.current.value || !stock.current.value || !file.current) {
+    if (!nameProduct.current.value || !price.current.value || !stock.current.value ) {
       toast.error("No puedes dejar campos vacíos");
       validateNameProduct();
       validatePrice();
       validateStock();
-      validateFile();
       return;
     }
 
-    if (errors.nameProduct || errors.price || errors.stock || errors.file) {
+    if (errors.nameProduct || errors.price || errors.stock) {
       toast.error('Por favor corrige los errores antes de enviar');
       return;
     }
@@ -112,8 +99,10 @@ function Form() {
     formData.append('description', nameProduct.current.value);
     formData.append('amount', stock.current.value);
     formData.append('price', price.current.value);
+    formData.append('created_by',getUser().name)
+    formData.append('updated_by',getUser().name)
     if (file.current) {
-      formData.append('productImage', file.current);
+      formData.append('image', file.current);
     }
 
     try {
@@ -125,11 +114,12 @@ function Form() {
       if (!response.ok) {
         throw new Error('Error al realizar la solicitud');
       }
-
+      if(response.ok){
       const data = await response.json();
       console.log(data);
 
       toast.success('Producto agregado correctamente');
+      }
     } catch (error) {
       console.error(error);
       toast.error('Error al agregar el producto');
@@ -182,7 +172,7 @@ function Form() {
         required={true}
         label="Subir foto"
         onChange={selectImage}
-        onBlur={validateFile}
+        onBlur={'validateFile'}
       />
       {errors.file && <p className="text-white">{errors.file}</p>}
       <div>

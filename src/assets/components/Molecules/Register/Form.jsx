@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setUser, getUser } from '../../../../../User';
+import toast from 'react-hot-toast';
 
 function Form() {
   const [loading, setLoading] = useState(false);
@@ -24,10 +25,12 @@ function Form() {
       .then((response) => {
         if (response.ok) {
           localStorage.setItem('token', response.headers.get('Authorization'));
+          toast.success('Inicio de sesión exitoso')
           return response.json();
         } else {
           toast.error('Oh, hubo un problema intente más tarde');
           throw new Error('Error en la autenticación');
+        
         }
       })
       .then((data) => {

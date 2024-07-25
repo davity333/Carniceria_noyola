@@ -14,7 +14,7 @@ function CardsAllMeatsOrg() {
     const fetchProducts = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${import.meta.env.VITE_URL}/products`, {
+        const response = await fetch(`${import.meta.env.VITE_URL}/products/product`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -82,7 +82,10 @@ function CardsAllMeatsOrg() {
           handlePay={handlePay}
         />
       )}
-      <button onClick={() => setIsModalOpen(true)}>       <img src="/SiluetaSupermercadoBoton.png" alt="" /></button>
+
+      <div className=' flex justify-end m-4'>
+      <img src="/CarritoLogo.png" className='w-[10%]' alt="logo" />
+      </div>
     </>
   );
 }

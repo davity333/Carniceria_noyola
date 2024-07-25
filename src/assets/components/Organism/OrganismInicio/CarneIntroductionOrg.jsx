@@ -14,7 +14,7 @@ function CarneIntroductionOrg(){
         </div>
 
         </CarneIntroduccion>
-        <div className="bg-zinc-500	 h-2  px-1"></div>
+        
         
         <div className="text-white m-5  sm:m-20">
         <TextContent Content="En la carniceria “Carnitas noyola”  encontras diferentes tipos de carne de cerdo de perfecta calidad "/>

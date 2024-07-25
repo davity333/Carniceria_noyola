@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '../Atoms/Register/Button';
 import toast, { Toaster } from 'react-hot-toast';
+import { getUser } from '../../../../User';
 
 function DeleteEmployee() {
   const [employees, setEmployees] = useState([]);
@@ -10,7 +11,7 @@ function DeleteEmployee() {
     async function fetchEmployees() {
       setIsLoading(true);
       try {
-        const response = await fetch(`${import.meta.env.VITE_URL}/users`);
+        const response = await fetch(`${import.meta.env.VITE_URL}/users/userRole/3`);
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
@@ -23,17 +24,20 @@ function DeleteEmployee() {
   }, []);
 
   const deleteEmployee = async (id) => {
+    console.log('deleteEmployee called with id:', id);
     setIsLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_URL}/users/${id}`, {
-        method: 'DELETE',
+      const response = await fetch(`${import.meta.env.VITE_URL}/users/delete/${id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({ deleted: 1, updated_by: getUser().name })
       });
 
       if (response.ok) {
-        setEmployees(employees.filter(employee => employee.id !== id));
+        console.log('Response OK:', await response.json());
+        setEmployees(employees.filter(employee => employee.user_id !== id));
         toast.success('Employee deleted successfully');
       } else {
         console.error('Error deleting employee:', response.statusText);
@@ -64,14 +68,10 @@ function DeleteEmployee() {
           </div>
         </div>
       )}
-      <div className="min-h-screen bg-[#a84747]
-       text-white flex flex-col items-center py-10">
-        <h1 className="text-4xl font-bold mb-6
-        [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
-        <div className="w-full max-w-4xl bg-[#d6ad94] p-8
-        shadow-[-17px_-6px_24px_-9px_rgba(0,0,0,0.49)]">
-          <h2 className="text-3xl font-semibold mb-4
-          [text-shadow:_0px_1px_4px_rgba(0,0,0,0.68)]">Registros de personal</h2>
+      <div className="min-h-screen bg-[#a84747] text-white flex flex-col items-center py-10">
+        <h1 className="text-4xl font-bold mb-6 [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
+        <div className="w-full max-w-4xl bg-[#d6ad94] p-8 shadow-[-17px_-6px_24px_-9px_rgba(0,0,0,0.49)]">
+          <h2 className="text-3xl font-semibold mb-4 [text-shadow:_0px_1px_4px_rgba(0,0,0,0.68)]">Registros de personal</h2>
           <table className="min-w-full bg-[#dabebe] text-black rounded-lg overflow-hidden">
             <thead className="bg-[#ffffff]">
               <tr>
@@ -83,18 +83,18 @@ function DeleteEmployee() {
             </thead>
             <tbody>
               {employees.map((employee) => (
-                <tr key={employee.id} className="hover:bg-gray-100">
+                <tr key={employee.user_id} className="hover:bg-gray-100">
                   <td className="py-3 px-4">{employee.name} {employee.lastname}</td>
                   <td className="py-3 px-4">{employee.email}</td>
                   <td className="py-3 px-4">{employee.number_phone}</td>
                   <td className="py-3 px-4">
-                    <Button onClick={() => deleteEmployee(employee.id)}>Delete</Button>
+                    <Button onClick={() => deleteEmployee(employee.user_id)}>Delete</Button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <Toaster position="top-center" reverseOrder={false} />
+          <Toaster position="top-center"/>
         </div>
       </div>
     </>
