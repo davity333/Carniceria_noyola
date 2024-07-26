@@ -27,7 +27,8 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<ProtectedRoute element={<HomeAdmin />} requiredRole={1} />} />
+          <Route path='/home' element={<Home></Home>}></Route>
           <Route path="/payComplete" element={<ProductModal />} />
           <Route path="/addStock" element={<ProtectedRoute element={<AddStock />} requiredRole={1} />} />
           <Route path="/thank-you" element={<ThankYou />} />

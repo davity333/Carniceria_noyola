@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setUser, getUser } from '../../../../service/User';
-import toast from 'react-hot-toast';
+import toast,{Toaster} from 'react-hot-toast';
 
 function Form() {
   const [loading, setLoading] = useState(false);
@@ -36,10 +36,10 @@ function Form() {
       .then((data) => {
         const { role_id_fk: rolId, email, user_id, name } = data.user;
         setUser({ rolId, email, user_id, name });
-        if (getUser().rolId === 1) {
-          navigate('/homeAdmin');
-        } else {
+        if (getUser().rolId === 3) {
           navigate('/');
+        } else {
+          navigate('/home');
         }
       })
       .catch((error) => {
@@ -92,6 +92,7 @@ function Form() {
        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500' 
       onClick={handleLogin}>Iniciar sesión</button>
     </div>  
+    <Toaster></Toaster>
     </>
   );
 }
