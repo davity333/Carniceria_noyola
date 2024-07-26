@@ -3,7 +3,7 @@ import FormField from './../Register/FormField';
 import Button from '../../Atoms/reservarMesas/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { getUser } from '../../../../../User';
+import { getUser } from '../../../../service/User';
 
 function Form() {
   const navigate = useNavigate();

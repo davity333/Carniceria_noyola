@@ -2,7 +2,7 @@ import FormField from './FormField';
 import Button from '../../Atoms/reservarMesas/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRef } from 'react';
-import { getUser } from '../../../../../User';
+import { getUser } from '../../../../service/User';
 
 function Form() {
   const solicitanteRef = useRef('');

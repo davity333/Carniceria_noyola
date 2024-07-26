@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import carne from '/carne.png'
 import FormField from '../../Molecules/Register/FormField'
 import { useRef, useState} from 'react';
-import { getUser } from '../../../../../User';
+import { getUser } from '../../../../service/User';
 import { getProductsToPost } from '../../../../../selectedProducts';
 import toast,{Toaster} from 'react-hot-toast';
 import { jsPDF } from "jspdf";

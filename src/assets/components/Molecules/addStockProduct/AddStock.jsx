@@ -3,7 +3,7 @@ import Modal from '../../Organism/addStockProduct/ModalStock';
 import Button from '../../Atoms/addStockProduct/Button';
 import toast,{Toaster} from 'react-hot-toast';
 import Formulario from './Form';
-import { getUser } from '../../../../../User';
+import { getUser } from '../../../../service/User';
 function AddStock() {
   const [productos, setProductos] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
