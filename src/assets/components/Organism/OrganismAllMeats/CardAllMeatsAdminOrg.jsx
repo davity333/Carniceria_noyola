@@ -37,7 +37,7 @@ function DeleteProduct() {
 
       if (response.ok) {
         console.log('Response OK:', await response.json());
-        setProducts(products.filter(product => product.user_id !== id));
+        setProducts(products.filter(product => product.product_id !== id));
         toast.success('Producto eliminado exitosamente');
       } else {
         console.error('Error deleting employee:', response.statusText);
@@ -46,6 +46,34 @@ function DeleteProduct() {
     } catch (error) {
       console.error('Error al eliminar el producto:', error);
       toast.error('Error al eliminar el producto');
+    }
+    setIsLoading(false);
+  };
+
+  const updateProductAmount = async (id, newAmount) => {
+    console.log('actualizar stock:', id, newAmount);
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_URL}/products/addAmount/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ amount: newAmount, updated_by: getUser().name })
+      });
+
+      if (response.ok) {
+        console.log('Response OK:', await response.json());
+        setProducts(products.map(product => 
+          product.product_id === id ? { ...product, amount: newAmount } : product
+        ));
+      } else {
+        console.error('Error updating stock:', response.statusText);
+        toast.error('Ocurrió un error al actualizar el stock');
+      }
+    } catch (error) {
+      console.error('Error al actualizar el stock:', error);
+      toast.error('Error al actualizar el stock');
     }
     setIsLoading(false);
   };
@@ -84,10 +112,17 @@ function DeleteProduct() {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.user_id} className="hover:bg-gray-100">
-                  <td className="py-3 px-4"><img className="w-7 h-7"  src={product.image} alt={product.description} /></td>
+                <tr key={product.product_id} className="hover:bg-gray-100">
+                  <td className="py-3 px-4"><img className="w-7 h-7" src={product.image} alt={product.description} /></td>
                   <td className="py-3 px-4">{product.description}</td>
-                  <td className="py-3 px-4">{product.amount}</td>
+                  <td className="py-3 px-4">
+                    <input
+                      type="number"
+                      value={product.amount}
+                      onChange={(e) => updateProductAmount(product.product_id, e.target.value)}
+                      className="w-16 p-1 text-center border rounded"
+                    />
+                  </td>
                   <td className="py-3 px-4">{product.price}</td>
                   <td className="py-3 px-4">
                     <Button onClick={() => deleteProduct(product.product_id)}>Eliminar</Button>
