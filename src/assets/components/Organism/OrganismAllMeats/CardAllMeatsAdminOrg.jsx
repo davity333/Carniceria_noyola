@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '../../Atoms/Register/Button';
 import toast, { Toaster } from 'react-hot-toast';
-import { getUser } from '../../../../../User';
+import { getUser } from '../../../../service/User';
 import Loading from '../../Molecules/Loading';
 
 function DeleteProduct() {

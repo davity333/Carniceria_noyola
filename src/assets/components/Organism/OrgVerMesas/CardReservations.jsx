@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import basura from "/basura.png";
 import { toast, Toaster } from 'react-hot-toast';
-import { getUser } from '../../../../../User';
+import { getUser } from '../../../../service/User';
 
 function NewCard({ img, solicitante, numeroPersonas, fechas, cantidadMesas, state, id, onStatusChange }) {
     const [status, setStatus] = useState(state);

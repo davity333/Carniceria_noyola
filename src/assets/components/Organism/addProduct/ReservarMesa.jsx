@@ -2,7 +2,6 @@ import Logo from "../../Molecules/addProduct/meat.png";
 import Form from "../../Molecules/addProduct/Form";
 import Title from "../../Atoms/reservarMesas/Title";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-
 function AddProductForm() {
   const navigate = useNavigate();
   const click = () => {

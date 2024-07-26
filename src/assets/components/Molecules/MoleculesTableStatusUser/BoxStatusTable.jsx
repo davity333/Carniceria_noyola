@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import tachuela from '/tachuela.png';
-import { getUser } from '../../../../../User';
+import { getUser } from '../../../../service/User';
 import toast, { Toaster } from 'react-hot-toast';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';

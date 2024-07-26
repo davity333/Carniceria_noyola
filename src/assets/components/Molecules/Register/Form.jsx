@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setUser, getUser } from '../../../../../User';
+import { setUser, getUser } from '../../../../service/User';
 import toast from 'react-hot-toast';
 
 function Form() {
