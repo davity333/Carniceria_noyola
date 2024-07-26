@@ -1,5 +1,5 @@
 import Text from "../../Atoms/AtomsPaginaPrincipal/Text";
-import CardOrder from "../../Molecules/MoleculesPedidos/CardOrder";
+import CardOrders from "../../Molecules/MoleculesPedidos/CardOrders";
 function PedidosOrg(){
     return(
         <>
@@ -9,7 +9,7 @@ function PedidosOrg(){
         </div>
 
         <div className="p-10">
-        <CardOrder></CardOrder>
+        <CardOrders></CardOrders>
         </div>
         
         </>
