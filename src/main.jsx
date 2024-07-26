@@ -21,6 +21,7 @@ import { AuthProvider } from './assets/components/Molecules/Register/AuthContext
 import AddEmploye from './Pages/AddEmploye.jsx';
 import ConfirmationPay from './Pages/ConfirmationPay.jsx';
 import Pedido from './Pages/Pedidos.jsx';
+import AddStock from './assets/components/Molecules/addStockProduct/AddStock.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/payComplete",
     element: <ProductModal />,
+  },
+  {
+    path: "/addStock",
+    element: <AddStock />,
   },
   {
     path: "/thank-you",

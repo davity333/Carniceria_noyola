@@ -25,8 +25,11 @@ function BotonsBody(){
     const downladPdf = () => {
         navegar("/pdf");
     }
-
+    const addStock = () =>{
+            navegar('/addStock')
+    }
     return(
+    
         <>
          <div className="flex justify-center items-center">
   <img src={administrar} alt="log" className='h-28 flex flex-col -mt-10' />
@@ -73,7 +76,11 @@ function BotonsBody(){
         hover:bg-[#c69696]" id={style.botonAdmin}>
         <Button onClick={downladPdf} text="Productos"></Button>
         </div >
-            <AddStock></AddStock>
+        <div onClick={addStock} className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
+        shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)]
+        hover:bg-[#c69696]" id={style.botonAdmin}>
+        <Button onClick={addStock} text="Agregar cantidad"></Button>
+        </div >
         </div>
 
 
