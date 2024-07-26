@@ -22,7 +22,7 @@ export default {
 
         'custom-red': '0 7px 2px rgba(255, 0, 0, 0.5)',
         'custom-blue': '0 4px 6px rgba(0, 0, 255, 0.5)',
-        'custom-gray' : 'rgb(108, 103, 103)',
+        'custom-white' : '0 4px 6px rgba(255, 255, 255, 0.5)',
         
         '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',
         '4xl': [

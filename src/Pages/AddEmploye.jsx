@@ -1,14 +1,12 @@
 import HeaderOrganism from '../assets/components/Organism/OrganismInicio/HeaderOrganism';
-import ReservarMesaForm from '../assets/components/Organism/ReservarMesa'
+import HeaderAdmin from "../assets/components/Molecules/MoleculesInicioAdmin/HeaderAdmin";
 import AddEmployeForm from '../assets/components/Organism/AddEmployeForm';
 function AddEmploye() {
     return ( <>
     <div className="h-screen w-full">
     
-    <HeaderOrganism></HeaderOrganism>
+    <HeaderAdmin titule="Control de empleados"></HeaderAdmin>   
     <section className="bg-[#bc5151] h-auto w-full">
-        
-       
     <AddEmployeForm></AddEmployeForm>
     
     </section>

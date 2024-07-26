@@ -86,6 +86,8 @@ function CardsAllMeatsOrg() {
       <div className=' flex justify-end m-4'>
       <img src="/CarritoLogo.png" className='w-[10%]' alt="logo" />
       </div>
+
+      <p>CARRITO</p>
     </>
   );
 }
