@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
-function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay }) {
+function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay,date }) {
   if (!selectedProducts || selectedProducts.length === 0) return null;
 
   return (
@@ -37,6 +36,7 @@ function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay }) 
           <button onClick={onClose} className="mt-4 px-4 py-2 bg-red-600 text-white rounded">Cerrar</button>
         </div>
       </div>
+
     </div>
   );
 }

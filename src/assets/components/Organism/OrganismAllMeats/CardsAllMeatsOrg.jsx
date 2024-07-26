@@ -42,7 +42,7 @@ function CardsAllMeatsOrg() {
 
   const handleCardClick = (product) => {
     addProduct(product);
-    setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
+    setSelectedProducts([...getSelectedProducts()]); 
     setIsModalOpen(true);
     console.log(getProductsToPost());
   };

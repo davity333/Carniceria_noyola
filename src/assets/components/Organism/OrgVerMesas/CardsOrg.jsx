@@ -71,7 +71,7 @@ function CardsOrg() {
                     key={index}
                     id={product.reservation_id}
                     img={'/mesa.png'}
-                    solicitante={product.solicitante}
+                    solicitante={product.name + "   "+product.lastname}
                     numeroPersonas={product.amount_persons}
                     fechas={formatDate(product.reservationsDate)}
                     cantidadMesas={product.amount_tables}
