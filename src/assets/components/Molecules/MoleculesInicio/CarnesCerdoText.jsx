@@ -2,6 +2,7 @@
 import TextContent from "../../Atoms/AtomsPaginaPrincipal/TextContent";
 import cerdo from '/SiluetaCerdo.png'
 import carne from '/SiluetaCarne.png'
+import style from './../../../../../fonts.module.css'
 function CarnesCerdoText(){
     return(
         <>
@@ -10,7 +11,7 @@ function CarnesCerdoText(){
             <img src={carne} className="h-10 w-3 m-10 ml-1 sm:h-36 sm:w-auto hidden sm:h-40 sm:block md:h-24"/>
             
             
-            <div className="text-white font-extralight flex justify-center">
+            <div id={style.carnesdecerdo} className="text-white font-extrabold flex justify-center">
                 <TextContent Content="CARNES DE CERDO"/>
             </div>
 

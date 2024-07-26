@@ -46,19 +46,39 @@ function Home(){
     }
 
     ///////////////////////////////////////////////////////////////
-   
+    const [products, setProducts] = useState([]);
+    const [data, setData] = useState('');
+    const [nameProduct, setNameProduct] = useState('');
 
-
-
+        const ProductList = async () => {
+            console.log("PRODUCTOS")
+            try {
+                const response = await fetch(`${import.meta.env.VITE_URL}/products/product`);
+                const data = await response.json();
+                console.log(data);
+                setProducts(data); // Actualiza el estado de 'products' con los datos obtenidos
+            } catch (error) {
+                console.error('Error al obtener los productos:', error);
+            }
+            
+            
+        };
+    
     ///////////////////////////////////////////////////////////////
     
     return(
         <>
         <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser} onClickLupa={clickBuscador}></HeaderOrganism>
         
-        {buscador && (<input type="text" className="w-full h-10 block hover:border hover: border-black sm:hidden" placeholder="Buscar" />)}
+        {buscador && (<input 
+        type="text" 
+        className="w-full h-10 block hover:border hover: border-black sm:hidden" 
+        placeholder="Buscar" 
+        value={nameProduct}
+        onChange={(e) => setNameProduct(e.target.value)}
+        />)}
 
-        {buscador && (<img src={LupaSilueta}  alt="Logo"  className="absolute -mt-9 ml-[86%] cursor-pointer w-8 block
+        {buscador && (<img src={LupaSilueta} onClick={ProductList} alt="Logo" className="absolute -mt-9 ml-[86%] cursor-pointer w-8 block
         filter brightness-75 grayscale-0 sm:hidden"/>)}
 
         <div>

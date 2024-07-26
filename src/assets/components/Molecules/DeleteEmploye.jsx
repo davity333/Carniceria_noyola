@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Button from '../Atoms/Register/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { getUser } from '../../../../User';
+import style from './../../../../fonts.module.css'
 
 function DeleteEmployee() {
   const [employees, setEmployees] = useState([]);
@@ -69,9 +70,9 @@ function DeleteEmployee() {
         </div>
       )}
       <div className="min-h-screen bg-[#a84747] text-white flex flex-col items-center py-10">
-        <h1 className="text-4xl font-bold mb-6 [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
+        <h1 id={style.textDecoration} className="text-5xl font-bold mb-6 [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
         <div className="w-full max-w-4xl bg-[#d6ad94] p-8 shadow-[-17px_-6px_24px_-9px_rgba(0,0,0,0.49)]">
-          <h2 className="text-3xl font-semibold mb-4 [text-shadow:_0px_1px_4px_rgba(0,0,0,0.68)]">Registros de personal</h2>
+          <h2 id={style.carnesdecerdo} className="text-3xl font-semibold mb-4 [text-shadow:_0px_1px_4px_rgba(0,0,0,0.68)]">Registros de personal</h2>
           <table className="min-w-full bg-[#dabebe] text-black rounded-lg overflow-hidden">
             <thead className="bg-[#ffffff]">
               <tr>
