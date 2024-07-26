@@ -2,7 +2,8 @@ import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSuperme
 function CardsMeats({ src, productName, price, children, onClick,amount }) {
   return (
     <div 
-      className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-36 h-auto max-h-[250px] flex flex-col col-span-2 sm:flex-col col-auto items-center justify-between sm:w-80 sm:max-h-[600px] sm:col-span-1 "
+      className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-36 h-auto max-h-[250px] flex flex-col col-span-2
+       sm:flex-col col-auto  sm:w-80 sm:max-h-[600px] sm:col-span-1 "
       onClick={onClick}
     >
       {children}
