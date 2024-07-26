@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 
-function CardOrder({ clientName, email, numberPhone, orders, deliveryDate, status, onStatusChange ,totalAmount}) {
+function CardOrder({ clientName, email, numberPhone, orders, deliveryDate, status, onStatusChange, totalAmount, orderId }) {
   const [showDetails, setShowDetails] = useState(false);
 
   const handleChange = (e) => {
-    onStatusChange(e.target.value);
+    onStatusChange(orderId, e.target.value);
   };
 
   const toggleDetails = () => {
@@ -12,33 +13,46 @@ function CardOrder({ clientName, email, numberPhone, orders, deliveryDate, statu
   };
 
   return (
-    <div className="h-auto w-80 bg-white p-4 rounded-3xl">
-      <p>Nombre del cliente: {clientName}</p>
-      <p>Email: {email}</p>
-      <p>Teléfono: {numberPhone}</p>
-      <p>Fecha de entrega: {deliveryDate}</p>
-      <p>Total : {totalAmount}</p>
-      <div className="flex justify-center mt-5">
-        <select value={status} onChange={handleChange} className="bg-[#36be36] p-2 hover:bg-[#41c753] rounded-lg">
-          <option value="pendiente">Pendiente</option>
+    <div className="border p-4 rounded-lg shadow-lg">
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="font-bold text-lg">{clientName}</h3>
+          <p>{email}</p>
+          <p>{numberPhone}</p>
+          <p>{deliveryDate}</p>
+        </div>
+        <select
+          value={status}
+          onChange={handleChange}
+          className="border p-2 rounded-md"
+        >
           <option value="confirmada">Confirmada</option>
+          <option value="pendiente">Pendiente</option>
           <option value="entregada">Entregada</option>
           <option value="cancelada">Cancelada</option>
         </select>
       </div>
-      <button onClick={toggleDetails} className="mt-3 text-blue-500">
-        {showDetails ? 'Ver menos...' : 'Ver más...'}
-      </button>
-      {showDetails && (
-        <div className="mt-3">
-          {orders.map((order, index) => (
-            <div key={index} className="border-t border-gray-300 pt-2 mt-2">
-              <p>Producto: {order.description}</p>
-              <p>Cantidad: {order.amount}</p>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="mt-4">
+        <button
+          onClick={toggleDetails}
+          className="text-blue-500 hover:underline"
+        >
+          {showDetails ? 'Ocultar detalles' : 'Mostrar detalles'}
+        </button>
+        {showDetails && (
+          <div className="mt-4">
+            <h4 className="font-bold">Detalles del pedido</h4>
+            <ul>
+              {orders.map(order => (
+                <li key={order.product_id}>
+                  Producto: {order.description} - Cantidad: {order.amount}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 font-bold">Total: {totalAmount}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
