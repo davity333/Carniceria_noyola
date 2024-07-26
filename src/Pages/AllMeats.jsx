@@ -34,7 +34,7 @@ function AllMeats(){
 
     return(
         <>
-        <div className="bg-[#C29292] font-Raleway min-h-screen">
+        <div className="bg-[#daacac] h-[100vh] w-full">
 
         <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
         
