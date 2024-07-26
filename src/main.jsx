@@ -20,6 +20,7 @@ import PurchaseConfirmation from './assets/components/Organism/OrganismAllMeats/
 import { AuthProvider } from './assets/components/Molecules/Register/AuthContext.jsx';
 import AddEmploye from './Pages/AddEmploye.jsx';
 import ConfirmationPay from './Pages/ConfirmationPay.jsx';
+import Pedido from './Pages/Pedidos.jsx';
 import AddStock from './assets/components/Molecules/addStockProduct/AddStock.jsx';
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
   {
     path: "/addEmploye",
     element: <AddEmploye />,
+  },
+  {
+    path: "/Pedido",
+    element: <Pedido></Pedido>
   }
 ]);
 
