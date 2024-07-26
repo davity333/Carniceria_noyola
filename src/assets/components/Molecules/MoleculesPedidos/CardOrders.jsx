@@ -1,3 +1,4 @@
+// CardOrders.js
 import React, { useEffect, useState } from 'react';
 import CardOrder from './CardOrder';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -5,6 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 import { toast, Toaster } from 'react-hot-toast';
 import { format } from 'date-fns';
 import Loading from './../Loading';
+import { getUser } from '../../../../service/User';
 
 function CardOrders() {
   const [ordersData, setOrdersData] = useState([]);
@@ -47,12 +49,35 @@ function CardOrders() {
     fetchOrdersData();
   }, []);
 
-  const handleStatusChange = (id, newStatus) => {
-    setOrdersData(prevOrders =>
-      prevOrders.map(order =>
-        order.orders_id === id ? { ...order, status: newStatus } : order
-      )
-    );
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${import.meta.env.VITE_URL}/orders/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus, updated_by: getUser().name })
+      });
+
+      if (response.ok) {
+        const updatedOrder = await response.json();
+        setOrdersData(prevOrders =>
+          prevOrders.map(order =>
+            order.orders_id === id ? { ...order, status: newStatus } : order
+          )
+        );
+        toast.success('Estado del pedido actualizado correctamente');
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to update order status:', response.statusText, errorData);
+        toast.error('No se pudo actualizar el estado del pedido. Intente nuevamente.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      toast.error('Ocurrió un error al actualizar el estado. Intente nuevamente.');
+    }
   };
 
   if (loading) {
