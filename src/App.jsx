@@ -28,18 +28,18 @@ function App() {
       <UserProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/payComplete" element={<ProtectedRoute element={<ProductModal />} requiredRole={1} />} />
+          <Route path="/payComplete" element={<ProductModal />} />
           <Route path="/addStock" element={<ProtectedRoute element={<AddStock />} requiredRole={1} />} />
-          <Route path="/thank-you" element={<ProtectedRoute element={<ThankYou />} requiredRole={1} />} />
-          <Route path="/confirmationPay" element={<ProtectedRoute element={<ConfirmationPay />} requiredRole={1} />} />
-          <Route path="/pay" element={<ProtectedRoute element={<PagePay />} requiredRole={1} />} />
-          <Route path="/allMeats" element={<ProtectedRoute element={<AllMeats />} requiredRole={1} />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/confirmationPay" element={<ConfirmationPay />}/>
+          <Route path="/pay" element={<PagePay />} />
+          <Route path="/allMeats" element={<AllMeats />}/>
           <Route path="/allMeatsAdmin" element={<ProtectedRoute element={<AllMeatsAdmin />} requiredRole={1} />} />
           <Route path="/verMesas" element={<ProtectedRoute element={<VerMesas />} requiredRole={1} />} />
           <Route path="/homeAdmin" element={<ProtectedRoute element={<HomeAdmin />} requiredRole={1} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/reservarMesas" element={<ProtectedRoute element={<ReservarMesas />} requiredRole={1} />} />
+          <Route path="/reservarMesas" element={<ReservarMesas />} />
           <Route path="/addProduct" element={<ProtectedRoute element={<AddProduct />} requiredRole={1} />} />
           <Route path="/estadoMesa" element={<ProtectedRoute element={<PageTableStatus />} requiredRole={1} />} />
           <Route path="/pdf" element={<ProtectedRoute element={<Pdf />} requiredRole={1} />} />

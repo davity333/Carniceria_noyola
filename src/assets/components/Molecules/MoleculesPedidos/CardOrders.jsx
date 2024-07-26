@@ -28,11 +28,7 @@ function CardOrders() {
         });
 
         if (response.ok) {
-          const data = await resp
-          
-          
-          
-          onse.json();
+          const data = await response.json();
           console.log('Fetched orders data:', data);
           setOrdersData(data);
         } else {
@@ -94,6 +90,7 @@ function CardOrders() {
           numberPhone={firstOrder.number_phone}
           orders={filteredOrders}
           deliveryDate={formatDate(firstOrder.order_date)}
+          totalAmount={firstOrder.total_amount}
           status={firstOrder.status}
           onStatusChange={(newStatus) => handleStatusChange(firstOrder.orders_id, newStatus)}
         />

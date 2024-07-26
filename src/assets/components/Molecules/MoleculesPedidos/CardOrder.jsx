@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CardOrder({ clientName, email, numberPhone, orders, deliveryDate, status, onStatusChange }) {
+function CardOrder({ clientName, email, numberPhone, orders, deliveryDate, status, onStatusChange ,totalAmount}) {
   const [showDetails, setShowDetails] = useState(false);
 
   const handleChange = (e) => {
@@ -17,6 +17,7 @@ function CardOrder({ clientName, email, numberPhone, orders, deliveryDate, statu
       <p>Email: {email}</p>
       <p>Teléfono: {numberPhone}</p>
       <p>Fecha de entrega: {deliveryDate}</p>
+      <p>Total : {totalAmount}</p>
       <div className="flex justify-center mt-5">
         <select value={status} onChange={handleChange} className="bg-[#36be36] p-2 hover:bg-[#41c753] rounded-lg">
           <option value="pendiente">Pendiente</option>
@@ -33,8 +34,7 @@ function CardOrder({ clientName, email, numberPhone, orders, deliveryDate, statu
           {orders.map((order, index) => (
             <div key={index} className="border-t border-gray-300 pt-2 mt-2">
               <p>Producto: {order.description}</p>
-              <p>Cantidad: {order.quantity}</p>
-              <p>Precio total: {order.total_amount}</p>
+              <p>Cantidad: {order.amount}</p>
             </div>
           ))}
         </div>
