@@ -1,11 +1,17 @@
-import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import carne from '/carne.png'
-
+import FormField from '../../Molecules/Register/FormField'
+import { useRef, useState} from 'react';
+import { getUser } from '../../../../service/User';
+import { getProductsToPost } from '../../../../../selectedProducts';
+import toast,{Toaster} from 'react-hot-toast';
+import { jsPDF } from "jspdf";
 function PurchaseConfirmation() {
   const location = useLocation();
   const { selectedProducts } = location.state;
   const navigate = useNavigate();
+  const date = useRef('')
+  const [orders, setOrders] = useState([])
 
   const navegar = useNavigate();
 
@@ -13,23 +19,76 @@ function PurchaseConfirmation() {
     navegar("/allMeats")
   }
   
-  const handleConfirmPurchase = () => {
-    fetch(`${import.meta.env.VITE_URL}/pay`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify({ products: selectedProducts })
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Compra completada:', data);
-        navigate('/thank-you');
-      })
-      .catch(error => {
-        console.error('Error en la compra:', error);
+  const handleConfirmPurchase = async () => {
+    console.log(getUser().user_id, getUser().name,date.current.value);
+    console.log(getProductsToPost());
+    
+    try {
+      const response = await fetch(`${import.meta.env.VITE_URL}/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          order_date: date.current.value,
+          status: 'Pendiente',
+          payment_method: 'Efectivo',
+          created_by: getUser().name,
+          updated_by: getUser().name,
+          user_id_fk: getUser().user_id,
+          relations: getProductsToPost(),
+          total_amount: 300
+        })
       });
+      if (response.ok) {
+        const data = await response.json();
+        setOrders(data)
+        const doc = new jsPDF();
+        doc.setFontSize(22);
+        doc.setFont("montserrat", "bold");
+        doc.setTextColor(255, 0, 0);
+        doc.text('Carniceria Noyola', 105, 20, null, null, 'center');
+        doc.setDrawColor(255, 0, 0);
+        doc.setLineWidth(1);
+        doc.line(10, 35, 200, 35);
+
+        
+        doc.setFontSize(12);
+        doc.setFont("montserrat", "normal");
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Fecha: ${orders.order_date}`, 10, 45);
+        doc.setFontSize(16);
+        doc.setFont("montserrat", "bold");
+        doc.text('Productos:', 10, 55);
+
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+      
+        doc.setDrawColor(255, 0, 0);
+        doc.setLineWidth(0.5);
+        doc.line(10, 80, 200, 80);
+
+        doc.setFontSize(16);
+        doc.setFont("montserrat", "bold");
+        doc.setTextColor(255, 0, 0);
+        doc.text(`Total: $${orders.total_amount}`, 10, 90);
+
+        doc.setDrawColor(255, 0, 0);
+        doc.setLineWidth(0.5);
+        doc.rect(8, 85, 194, 15);
+    
+        doc.save(`factura_${orders.order_date}.pdf`);
+        toast.success('Pedido enviado');
+        
+      } else {
+        const errorData = await response.json();
+        console.error('Ocurrio:', response.statusText, errorData);
+        toast.error('Lo sentimos, intente más tarde');
+      }
+    } catch (error) {
+      console.error('Ocurrió un error.', error);
+      toast.error('Ocurrió un error. Intente nuevamente.');
+    }
   };
 
   return (
@@ -66,7 +125,18 @@ function PurchaseConfirmation() {
         {/* Contenido adicional si es necesario */}
     </div>
     <button onClick={handleConfirmPurchase} className="m-5 bg-blue-500 px-4 py-2 rounded text-white">Confirmar Compra</button>
+    <FormField
+        id="date"
+        name="date"
+        type="datetime-local"
+        placeholder=""
+        autoComplete="time"
+        required={true}
+        label="Fecha de entrega"
+        innerRef={date}
+      />
 </div>
+<Toaster></Toaster>
   </div>
 </>
   );

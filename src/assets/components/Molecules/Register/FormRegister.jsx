@@ -3,7 +3,7 @@ import FormField from './FormField';
 import Button from '../../Atoms/Register/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { setUser  } from '../../../../../User';
+import { setUser  } from '../../../../service/User';
 import { useState, useRef } from 'react';
 function FormRegister() {
   const lastNameRef = useRef(null);

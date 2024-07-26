@@ -3,15 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
 import ProductModal from './ProductModal';
 import { getSelectedProducts, addProduct, updateProductQuantity, getProductsToPost } from '../../../../../selectedProducts';
+import Loading from '../../Molecules/Loading';
 
 function CardsAllMeatsOrg() {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true);
       try {
         const token = localStorage.getItem('token');
         const response = await fetch(`${import.meta.env.VITE_URL}/products/product`, {
@@ -31,6 +34,7 @@ function CardsAllMeatsOrg() {
       } catch (error) {
         console.error('An error occurred:', error);
       }
+      setIsLoading(false);
     };
 
     fetchProducts();
@@ -42,7 +46,7 @@ function CardsAllMeatsOrg() {
 
   const handleCardClick = (product) => {
     addProduct(product);
-    setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
+    setSelectedProducts([...getSelectedProducts()]); 
     setIsModalOpen(true);
     console.log(getProductsToPost());
   };
@@ -59,10 +63,8 @@ function CardsAllMeatsOrg() {
 
   return (
     <>
-    <div className='flex justify-center'>
-    <img src="/CarritoLogo.png" className='w-[10%] drop-shadow-custom-white ml-[87%] -mt-[50%] fixed ' alt="logo" />
-      <div className="font-light m-auto grid grid-cols-3 flex items-center
-       ">
+      <div className="font-light m-auto grid grid-cols-1 w-[100%] 
+       sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
         {
           products.map((item, index) => (
             <CardsMeats 
@@ -76,7 +78,6 @@ function CardsAllMeatsOrg() {
           ))
         }
       </div>
-      </div>
       {isModalOpen && (
         <ProductModal 
           selectedProducts={selectedProducts} 
@@ -85,7 +86,12 @@ function CardsAllMeatsOrg() {
           handlePay={handlePay}
         />
       )}
- 
+
+      <div className=' flex justify-end m-4'>
+      <img src="/CarritoLogo.png" className='w-[10%]' alt="logo" />
+      </div>
+
+      <p>CARRITO</p>
     </>
   );
 }

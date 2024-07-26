@@ -21,8 +21,7 @@ export const updateProductQuantity = (product, quantity) => {
 
 export const getProductsToPost = () => {
   return selectedProducts.map(p => ({
-    product_id: p.product_id,
+    product_id_fk: p.product_id,
     amount: p.quantity,
-    price: p.price
   }));
 };
