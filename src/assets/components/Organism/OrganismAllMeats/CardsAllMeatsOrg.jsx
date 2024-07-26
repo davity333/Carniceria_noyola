@@ -53,7 +53,7 @@ function CardsAllMeatsOrg() {
 
   const handleUpdateQuantity = (product, quantity) => {
     updateProductQuantity(product, quantity);
-    setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
+    setSelectedProducts([...getSelectedProducts()]); 
   };
 
   const handlePay = () => {
@@ -67,7 +67,7 @@ function CardsAllMeatsOrg() {
        sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
         {
           products.map((item, index) => (
-            <CardsMeats 
+            <CardsMeats
               key={index}
               price={item.price}
               productName={item.description}

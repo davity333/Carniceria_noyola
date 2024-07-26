@@ -13,7 +13,7 @@ function CardsMeats({ src, productName, price, children, onClick,amount }) {
       <div className="mt-4">
         <p className="text-[13px] sm:text-2xl md:text-3xl font-bold">{productName}</p>
         <p className="text-[16px] sm:text-3xl md:text-2xl text-gray-700">{"$"+price}</p>
-        <p className="text-[14px] sm:text-xl md:text-2xl text-gray-700">{'En stock: '+amount}</p>
+        <p className="text-[14px] sm:text-xl md:text-2xl text-gray-700">{'En stock: '+amount + ' (kg)'}</p>
       </div>
       <div className="relative mt-4 sm:mt-6 md:mt-8 rounded-lg flex items-center justify-center p-2 sm:p-3 md:p-4 cursor-pointer group bg-slate-700 overflow-hidden">
         <div className="hidden sm:block flex items-center ml-1 sm:ml-2 md:ml-3 relative z-10">
