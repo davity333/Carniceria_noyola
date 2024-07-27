@@ -39,7 +39,6 @@ function SectionOrderStatus() {
                         return acc;
                     }, {});
                     setGroupedOrders(grouped);
-                    console.log('Grouped orders:', grouped);
                 } else {
                     const errorData = await response.json();
                     console.error('Failed to fetch orders:', response.statusText, errorData);
