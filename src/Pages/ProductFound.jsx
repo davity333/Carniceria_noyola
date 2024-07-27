@@ -4,6 +4,7 @@ import { useState } from "react";
 import noExistente from '/noExiste.png'
 import CardsAllMeatsOrg from "../assets/components/Organism/OrganismAllMeats/CardsAllMeatsOrg";
 import CardsMeats from "../assets/components/Molecules/MoleculesAllMeats/CardsMeats";
+import { useNavigate } from "react-router-dom";
 function ProductFound() {
     const [products, setProducts] = useState([]);
     const [singularText, setSingularText] = useState(false);
@@ -12,6 +13,8 @@ function ProductFound() {
     const [productNoFound, setProductNoFound] = useState (false);
     
     const nameProduct = localStorage.getItem('nameProduct');
+
+    const navegar = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,7 +53,7 @@ function ProductFound() {
     }, [nameProduct]);
 
     const handleCardClick = (product) => {
-        CardsAllMeatsOrg.handleCardClick(product);
+navegar("/allMeats")
     };
     
     return (  

@@ -14,7 +14,7 @@ function DropDown({children, onClick}){
 
 
     const clickTableStatus = () =>{
-        navegar("estadoMesa");
+        navegar("/estadoMesa");
     }
 
     const clickLogin = () =>{

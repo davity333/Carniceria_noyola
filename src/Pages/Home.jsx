@@ -51,7 +51,6 @@ function Home(){
 
     const clickEnter = (e)=>{
         console.log(e.key);
-
         if(nameProduct == ''){
             return;
         }
