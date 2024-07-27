@@ -1,56 +1,46 @@
-import React from 'react';
-import { format } from 'date-fns';
-const OrderCard = ({ clientName, email, numberPhone, deliveryDate, totalAmount, status, products }) => {
-  return (
-    <div className="border rounded-md p-4 mb-4 bg-red-300">
-      <div>
-        <strong>{clientName}</strong>
-      </div>
-      <div>{email}</div>
-      <div>{numberPhone}</div>
-      <div>{format(new Date(deliveryDate), 'dd/MM/yyyy HH:mm')}</div>
-      <div>Total: ${totalAmount}</div>
-      <div><strong>Estatus:</strong> {status}</div>
-      <div className="mt-2">
-        <button className="text-blue-600">Mostrar detalles</button>
-      </div>
-      <div className="mt-2">
-        <ul>
-          {products.map((product, index) => (
-            <li key={index}>{product.description} - ${product.price}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-};
+import  { useState } from 'react';
 
-const CardOrders = ({ orders }) => {
-  const groupedOrders = orders.reduce((acc, order) => {
-    const { orders_id, user_id, name, lastname, email, number_phone, order_date, total_amount, status, description, price } = order;
-    const key = `${user_id}-${orders_id}`;
-    if (!acc[key]) {
-      acc[key] = {
-        clientName: `${name} ${lastname}`,
-        email,
-        numberPhone: number_phone,
-        deliveryDate: order_date,
-        totalAmount: total_amount,
-        status,
-        products: []
-      };
-    }
-    acc[key].products.push({ description, price });
-    return acc;
-  }, {});
+function CardOrders({ orders }) {
+    const [isExpanded, setIsExpanded] = useState(false);
 
-  return (
-    <div>
-      {Object.entries(groupedOrders).map(([key, orderData]) => (
-        <OrderCard key={key} {...orderData} />
-      ))}
-    </div>
-  );
-};
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
+    return (
+        <div className="bg-white shadow-lg rounded-lg p-6 m-4 w-full max-w-md">
+            <div className="flex justify-between items-center">
+                <div>
+                    <p className={`text-sm ${orders[0].status === 'cancelada' || orders[0].status === 'pendiente'? 'text-red-500' : 'text-green-500'}`}>
+                        Estado del pedido: {orders[0].status === 'cancelada' || orders[0].status === 'pendiente' ? 'Cancelada' || 'Pendiente' : orders[0].status}
+                    </p>
+          
+                    <div className="border-t pt-4 mt-4">
+                        <p className="text-gray-800 font-semibold">Precio total: ${orders[0].total_amount}</p>
+                        <p className="text-gray-600">Fecha de entrega: {new Date(orders[0].order_date).toLocaleDateString()}</p>
+                    </div>
+                </div>
+                <button 
+                    onClick={toggleExpand} 
+                    className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
+                >
+                    {isExpanded ? 'Ocultar' : 'Mostrar productos'}
+                </button>
+            </div>
+            {isExpanded && (
+                <div className="mt-4">
+                    {orders.map((order) => (
+                        <div key={order.product_id} className="border-t pt-4 mt-4">
+                            <h4 className="text-lg font-semibold text-gray-700">{order.description}</h4>
+                            <p className="text-gray-600">Precio: ${order.price}</p>
+                            <p className="text-gray-600">Cantidad: {order.amount}</p>
+                        </div>
+                    ))}
+                   
+                </div>
+            )}
+        </div>
+    );
+}
 
 export default CardOrders;
