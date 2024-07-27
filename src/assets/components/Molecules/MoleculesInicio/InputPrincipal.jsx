@@ -1,7 +1,7 @@
 import Input from "../../Atoms/AtomsPaginaPrincipal/Input";
 import LupaSilueta from '/lupa.png'
 import { useState } from "react";
-function InputPrincipal({children, onClickLupa, onKeyUp, value, onChange }){
+function InputPrincipal({children, onClickLupa, onKeyUp, value}){
 
  
 
@@ -15,7 +15,7 @@ function InputPrincipal({children, onClickLupa, onKeyUp, value, onChange }){
             <img src={LupaSilueta} onClick={onClickLupa}  alt="Logo"  className="cursor-pointer block sm:hidden"/> 
 
             <div className="hidden sm:block ">
-                <Input onKeyUp={onKeyUp} value={value} onChange={onChange}/>
+                <Input  />
                 </div>
                 
                 {children}

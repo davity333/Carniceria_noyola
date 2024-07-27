@@ -31,15 +31,18 @@ function ProductFound() {
                 console.log("TAMAÑO DEL ARREGLO")
                 console.log(length); 
 
-                    if(length === 0){
+                    if(length === 0){           //CUANDO NO EXISTE EL PRODUCTO
                         setPluralText(false)
+                        setSingularText(false)
                         setProductNoFound(true)
                         setNames(false)
                     }
 
-                    if(length === 1){
+                    if(length >= 1){           //CUANDO SI ESXITE EL PRODUCTO
+                        setProductNoFound(false);
                         setPluralText(false);
                         setSingularText(true)
+                        setNames(true);
                     }
 
             } else {
