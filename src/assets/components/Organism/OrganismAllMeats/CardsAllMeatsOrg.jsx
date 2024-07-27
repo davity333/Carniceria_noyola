@@ -4,12 +4,13 @@ import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
 import ProductModal from './ProductModal';
 import { getSelectedProducts, addProduct, updateProductQuantity, getProductsToPost } from '../../../../../selectedProducts';
 import Loading from '../../Molecules/Loading';
-
+import toast, { Toaster } from 'react-hot-toast';
 function CardsAllMeatsOrg() {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [img, setImg] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,12 +49,13 @@ function CardsAllMeatsOrg() {
     addProduct(product);
     setSelectedProducts([...getSelectedProducts()]); 
     setIsModalOpen(true);
+    setImg(false);
     console.log(getProductsToPost());
   };
 
   const handleUpdateQuantity = (product, quantity) => {
     updateProductQuantity(product, quantity);
-    setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
+    setSelectedProducts([...getSelectedProducts()]);  // actualizando el estado
   };
 
   const handlePay = () => {
@@ -61,37 +63,60 @@ function CardsAllMeatsOrg() {
     navigate('/confirmationPay', { state: { selectedProducts, productsToPost } });
   };
 
+  const handleCartClick = () => {
+    if (selectedProducts.length === 0) {
+      alert('Carrito vacio, agrega productos al carrito');
+      
+    } else {
+      setIsModalOpen(true);
+      setImg(false);
+    }
+  };
+
   return (
     <>
-      <div className="font-light m-auto grid grid-cols-1 w-[100%] 
-       sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 font-inter">
-        {
-          products.map((item, index) => (
-            <CardsMeats 
-              key={index}
-              price={item.price}
-              productName={item.description}
-              amount={item.amount}
-              src={item.image}
-              onClick={() => handleCardClick(item)}
-            />
-          ))
-        }
-      </div>
+    
+    
+    {img && (<div className='fixed top-[75%]  z-50 w-full p-4 ml-[86.9%]'>
+  <img src="CarritoLogo.png" className='w-32 m-4 hover:drop-shadow-custom-white cursor-pointer absolute' 
+  alt="Carrito Logo" onClick={handleCartClick} title='Productos agregados'/>
+  <div className='text-[#399128] text-3xl ml-[4.4%] mt-5 relative
+  [text-shadow:_1px_0px_3px_rgba(0,0,0,0.61)]'>
+  {getProductsToPost().length}
+  </div>
+</div>)}      
+
+
+  
+
+<div className='flex justify-center mt-20'> 
+
+  <div className="font-light m-auto grid grid-cols-3 gap-9">
+    {products.map((item, index) => (
+      <CardsMeats 
+        key={index}
+        price={item.price}
+        productName={item.description}
+        amount={item.amount}
+        src={item.image}
+        onClick={() => handleCardClick(item)}
+      />
+    ))}
+  </div>
+  
+</div>
+
       {isModalOpen && (
         <ProductModal 
           selectedProducts={selectedProducts} 
-          onClose={() => setIsModalOpen(false)} 
+          onClose={() => {setIsModalOpen(false); setImg(true)}} 
           updateQuantity={handleUpdateQuantity} 
           handlePay={handlePay}
         />
       )}
 
-      <div className=' flex justify-end m-4'>
-      <img src="/CarritoLogo.png" className='w-[10%]' alt="logo" />
-      </div>
 
-      <p>CARRITO</p>
+   
     </>
   );
 }

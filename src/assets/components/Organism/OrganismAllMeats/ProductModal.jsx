@@ -7,7 +7,7 @@ function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay,dat
       <div className="bg-white w-96 p-6 m-4 rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold">Carrito</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">&times;</button>
+          <button title="Cerrar" onClick={onClose} className="text-gray-500 hover:text-gray-700">&times;</button>
         </div>
         <ul>
           {selectedProducts.map((product, index) => (

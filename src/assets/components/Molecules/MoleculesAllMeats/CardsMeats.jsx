@@ -3,7 +3,7 @@ function CardsMeats({ src, productName, price, children, onClick,amount }) {
   return (
     <div 
       className="drop-shadow-xl product-card bg-neutral-300 p-8 m-4 rounded-lg text-center w-36 h-auto max-h-[250px] flex flex-col col-span-2
-       sm:flex-col col-auto  sm:w-80 sm:max-h-[600px] sm:col-span-1 "
+       sm:flex-col col-auto  sm:w-80 sm:max-h-[600px] sm:col-span-1"
       onClick={onClick}
     >
       {children}
@@ -13,9 +13,9 @@ function CardsMeats({ src, productName, price, children, onClick,amount }) {
       <div className="mt-4">
         <p className="text-[13px] sm:text-2xl md:text-3xl font-bold">{productName}</p>
         <p className="text-[16px] sm:text-3xl md:text-2xl text-gray-700">{"$"+price}</p>
-        <p className="text-[14px] sm:text-xl md:text-2xl text-gray-700">{'En stock: '+amount}</p>
+        <p className="text-[14px] sm:text-xl md:text-2xl text-gray-700">{'En stock: '+amount + ' (kg)'}</p>
       </div>
-      <div className="relative mt-4 sm:mt-6 md:mt-8 rounded-lg flex items-center justify-center p-2 sm:p-3 md:p-4 cursor-pointer group bg-slate-700 overflow-hidden">
+      <div  className="cursor-pointer relative mt-4 sm:mt-6 md:mt-8 rounded-lg flex items-center justify-center p-2 sm:p-3 md:p-4 group bg-slate-700 overflow-hidden">
         <div className="hidden sm:block flex items-center ml-1 sm:ml-2 md:ml-3 relative z-10">
           <SiluetaSupermercado />
         </div> 
