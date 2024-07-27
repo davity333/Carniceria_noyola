@@ -15,7 +15,6 @@ function FormRegister() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("Form submitted");
 
     const payload = {
       "name": nameRef.current.value,

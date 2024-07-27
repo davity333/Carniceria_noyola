@@ -12,7 +12,7 @@ function DeleteEmployee() {
     async function fetchEmployees() {
       setIsLoading(true);
       try {
-        const response = await fetch(`${import.meta.env.VITE_URL}/users/userRole/3`);
+        const response = await fetch(`${import.meta.env.VITE_URL}/users/userRole/2`);
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
