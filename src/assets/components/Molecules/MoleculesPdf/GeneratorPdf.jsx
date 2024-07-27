@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HeaderAdmin from "../../Molecules/MoleculesInicioAdmin/HeaderAdmin";
 import { jsPDF } from "jspdf";
 
 function GeneratorPdf() {
     const [date, setDate] = useState(new Date());
+    const [orders, setOrders] = useState([]);
 
     const formattedDate = date.toLocaleDateString('es-ES', {
         day: 'numeric',
@@ -11,21 +12,21 @@ function GeneratorPdf() {
         year: 'numeric'
     });
 
-    const dataPdf = {
-        total: 54,
-        dia: formattedDate,
-        productos: {
-            carne: 'Carne de lomo',
-            hueso: 'Hueso de lomo'
-        }
-    }
+    // Fetch orders from API
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const response = await fetch(import.meta.env.VITE_URL + '/orders/ordersWithProducts');
+            const data = await response.json();
+            setOrders(data);
+        };
+        fetchOrders();
+    }, []);
 
     const generatePDF = () => {
         const doc = new jsPDF();
 
-
         doc.setFontSize(22);
-        doc.setFont("montserrat", "bold");
+        doc.setFont("helvetica", "bold");
         doc.setTextColor(255, 0, 0);
         doc.text('Carniceria Noyola', 105, 20, null, null, 'center');
 
@@ -33,35 +34,51 @@ function GeneratorPdf() {
         doc.setLineWidth(1);
         doc.line(10, 35, 200, 35);
 
-        
-        doc.setFontSize(12);
-        doc.setFont("montserrat", "normal");
-        doc.setTextColor(0, 0, 0);
-        doc.text(`Fecha: ${dataPdf.dia}`, 10, 45);
-
-        doc.setFontSize(16);
-        doc.setFont("montserrat", "bold");
-        doc.text('Productos:', 10, 55);
-
         doc.setFontSize(12);
         doc.setFont("helvetica", "normal");
-        doc.text(`1. ${dataPdf.productos.carne}`, 10, 65);
-        doc.text(`2. ${dataPdf.productos.hueso}`, 10, 75);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Fecha: ${formattedDate}`, 10, 45);
+        
+        const groupedOrdersByUser = orders.reduce((accumulator, currentOrder) => {
+            const userKey = `${currentOrder.name} ${currentOrder.lastname} (${currentOrder.email})`;
+            if (!accumulator[userKey]) {
+                accumulator[userKey] = [];
+            }
+            accumulator[userKey].push(currentOrder);
+            return accumulator;
+        }, {});
 
-        doc.setDrawColor(255, 0, 0);
-        doc.setLineWidth(0.5);
-        doc.line(10, 80, 200, 80);
+        let currentYPosition = 55;
+        Object.keys(groupedOrdersByUser).forEach((userKey) => {
+            if (currentYPosition > 250) {
+                doc.addPage();
+                currentYPosition = 20;
+            }
 
-        doc.setFontSize(16);
-        doc.setFont("montserrat", "bold");
-        doc.setTextColor(255, 0, 0);
-        doc.text(`Total: $${dataPdf.total}`, 10, 90);
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "bold");
+            doc.text(`Cliente: ${userKey}`, 10, currentYPosition);
 
-        doc.setDrawColor(255, 0, 0);
-        doc.setLineWidth(0.5);
-        doc.rect(8, 85, 194, 15);
-    
-        doc.save(`factura_${dataPdf.dia}.pdf`);
+            currentYPosition += 10;
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            groupedOrdersByUser[userKey].forEach((order, orderIndex) => {
+                if (currentYPosition > 280) {
+                    doc.addPage();
+                    currentYPosition = 20;
+                }
+                doc.text(`${orderIndex + 1}. Producto: ${order.description} - Cantidad: ${order.amount} - Total: $${order.price}`, 10, currentYPosition);
+                currentYPosition += 10;
+            });
+
+            currentYPosition += 10;
+            doc.setDrawColor(255, 0, 0);
+            doc.setLineWidth(0.5);
+            doc.line(10, currentYPosition, 200, currentYPosition);
+            currentYPosition += 10;
+        });
+
+        doc.save(`reporte_ventas_${formattedDate}.pdf`);
     }
 
     return (
