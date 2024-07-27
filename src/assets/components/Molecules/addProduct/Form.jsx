@@ -9,7 +9,7 @@ function Form() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/allMeats');
+    navigate('/allMeatsAdmin');
   };
 
   const nameProduct = useRef('');

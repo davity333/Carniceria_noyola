@@ -17,6 +17,7 @@ function DeleteProduct() {
         setProducts(data);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
+        console.log(products);
         toast.error('Error al obtener los datos');
       }
       setIsLoading(false);
@@ -97,6 +98,7 @@ function DeleteProduct() {
               </tr>
             </thead>
             <tbody>
+              
               {products.map((product) => (
                 <tr key={product.product_id} className="hover:bg-gray-100">
                   <td className="py-3 px-4"><img className="w-7 h-7" src={product.image} alt={product.description} /></td>

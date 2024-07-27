@@ -21,7 +21,9 @@ import Pedidos from './Pages/Pedidos.jsx';
 import AddStock from './assets/components/Molecules/addStockProduct/AddStock.jsx';
 import { UserProvider } from './context/UserContext.jsx';
 import ProtectedRoute from './assets/components/ProtectedRoute.jsx';
+import ProductFound from './Pages/ProductFound.jsx';
 import OrdersStatus from './Pages/OrdersStatus.jsx';
+
 
 function App() {
   return (
@@ -48,6 +50,7 @@ function App() {
           <Route path="/pdf" element={<ProtectedRoute element={<Pdf />} requiredRole={1} />} />
           <Route path="/addEmploye" element={<ProtectedRoute element={<AddEmploye />} requiredRole={1} />} />
           <Route path="/Pedido" element={<ProtectedRoute element={<Pedidos />} requiredRole={1} />} />
+          <Route path="/ProductFound" element={<ProductFound />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

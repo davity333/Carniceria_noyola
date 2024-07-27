@@ -34,10 +34,10 @@ function AllMeats(){
 
     return(
         <>
-        <div className="bg-[#daacac] h-[100vh] w-full">
+        
 
         <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
-        
+
         {dropDownMenu && (<DropDownOptionsOrg onClick={clickDown}></DropDownOptionsOrg>)}
         {dropDownUser && (<DropDownUserOrg></DropDownUserOrg>)}
 
@@ -47,7 +47,7 @@ function AllMeats(){
         
         
         <div className="p-10"></div>
-        </div>
+        
 
         </>
     );
