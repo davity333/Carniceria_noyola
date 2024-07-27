@@ -21,6 +21,7 @@ import Pedidos from './Pages/Pedidos.jsx';
 import AddStock from './assets/components/Molecules/addStockProduct/AddStock.jsx';
 import { UserProvider } from './context/UserContext.jsx';
 import ProtectedRoute from './assets/components/ProtectedRoute.jsx';
+import OrdersStatus from './Pages/OrdersStatus.jsx';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/confirmationPay" element={<ConfirmationPay />}/>
           <Route path="/pay" element={<PagePay />} />
+          <Route path="/orderStatus" element={<OrdersStatus />} />
           <Route path="/allMeats" element={<AllMeats />}/>
           <Route path="/allMeatsAdmin" element={<ProtectedRoute element={<AllMeatsAdmin />} requiredRole={1} />} />
           <Route path="/verMesas" element={<ProtectedRoute element={<VerMesas />} requiredRole={1} />} />
@@ -42,7 +44,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/reservarMesas" element={<ReservarMesas />} />
           <Route path="/addProduct" element={<ProtectedRoute element={<AddProduct />} requiredRole={1} />} />
-          <Route path="/estadoMesa" element={<ProtectedRoute element={<PageTableStatus />} requiredRole={1} />} />
+          <Route path="/estadoMesa" element={<PageTableStatus />}/>
           <Route path="/pdf" element={<ProtectedRoute element={<Pdf />} requiredRole={1} />} />
           <Route path="/addEmploye" element={<ProtectedRoute element={<AddEmploye />} requiredRole={1} />} />
           <Route path="/Pedido" element={<ProtectedRoute element={<Pedidos />} requiredRole={1} />} />
