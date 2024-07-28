@@ -3,6 +3,9 @@ let selectedProducts = [];
 export const getSelectedProducts = () => {
   return selectedProducts;
 };
+export const setSelectedProductss = () => {
+  selectedProducts = [];
+};
 
 export const addProduct = (product) => {
   const existProduct = selectedProducts.find(p => p.product_id === product.product_id);

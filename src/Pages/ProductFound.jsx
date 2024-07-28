@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../assets/components/Atoms/AtomsPaginaPrincipal/Input";
 import ProductModal from "../assets/components/Organism/OrganismAllMeats/ProductModal";
 import { getSelectedProducts,addProduct,updateProductQuantity,getProductsToPost } from "../../selectedProducts";
+import Button from "../assets/components/Atoms/Register/Button";
 function ProductFound() {
     const [products, setProducts] = useState([]);
     const [singularText, setSingularText] = useState(false);
@@ -27,9 +28,6 @@ function ProductFound() {
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("PRODUCTOS");
-        console.log(nameProduct);
-
         try {
             const response = await fetch(`${import.meta.env.VITE_URL}/products/productDescription/${nameProduct}`);
             if (response.ok) {
@@ -55,7 +53,7 @@ function ProductFound() {
                     }
 
             } else {
-                alert("API no está disponible");
+               toast.error("Lo sentimos ocurrió un problema en el servidor ")
             }
         } catch (error) {
             console.error('Error al obtener los productos:', error);
@@ -73,11 +71,9 @@ function ProductFound() {
         setImg(true);
     };
     
-    const updateQuantity = (product, quantity) =>{ 
+    const updateQuantity = (product, quantity) =>{
         updateProductQuantity(product,quantity);
         setSelectedProducts([...getSelectedProducts()])
-        if (quantity <= 0) return;
-        if (quantity > product.available) return; 
     }
     const meats = () =>{
         navegar("/allMeats")
@@ -110,7 +106,7 @@ function ProductFound() {
                     <p className="text-center text-2xl text-[#322f2f] font-extralight
                     ">de carne en este momento</p>
                     </div>)}
-
+                    <Button onClick={meats} >Ver todas las carnes</Button>
 
             </div>
 
@@ -130,10 +126,7 @@ function ProductFound() {
             ))}
         </div>
     </div>
-        <p onClick={meats}>todas carnes</p>
-
         </div>
-
         <div className="bg-[#C29292] h-[full] w-full">
         </div>
         {

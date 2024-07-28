@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { getProductsToPost } from "../../../../../selectedProducts";
 
-function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay, date }) {
+function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay, date, clearShopping }) {
   if (!selectedProducts || selectedProducts.length === 0) return null;
 
   return (
@@ -22,18 +23,18 @@ function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay, da
                   <p className="text-gray-700">${product.price}</p>
                 </div>
                 <div className="flex items-center">
-                  <button
-                    onClick={() => updateQuantity(product, product.quantity - 1)}
+                  <button 
+                    onClick={() => updateQuantity(product, product.quantity - 1)} 
                     className="px-2 py-1 text-xl bg-gray-200 rounded"
-                    disabled={product.quantity <= 1} // Deshabilitar el botón si la cantidad es 1 o menor
+                    disabled={product.quantity <= 1}
                   >
                     -
                   </button>
                   <span className="mx-4">{product.quantity}</span>
-                  <button
-                    onClick={() => updateQuantity(product, product.quantity + 1)}
+                  <button 
+                    onClick={() => updateQuantity(product, product.quantity + 1)} 
                     className="px-2 py-1 text-xl bg-gray-200 rounded"
-                    disabled={product.quantity >= product.available} // Deshabilitar el botón si la cantidad alcanza la disponible
+                    disabled={product.quantity >= product.amount}
                   >
                     +
                   </button>

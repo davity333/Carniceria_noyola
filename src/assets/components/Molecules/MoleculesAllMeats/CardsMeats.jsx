@@ -1,8 +1,8 @@
+import { useState } from "react";
 import SiluetaSupermercado from "../../Atoms/AtomsPaginaPrincipal/SiluetaSupermercado";
 
 function CardsMeats({ src, productName, price, children, onClick, amount }) {
   const isOutOfStock = amount <= 0;
-
   return (
     <div 
       className="drop-shadow-xl product-card bg-[#ffffff1b] p-8 m-4 rounded-lg text-center w-36 h-auto max-h-[250px] flex flex-col col-span-2

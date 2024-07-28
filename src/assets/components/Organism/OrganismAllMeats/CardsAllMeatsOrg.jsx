@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
 import ProductModal from './ProductModal';
-import { getSelectedProducts, addProduct, updateProductQuantity, getProductsToPost } from '../../../../../selectedProducts';
+import { getSelectedProducts, addProduct, updateProductQuantity, getProductsToPost,setSelectedProductss } from '../../../../../selectedProducts';
 import Loading from '../../Molecules/Loading';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -13,8 +13,6 @@ function CardsAllMeatsOrg() {
   const [isLoading, setIsLoading] = useState(false);
   const [img, setImg] = useState(true);
   const navigate = useNavigate();
-
-
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,7 +31,7 @@ function CardsAllMeatsOrg() {
           setProducts(data);
         } else {
           const errorData = await response.json();
-          console.error('Failed to fetch products:', response.statusText, errorData);
+          console.error('Fallo al obtener los productos:', response.statusText, errorData);
         }
       } catch (error) {
         console.error('An error occurred:', error);
@@ -48,15 +46,23 @@ function CardsAllMeatsOrg() {
     setSelectedProducts(getSelectedProducts());
   }, []);
 
-  const handleCardClick = (product) => {    //AQUI SE AGREGAN LOS PRODUCTOS AL CARRITO
+  const handleCardClick = (product) => { 
+       //AQUI SE AGREGAN LOS PRODUCTOS AL CARRITO
+       if(!localStorage.getItem('token')){
+        navigate("/login")
+       }
+       else {
+
+      
     addProduct(product);
     setSelectedProducts([...getSelectedProducts()]); 
     setIsModalOpen(true);
     setImg(false);
     console.log(getProductsToPost());
     console.log("se agrego productos al carrito")
-  };
-
+  }
+  }
+ 
   const handleUpdateQuantity = (product, quantity) => {
     updateProductQuantity(product, quantity);
     setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
@@ -118,6 +124,7 @@ function CardsAllMeatsOrg() {
           onClose={() => {setIsModalOpen(false); setImg(true)}} 
           updateQuantity={handleUpdateQuantity} 
           handlePay={handlePay}
+          
         />
       )}
 
