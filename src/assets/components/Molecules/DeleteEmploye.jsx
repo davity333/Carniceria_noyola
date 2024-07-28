@@ -3,6 +3,7 @@ import Button from '../Atoms/Register/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { getUser } from '../../../service/User';
 import style from './../../../../fonts.module.css'
+import Loading from './Loading';
 
 function DeleteEmployee() {
   const [employees, setEmployees] = useState([]);
@@ -16,8 +17,7 @@ function DeleteEmployee() {
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
-        console.error('Error fetching employees:', error);
-        toast.error('Error fetching employees');
+        toast.error('Ocurrió un error en el servidor ');
       }
       setIsLoading(false);
     }
@@ -25,7 +25,6 @@ function DeleteEmployee() {
   }, []);
 
   const deleteEmployee = async (id) => {
-    console.log('deleteEmployee called with id:', id);
     setIsLoading(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_URL}/users/delete/${id}`, {
@@ -37,16 +36,15 @@ function DeleteEmployee() {
       });
 
       if (response.ok) {
-        console.log('Response OK:', await response.json());
         setEmployees(employees.filter(employee => employee.user_id !== id));
-        toast.success('Employee deleted successfully');
+        toast.success('Employee eliminado exitosamente');
       } else {
         console.error('Error deleting employee:', response.statusText);
-        toast.error('Error deleting employee');
+        toast.error('Ocurrió un error al eliminar un empleado');
       }
     } catch (error) {
-      console.error('Error deleting employee:', error);
-      toast.error('Error deleting employee');
+      console.error('Error eliminando empleados:', error);
+      toast.error('Error al eliminar el empleado');
     }
     setIsLoading(false);
   };
@@ -54,20 +52,7 @@ function DeleteEmployee() {
   return (
     <>
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <div className="flex items-center">
-              <svg className="animate-spin h-5 w-5 mr-3 text-blue-500" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" fill="none"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-              </svg>
-              <span className="text-lg font-medium">Cargando...</span>
-            </div>
-            <div className="mt-4 h-1 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-blue-500 animate-pulse"></div>
-            </div>
-          </div>
-        </div>
+            <Loading/>
       )}
       <div className="min-h-screen bg-[#a84747] text-white flex flex-col items-center py-10">
         <h1 id={style.textDecoration} className="text-5xl font-bold mb-6 [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
