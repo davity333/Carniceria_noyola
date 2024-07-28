@@ -31,7 +31,7 @@ function ConfirmationPay() {
 
     return (  
         <>
-        <div className="bg-[#C29292] h-[100vh] w-full">
+        <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
         <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
         {dropDownMenu && (<DropDownOptionsOrg onClick={clickDown}></DropDownOptionsOrg>)}
 

@@ -31,10 +31,3 @@ function Home(){
     );
 }
 export default Home;
-
-//*
-/*
-<div className=" block sm:hidden">
-        {buscador && (<Input value={nameProduct} onChange={(e) => setNameProduct(e.target.value)} onKeyUp={clickEnter}></Input>)}
-        </div>
-        */

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BoxIconElement } from 'boxicons';
 
-function FormField({ id, name, type, placeholder, autoComplete, required, innerRef, label, onBlur, onChange }) {
+function FormField({ id, name, type, placeholder, autoComplete, required, innerRef, label, onBlur, onChange, onKeyUp, value}) {
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => {
@@ -23,6 +23,8 @@ function FormField({ id, name, type, placeholder, autoComplete, required, innerR
           onChange={onChange}
           className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm sm:w-full sm:flex sm:justify-center"
           onBlur={onBlur}
+          onKeyUp={onKeyUp}
+          value={value}
         />
         {type === 'password' && (
           <button

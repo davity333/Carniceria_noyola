@@ -5,7 +5,8 @@ import ProductModal from './ProductModal';
 import { getSelectedProducts, addProduct, updateProductQuantity, getProductsToPost,setSelectedProductss } from '../../../../../selectedProducts';
 import Loading from '../../Molecules/Loading';
 import toast, { Toaster } from 'react-hot-toast';
-
+import BotonFixed from '../../Molecules/MoleculesAllMeats/BotonFixed';
+import carritoLogo from '/CarritoLogo.png'
 function CardsAllMeatsOrg() {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -65,7 +66,7 @@ function CardsAllMeatsOrg() {
  
   const handleUpdateQuantity = (product, quantity) => {
     updateProductQuantity(product, quantity);
-    setSelectedProducts([...getSelectedProducts()]);  // Actualiza el estado
+    setSelectedProducts([...getSelectedProducts()]);  // CAMBIA LA CANTIDAD DE PRODUCTOS QUE VA AGREGANDO
   };
 
   const handlePay = () => {
@@ -85,18 +86,12 @@ function CardsAllMeatsOrg() {
 
 
   return (
-    <>
-      {img && (<div className='fixed top-[75%]  z-50 w-full p-4 ml-[50%] sm:ml-[86.9%] sm:fixed'>
-  <img src="CarritoLogo.png" className='w-32 m-4 hover:drop-shadow-custom-white cursor-pointer absolute' 
-  alt="Carrito Logo" onClick={logoCarrito} title='Productos agregados'/>
-  <div className='text-[#399128] text-3xl ml-[4.4%] mt-5 relative
-  [text-shadow:_1px_0px_3px_rgba(0,0,0,0.61)]'>
-  {getProductsToPost().length}
-  </div>
-</div>)}      
-
-
-
+    <>  
+        {img &&(<BotonFixed
+        src={carritoLogo}
+        onClick={logoCarrito}
+        title={"Productos agregados"}
+        number={getProductsToPost().length}></BotonFixed>)}
 
 <div className='flex justify-center mt-20'> 
 
@@ -115,9 +110,6 @@ function CardsAllMeatsOrg() {
 
 </div>
 
-      
-
-      
       {isModalOpen && (
         <ProductModal 
           selectedProducts={selectedProducts} 

@@ -8,7 +8,10 @@ import { useNavigate } from "react-router-dom";
 import Input from "../assets/components/Atoms/AtomsPaginaPrincipal/Input";
 import ProductModal from "../assets/components/Organism/OrganismAllMeats/ProductModal";
 import { getSelectedProducts,addProduct,updateProductQuantity,getProductsToPost } from "../../selectedProducts";
-import Button from "../assets/components/Atoms/Register/Button";
+import ButtonCarne from "/carnesBoton.png";
+import BotonFixed from "../assets/components/Molecules/MoleculesAllMeats/BotonFixed";
+import ProductFoundOrg from "../assets/components/Organism/OrganismAllMeats/ProductFoundOrg";
+
 function ProductFound() {
     const [products, setProducts] = useState([]);
     const [singularText, setSingularText] = useState(false);
@@ -26,41 +29,6 @@ function ProductFound() {
         setBuscador(prevBuscador => !prevBuscador);
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_URL}/products/productDescription/${nameProduct}`);
-            if (response.ok) {
-                const data = await response.json();
-                const length = data.length;
-                console.log(data);
-                setProducts(data);
-                console.log("TAMAÑO DEL ARREGLO")
-                console.log(length); 
-
-                    if(length === 0){           //CUANDO NO EXISTE EL PRODUCTO
-                        setPluralText(false)
-                        setSingularText(false)
-                        setProductNoFound(true)
-                        setNames(false)
-                    }
-
-                    if(length >= 1){           //CUANDO SI ESXITE EL PRODUCTO
-                        setProductNoFound(false);
-                        setPluralText(false);
-                        setSingularText(true)
-                        setNames(true);
-                    }
-
-            } else {
-               toast.error("Lo sentimos ocurrió un problema en el servidor ")
-            }
-        } catch (error) {
-            console.error('Error al obtener los productos:', error);
-        }
-    };
-    fetchData();
-    }, [nameProduct]);
     useEffect(() => {
         setSelectedProducts(getSelectedProducts());
     },[])
@@ -88,47 +56,28 @@ function ProductFound() {
         </div>
 
         <div className="flex justify-center p-5 text-3xl text-[#992f2f]">
-
-            <div className="p-9">
-                {pluralText && (<p className="text-5xl">Productos similares a</p>)}
-                {singularText && (<p className="text-5xl">Producto similiar a</p>)}
-                {names && (<p className="flex justify-center text-[#937122] text-4xl">{nameProduct}</p>)}
-
-                    {productNoFound &&(<div>
-                    <p className="text-5xl m-10 text-[#702929]">Producto no encontrado</p>
-                    <div className="flex justify-center">
-                    <img src={noExistente} alt="logo" className="h-32"/>
-                    </div>
-                    <p className="text-black flex justify-center m-6 text-[#322f2f]">Este producto no existe</p>
-                    <p className="flex justify-center text-[#9f3232] text-4xl">{nameProduct}</p>
-                    <p className="flex justify-center text-2xl text-[#322f2f]
-                    font-light">Lo sentimos, pero no tenemos disponible este tipo</p>
-                    <p className="text-center text-2xl text-[#322f2f] font-extralight
-                    ">de carne en este momento</p>
-                    </div>)}
-                    <Button onClick={meats} >Ver todas las carnes</Button>
-
-            </div>
+            <ProductFoundOrg
+            nameFound={nameProduct}
+            src={noExistente}
+            nameFoundApi={nameProduct}
+            array={nameProduct}
+            ></ProductFoundOrg>
+            
 
         </div>
 
-        <div className="flex justify-center">
-        <div className="grid grid-cols-2  justify-center ">
-            {products.map((product, index) => (
-                <CardsMeats
-                    key={index}
-                    src={product.image} 
-                    productName={product.description}
-                    price={product.price}
-                    amount={product.amount}
-                    onClick={() => handleCardClick(product)}
-                />       
-            ))}
-        </div>
-    </div>
+        
+        <BotonFixed
+        src={ButtonCarne}
+        title={"Sección de carnes"}
+        onClick={meats}>
+        </BotonFixed> 
+        
+
         </div>
         <div className="bg-[#C29292] h-[full] w-full">
         </div>
+        
         {
             isModalOpen && (
                 <ProductModal

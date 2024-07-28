@@ -5,7 +5,7 @@ function DropDown({children, onClick}){
     const navegar = useNavigate();
 
     const clickShope = () =>{
-        navegar("/allMeats");
+        navegar("/confirmationPay");
     }
 
     const clickReservation = () =>{
@@ -38,25 +38,25 @@ function DropDown({children, onClick}){
             <p onClick={onClick} className="sm:flex sm:justify-end text-2xl p-4 font-thin sm:font-extralight cursor-pointer hover:bg-[#4c2d2d3d]
                 sm:hover:bg-[#4c2d2d3d] sm:p-3 mt-12 sm:mt-0" title="Cerrar">x</p>
 
-                <div className="cursor-pointer hover:bg-red-900 p-5">
-                <Button onClick={clickShope} text={"carrito"} ></Button>
+                <div onClick={clickShope} className="cursor-pointer hover:bg-red-900 p-5">
+                <Button  text={"carrito"} ></Button>
                 </div>
 
-                <div className="cursor-pointer hover:bg-red-900 p-5">
+                <div onClick={clickReservation}  className="cursor-pointer hover:bg-red-900 p-5">
                 <Button onClick={clickReservation} text={"Reservar mesas"} ></Button>
                 </div>
 
-                <div className="cursor-pointer hover:bg-red-900 p-5">
-                <Button onClick={clickTableStatus} text={"Estado de la mesa"} ></Button>
+                <div onClick={clickTableStatus} className="cursor-pointer hover:bg-red-900 p-5">
+                <Button  text={"Estado de la mesa"} ></Button>
                 </div>
 
-                <div className="cursor-pointer hover:bg-red-900 p-5 block sm:hidden">
-                <Button onClick={clickLogin} text={"Iniciar sesión"} ></Button>
-                </div>
+                {!localStorage.getItem('token') &&<div onClick={clickLogin} className="cursor-pointer hover:bg-red-900 p-5 block sm:hidden">
+                <Button  text={"Iniciar sesión"} ></Button>
+                </div>}
 
-                <div className="cursor-pointer hover:bg-red-900 p-5 block sm:hidden">
-                <Button onClick={clickRegister} text={"Registrate"} ></Button>
-                </div>
+               {!localStorage.getItem('token') && <div onClick={clickRegister} className="cursor-pointer hover:bg-red-900 p-5 block sm:hidden">
+                <Button text={"Registrate"} ></Button>
+                </div>}
                 
 
                 

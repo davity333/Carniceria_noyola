@@ -35,7 +35,7 @@ function AllMeats(){
     return(
         <>
         
-
+        <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
         <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
 
         {dropDownMenu && (<DropDownOptionsOrg onClick={clickDown}></DropDownOptionsOrg>)}
@@ -47,7 +47,7 @@ function AllMeats(){
         
         
         <div className="p-10"></div>
-        
+        </div>
 
         </>
     );
