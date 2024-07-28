@@ -26,7 +26,6 @@ function DeleteProduct() {
   }, []);
 
   const deleteProduct = async (id) => {
-    console.log('eliminar los productos:', id);
     setIsLoading(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_URL}/products/delete/${id}`, {

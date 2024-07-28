@@ -1,4 +1,4 @@
-import AddProductForm from "../assets/components/Organism/addProduct/ReservarMesa";
+import AddProductForm from "../assets/components/Organism/addProduct/AddProductForm";
 import Header from "../assets/components/Organism/addProduct/HeaderAddProduct";
 import HeaderAdmin from "../assets/components/Molecules/MoleculesInicioAdmin/HeaderAdmin";
 const AddProduct =() => {

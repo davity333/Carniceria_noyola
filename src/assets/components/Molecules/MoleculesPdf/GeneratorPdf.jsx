@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import HeaderAdmin from "../../Molecules/MoleculesInicioAdmin/HeaderAdmin";
+import FormField from '../../Molecules/Register/FormField';
 import { jsPDF } from "jspdf";
-
+import toast,{Toaster} from 'react-hot-toast';
 function GeneratorPdf() {
     const [date, setDate] = useState(new Date());
     const [orders, setOrders] = useState([]);
+    const dateRef = useRef(null);
 
     const formattedDate = date.toLocaleDateString('es-ES', {
         day: 'numeric',
@@ -12,10 +14,9 @@ function GeneratorPdf() {
         year: 'numeric'
     });
 
-    // Fetch orders from API
     useEffect(() => {
         const fetchOrders = async () => {
-            const response = await fetch(import.meta.env.VITE_URL + '/orders/ordersWithProducts');
+            const response = await fetch(`${import.meta.env.VITE_URL}/orders/ordersWithProducts/2024-10-23`);
             const data = await response.json();
             setOrders(data);
         };
@@ -85,6 +86,16 @@ function GeneratorPdf() {
         <>
             <HeaderAdmin titule="Reporte de ventas"></HeaderAdmin>
             <h1 className="text-5xl flex justify-center m-10">Descargar PDF</h1>
+            <FormField
+                id="date"
+                name="date"
+                type="datetime-local"
+                placeholder=""
+                autoComplete="time"
+                required={true}
+                label="Fecha"
+                innerRef={dateRef}
+            ></FormField>
             <h1 className="text-3xl flex justify-center m-10 text-gray-800 font-extralight">Reporte de ventas del {formattedDate}</h1>
             <div className="flex justify-center">
                 <button
@@ -92,6 +103,7 @@ function GeneratorPdf() {
                     onClick={generatePDF}>
                     Descargar PDF
                 </button>
+                <Toaster></Toaster>
             </div>
         </>
     );

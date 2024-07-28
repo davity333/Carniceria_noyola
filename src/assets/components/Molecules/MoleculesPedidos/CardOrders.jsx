@@ -6,45 +6,46 @@ import { toast, Toaster } from 'react-hot-toast';
 import { format } from 'date-fns';
 import Loading from './../Loading';
 import { getUser } from '../../../../service/User';
+import DeleteOrdersTable from './DeleteOrdersTable'; // Import the new component
 
 function CardOrders() {
   const [ordersData, setOrdersData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchOrdersData = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        toast.error('No se encontró el token. Por favor, inicie sesión nuevamente.');
-        setLoading(false);
-        return;
-      }
-      try {
-        const response = await fetch(`${import.meta.env.VITE_URL}/orders/ordersWithProducts`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Fetched orders data:', data);
-          setOrdersData(data);
-        } else {
-          const errorData = await response.json();
-          console.error('Failed to fetch orders data:', response.statusText, errorData);
-          toast.error('Lo sentimos, intente más tarde');
+  const fetchOrdersData = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error('No se encontró el token. Por favor, inicie sesión nuevamente.');
+      setLoading(false);
+      return;
+    }
+    try {
+      const response = await fetch(`${import.meta.env.VITE_URL}/orders/ordersWithProducts`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
-      } catch (error) {
-        console.error('An error occurred:', error);
-        toast.error('Ocurrió un error. Intente nuevamente.');
-      } finally {
-        setLoading(false);
-      }
-    };
+      });
 
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Fetched orders data:', data);
+        setOrdersData(data);
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to fetch orders data:', response.statusText, errorData);
+        toast.error('Lo sentimos, intente más tarde');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      toast.error('Ocurrió un error. Intente nuevamente.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchOrdersData();
   }, []);
 
@@ -55,7 +56,7 @@ function CardOrders() {
         toast.error('No se encontró el token. Por favor, inicie sesión nuevamente.');
         return;
       }
-      
+
       const response = await fetch(`${import.meta.env.VITE_URL}/orders/${orderId}`, {
         method: 'PUT',
         headers: {
@@ -66,48 +67,11 @@ function CardOrders() {
       });
 
       if (response.ok) {
-        setOrdersData(prevOrders =>
-          prevOrders.map(order =>
-            order.orders_id === orderId ? { ...order, status: newStatus } : order
-          )
-        );
+        fetchOrdersData(); // Refresh the data
         toast.success('Estado del pedido actualizado correctamente');
       } else {
         const errorData = await response.json();
         console.error('Failed to update order status:', response.statusText, errorData);
-        toast.error('Lo sentimos, intente más tarde');
-      }
-    } catch (error) {
-      console.error('An error occurred:', error);
-      toast.error('Ocurrió un error. Intente nuevamente.');
-    }
-  };
-
-  const handleDeleteOrder = async (orderId) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        toast.error('No se encontró el token. Por favor, inicie sesión nuevamente.');
-        return;
-      }
-      
-      const response = await fetch(`${import.meta.env.VITE_URL}/orders/delete/${orderId}`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          deleted: 1, updated_by: getUser().name
-        })
-      });
-
-      if (response.ok) {
-        setOrdersData(prevOrders => prevOrders.filter(order => order.orders_id !== orderId));
-        toast.success('Pedido eliminado correctamente');
-      } else {
-        const errorData = await response.json();
-        console.error('Failed to delete order:', response.statusText, errorData);
         toast.error('Lo sentimos, intente más tarde');
       }
     } catch (error) {
@@ -126,100 +90,64 @@ function CardOrders() {
   };
 
   const groupedOrders = ordersData.reduce((acc, order) => {
-    const userId = order.user_id;
-    if (!acc[userId]) {
-      acc[userId] = {
+    const orderId = order.orders_id;
+    if (!acc[orderId]) {
+      acc[orderId] = {
         user: {
           name: order.name,
           lastname: order.lastname,
           email: order.email,
           number_phone: order.number_phone
         },
-        orders: []
+        orders: [],
+        totalAmount: order.total_amount,
+        status: order.status,
+        deliveryDate: formatDate(order.order_date)
       };
     }
-    acc[userId].orders.push(order);
+    acc[orderId].orders.push(order);
     return acc;
   }, {});
 
   const renderOrders = (status) => {
-    return Object.entries(groupedOrders).flatMap(([userId, { user, orders }]) => {
+    return Object.entries(groupedOrders).flatMap(([orderId, { user, orders, totalAmount, deliveryDate, status: orderStatus }]) => {
       const filteredOrders = orders.filter(order => order.status && order.status.toLowerCase() === status);
 
       if (filteredOrders.length === 0) {
         return [];
       }
 
-      const firstOrder = filteredOrders[0];
       return (
         <CardOrder
-          key={userId}
+          key={orderId}
           clientName={`${user.name} ${user.lastname}`}
           email={user.email}
           numberPhone={user.number_phone}
           orders={filteredOrders}
-          deliveryDate={formatDate(firstOrder.order_date)}
-          totalAmount={firstOrder.total_amount}
-          status={firstOrder.status}
+          deliveryDate={deliveryDate}
+          totalAmount={totalAmount}
+          status={orderStatus}
           onStatusChange={handleStatusChange}
-          orderId={firstOrder.orders_id}
+          orderId={orderId}
         />
       );
     });
-  };
-
-  const renderDeleteTable = () => {
-    return (
-      <table className="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th className="py-2">ID</th>
-            <th className="py-2">Cliente</th>
-            <th className="py-2">Email</th>
-            <th className="py-2">Teléfono</th>
-            <th className="py-2">Fecha de Entrega</th>
-            <th className="py-2">Total</th>
-            <th className="py-2">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ordersData.map(order => (
-            <tr key={order.orders_id}>
-              <td className="border px-4 py-2">{order.orders_id}</td>
-              <td className="border px-4 py-2">{order.name} {order.lastname}</td>
-              <td className="border px-4 py-2">{order.email}</td>
-              <td className="border px-4 py-2">{order.number_phone}</td>
-              <td className="border px-4 py-2">{formatDate(order.order_date)}</td>
-              <td className="border px-4 py-2">{order.total_amount}</td>
-              <td className="border px-4 py-2">
-                <button
-                  onClick={() => handleDeleteOrder(order.orders_id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded-md"
-                >
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
   };
 
   return (
     <div>
       <Tabs>
         <TabList>
-          <Tab>Pedidos Confirmados</Tab>
-          <Tab>Pedidos Pendientes</Tab>
-          <Tab>Pedidos Entregados</Tab>
-          <Tab>Pedidos Cancelados</Tab>
-          <Tab>Eliminar Pedidos</Tab>
+          <Tab>Pedidos vendidos</Tab>
+          <Tab>Pedidos pendientes</Tab>
+          <Tab>Pedidos entregados</Tab>
+          <Tab>Pedidos cancelados</Tab>
+          <Tab>Eliminar pedidos</Tab>
         </TabList>
 
-        <TabPanel key="confirmada">
+        <TabPanel key="vendido">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {renderOrders('confirmada')}
+            {renderOrders('vendido')}
           </div>
         </TabPanel>
         <TabPanel key="pendiente">
@@ -227,19 +155,19 @@ function CardOrders() {
             {renderOrders('pendiente')}
           </div>
         </TabPanel>
-        <TabPanel key="entregada">
+        <TabPanel key="entregado">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {renderOrders('entregada')}
+            {renderOrders('entregado')}
           </div>
         </TabPanel>
-        <TabPanel key="cancelada">
+        <TabPanel key="cancelado">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {renderOrders('cancelada')}
+            {renderOrders('cancelado')}
           </div>
         </TabPanel>
         <TabPanel key="eliminar">
           <div className="overflow-x-auto">
-            {renderDeleteTable()}
+            <DeleteOrdersTable ordersData={ordersData} fetchOrdersData={fetchOrdersData} />
           </div>
         </TabPanel>
       </Tabs>
