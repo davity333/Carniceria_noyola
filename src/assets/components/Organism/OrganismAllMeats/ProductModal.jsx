@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay,date }) {
+
+function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay, date }) {
   if (!selectedProducts || selectedProducts.length === 0) return null;
 
   return (
@@ -21,9 +22,21 @@ function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay,dat
                   <p className="text-gray-700">${product.price}</p>
                 </div>
                 <div className="flex items-center">
-                  <button onClick={() => updateQuantity(product, product.quantity - 1)} className="px-2 py-1 text-xl bg-gray-200 rounded">-</button>
+                  <button
+                    onClick={() => updateQuantity(product, product.quantity - 1)}
+                    className="px-2 py-1 text-xl bg-gray-200 rounded"
+                    disabled={product.quantity <= 1} // Deshabilitar el botón si la cantidad es 1 o menor
+                  >
+                    -
+                  </button>
                   <span className="mx-4">{product.quantity}</span>
-                  <button onClick={() => updateQuantity(product, product.quantity + 1)} className="px-2 py-1 text-xl bg-gray-200 rounded">+</button>
+                  <button
+                    onClick={() => updateQuantity(product, product.quantity + 1)}
+                    className="px-2 py-1 text-xl bg-gray-200 rounded"
+                    disabled={product.quantity >= product.available} // Deshabilitar el botón si la cantidad alcanza la disponible
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </li>
@@ -31,12 +44,12 @@ function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay,dat
         </ul>
         <div className="flex flex-row gap-6 text-white font-light">
           <button className="bg-blue-500 mt-4 px-4 py-2 rounded" onClick={handlePay}>
-            Completar compra</button>
+            Completar compra
+          </button>
           <button className="bg-blue-500 mt-4 px-4 py-2 rounded" onClick={handlePay}>Reservar pedido</button>
           <button onClick={onClose} className="mt-4 px-4 py-2 bg-red-600 text-white rounded">Cerrar</button>
         </div>
       </div>
-
     </div>
   );
 }

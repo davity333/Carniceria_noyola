@@ -5,16 +5,25 @@ import noExistente from '/noExiste.png'
 import CardsAllMeatsOrg from "../assets/components/Organism/OrganismAllMeats/CardsAllMeatsOrg";
 import CardsMeats from "../assets/components/Molecules/MoleculesAllMeats/CardsMeats";
 import { useNavigate } from "react-router-dom";
+import Input from "../assets/components/Atoms/AtomsPaginaPrincipal/Input";
+import ProductModal from "../assets/components/Organism/OrganismAllMeats/ProductModal";
+import { getSelectedProducts,addProduct,updateProductQuantity,getProductsToPost } from "../../selectedProducts";
 function ProductFound() {
     const [products, setProducts] = useState([]);
     const [singularText, setSingularText] = useState(false);
     const [pluralText, setPluralText] = useState(true);
     const [names, setNames] = useState(true);
     const [productNoFound, setProductNoFound] = useState (false);
-    
     const nameProduct = localStorage.getItem('nameProduct');
-
+    const  [selectedProducts,setSelectedProducts] = useState([])
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [img, setImg] = useState(false)
     const navegar = useNavigate();
+
+    const [buscador, setBuscador] = useState(false); 
+    const buscadorResponsivo = () =>{
+        setBuscador(prevBuscador => !prevBuscador);
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,21 +63,39 @@ function ProductFound() {
     };
     fetchData();
     }, [nameProduct]);
-
+    useEffect(() => {
+        setSelectedProducts(getSelectedProducts());
+    },[])
     const handleCardClick = (product) => {
-navegar("/allMeats")
+        addProduct(product);
+        setSelectedProducts([...getSelectedProducts()])
+        setIsModalOpen(true);
+        setImg(true);
     };
     
+    const updateQuantity = (product, quantity) =>{ 
+        updateProductQuantity(product,quantity);
+        setSelectedProducts([...getSelectedProducts()])
+        if (quantity <= 0) return;
+        if (quantity > product.available) return; 
+    }
+    const meats = () =>{
+        navegar("/allMeats")
+    }
     return (  
         <>
         <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
-        <HeaderOrganism></HeaderOrganism>
+        <HeaderOrganism onClickLupa={buscadorResponsivo}></HeaderOrganism>
+
+        <div className=" block sm:hidden">
+        {buscador && (<Input ></Input>)}
+        </div>
 
         <div className="flex justify-center p-5 text-3xl text-[#992f2f]">
 
             <div className="p-9">
-                {pluralText && (<p className="text-5xl">Productos encontrados</p>)}
-                {singularText && (<p className="text-5xl">Producto encontrado</p>)}
+                {pluralText && (<p className="text-5xl">Productos similares a</p>)}
+                {singularText && (<p className="text-5xl">Producto similiar a</p>)}
                 {names && (<p className="flex justify-center text-[#937122] text-4xl">{nameProduct}</p>)}
 
                     {productNoFound &&(<div>
@@ -76,7 +103,8 @@ navegar("/allMeats")
                     <div className="flex justify-center">
                     <img src={noExistente} alt="logo" className="h-32"/>
                     </div>
-                    <p className="text-black flex justify-center m-6 text-[#322f2f]">No existe esta carne</p>
+                    <p className="text-black flex justify-center m-6 text-[#322f2f]">Este producto no existe</p>
+                    <p className="flex justify-center text-[#9f3232] text-4xl">{nameProduct}</p>
                     <p className="flex justify-center text-2xl text-[#322f2f]
                     font-light">Lo sentimos, pero no tenemos disponible este tipo</p>
                     <p className="text-center text-2xl text-[#322f2f] font-extralight
@@ -102,12 +130,24 @@ navegar("/allMeats")
             ))}
         </div>
     </div>
+        <p onClick={meats}>todas carnes</p>
 
         </div>
 
         <div className="bg-[#C29292] h-[full] w-full">
         </div>
+        {
+            isModalOpen && (
+                <ProductModal
+                selectedProducts={selectedProducts}
+                onClose={() => {setIsModalOpen(false); setImg(true)}}
+                updateQuantity={updateQuantity}
+                />
+            )
+        }
         </>
+
+        
     );
 }
 

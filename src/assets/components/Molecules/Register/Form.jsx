@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setUser, getUser } from '../../../../service/User';
 import toast,{Toaster} from 'react-hot-toast';
-
+import FormField from './FormField';
 function Form() {
   const [loading, setLoading] = useState(false);
   const emailRef = useRef(null);
@@ -53,29 +53,38 @@ function Form() {
 
   {/*-----------------------------------------------------------*/}
   const [error, setError] = useState('');
+  const [valido, setValido] = useState('');
 
   const handleBlurEmail = () => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const email = emailRef.current.value.trim(); 
-  
-    if (!email) {
-      setError("Por favor, ingrese un correo electrónico.");
-    } else if (!regex.test(email)) {
-      setError("Ingrese un correo electrónico válido.");
-    } else {
-      setError("Correo electrónico válido ✓");
+    const email = emailRef.current.value; 
+    if(!regex.test(email)){
+      setError("Ingresa un correo valido")
+      setValido("")
+    }
+    else {
+      setError('')
+      setValido("Correo valido ✓")
     }
   };
 
   return (
     <>
 
-      <h6>Email</h6>
-      <input className='block w-full rounded-md border border-gray-300 py-2 px-3
-         text-gray-900 shadow-sm focus:outline-none focus:ring-2
-          focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
-          type="text" ref={emailRef} 
-          placeholder='ej. Usuary@gmail.com'/>    
+     <FormField 
+     label={"Email"}
+     type={"email"}
+     placeholder={"ej. Jesus@gmail.com"}
+     onBlur={handleBlurEmail}
+     required={true}
+     innerRef={emailRef}
+     autoComplete={"email"}
+     name={"email"}
+     id={"email"}
+
+     />
+    {error && <p className="text-[#ff3737] text-xs font-bold italic text-[10px]">{error}</p>}
+    {valido && <p className="text-[#45a42d] text-xs font-bold italic text-[10px]">{valido}</p>}
 
     <div className='mt-3'>
       <h6>Password</h6>

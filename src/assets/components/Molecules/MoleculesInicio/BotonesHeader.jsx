@@ -3,11 +3,10 @@ import DropDownUserOrg from "../../Organism/OrganismInicio/DropDownUserOrg";
 import Menu from '/MenuLogo.png'
 import login from "/loginSilueta.png"
 import { useState } from 'react';
-function BotonesHeader({onClick, onClickLogin}){
+function BotonesHeader(){
 
     const [dropDownMenu, setDropDown] = useState(false);
     const [dropDownUser, setDropDownUser] = useState(false);
-    const [buscador, setBuscador] = useState(false);
 
     const clickDown = () =>{            //DropDown Menu
         if(dropDownMenu){

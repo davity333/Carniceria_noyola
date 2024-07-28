@@ -5,24 +5,21 @@ import CarnesVentasTextOrg from "../assets/components/Organism/OrganismInicio/Ca
 import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInicio/CardCarnesPublicadasOrg";
 import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePaginaOrg";
 import { useState } from "react";
-import DropDownOptionsOrg from "../assets/components/Organism/OrganismInicio/DropDownOptionsOrg";
-import DropDownUserOrg from "../assets/components/Organism/OrganismInicio/DropDownUserOrg";
-import LupaSilueta from '/lupa.png'
 import Input from "../assets/components/Atoms/AtomsPaginaPrincipal/Input";
-import { useNavigate } from "react-router-dom";
 function Home(){
 
-    const navegar = useNavigate();
-    
-    
-    
-    ///////////////////////////////////////////////////////////////
-    
-    ///////////////////////////////////////////////////////////////
+    const [buscador, setBuscador] = useState(false); 
+    const buscadorResponsivo = () =>{
+        setBuscador(prevBuscador => !prevBuscador);
+    }
     
     return(
         <>
-        <HeaderOrganism ></HeaderOrganism>
+        <HeaderOrganism onClickLupa={buscadorResponsivo}></HeaderOrganism>
+
+        <div className=" block sm:hidden">
+        {buscador && (<Input ></Input>)}
+        </div>
 
         <CarneIntroductionOrg></CarneIntroductionOrg>
 
