@@ -26,7 +26,6 @@ function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay, da
                   <button 
                     onClick={() => updateQuantity(product, product.quantity - 1)} 
                     className="px-2 py-1 text-xl bg-gray-200 rounded"
-                    disabled={product.quantity <= 1}
                   >
                     -
                   </button>
