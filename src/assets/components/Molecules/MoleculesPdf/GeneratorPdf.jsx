@@ -1,36 +1,49 @@
 import { useState, useEffect, useRef } from 'react';
-import HeaderAdmin from "../../Molecules/MoleculesInicioAdmin/HeaderAdmin";
 import FormField from '../../Molecules/Register/FormField';
 import { jsPDF } from "jspdf";
 import toast, { Toaster } from 'react-hot-toast';
 
 function GeneratorPdf() {
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [orders, setOrders] = useState([]);
     const [total, setTotal] = useState(0);
     const dateRef = useRef(null);
-
-    const formattedDate = date.toLocaleDateString('es-ES', {
+    const token = localStorage.getItem('token');
+    const formattedDate = new Date(date).toLocaleDateString('es-ES', {
         day: 'numeric',
         month: 'long',
         year: 'numeric'
     });
 
     const fetchOrders = async () => {
-        const response = await fetch(`${import.meta.env.VITE_URL}/orders/ordersWithProducts/${dateRef.current.value}`);
+        const selectedDate = dateRef.current.value;
+        const response = await fetch(`${import.meta.env.VITE_URL}/orders/ordersWithProducts/${selectedDate}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
         const data = await response.json();
         setOrders(data);
     };
 
     const fetchTotal = async () => {
-        const response = await fetch(`${import.meta.env.VITE_URL}/orders/allAmount/${dateRef.current.value}`);
+        const selectedDate = dateRef.current.value;
+        const response = await fetch(`${import.meta.env.VITE_URL}/orders/allAmount/${selectedDate}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+        });
         const data = await response.json();
-        setTotal(data.total);
+        setTotal(data.fullAmount);
     };
 
     useEffect(() => {
-        fetchOrders();
-        fetchTotal();
+        if (dateRef.current) {
+            fetchOrders();
+            fetchTotal();
+        }
     }, [date]);
 
     const validateDate = () => {
@@ -105,9 +118,12 @@ function GeneratorPdf() {
         doc.save(`reporte_ventas_${formattedDate}.pdf`);
     }
 
+    const handleDateChange = (event) => {
+        setDate(event.target.value);
+    }
+
     return (
         <>
-            
             <h1 className="text-5xl flex justify-center m-10">Descargar PDF</h1>
             <h1 className="text-3xl flex justify-center m-10 text-gray-800 font-extralight">Reporte de ventas del {formattedDate}</h1>
             <div className="flex justify-center">
@@ -121,6 +137,7 @@ function GeneratorPdf() {
                         required={true}
                         label="Fecha de reporte de ventas"
                         innerRef={dateRef}
+                        onChange={handleDateChange}
                     />
                 </div>
                 <button
