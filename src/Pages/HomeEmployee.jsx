@@ -23,12 +23,16 @@ function HomeEmployee() {
        shadow-[2px_5px_20px_5px_rgba(0,0,0,0.2)]'>
             <LogoVistaAdmin onClick={handleClick}></LogoVistaAdmin>
             
+            <p  className='text-center flex justify-center text-3xl text-[#ffffff]
+        [text-shadow:_2px_4px_6px_rgba(131,131,131,0.82)] font-extralight
+        sm:text-6xl md:text-5xl lg:text-6xl'>Bienvenido</p>
+
             <img title='Cerrar sesión' src={cerrar} onClick={cerrarSesion} className='h-10 m-3 cursor-pointer sm:h-16 sm:m-7
-    filter hover:drop-shadow-custom-white' />
+            filter hover:drop-shadow-custom-white' />
 </header>
     <TitleHeaders text={`Hola! ${userName}, ¿Qué haremos hoy?`}></TitleHeaders>
     <div className="mt-14">
-        <BotonsBody></BotonsBody>
+        <BotonsBody showSecondRow={false}></BotonsBody>
     </div>
         </>
     );
