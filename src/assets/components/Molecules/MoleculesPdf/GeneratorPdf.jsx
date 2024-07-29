@@ -2,10 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import HeaderAdmin from "../../Molecules/MoleculesInicioAdmin/HeaderAdmin";
 import FormField from '../../Molecules/Register/FormField';
 import { jsPDF } from "jspdf";
-import toast,{Toaster} from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+
 function GeneratorPdf() {
     const [date, setDate] = useState(new Date());
     const [orders, setOrders] = useState([]);
+    const [total, setTotal] = useState(0);
     const dateRef = useRef(null);
 
     const formattedDate = date.toLocaleDateString('es-ES', {
@@ -14,16 +16,35 @@ function GeneratorPdf() {
         year: 'numeric'
     });
 
+    const fetchOrders = async () => {
+        const response = await fetch(`${import.meta.env.VITE_URL}/orders/ordersWithProducts/${dateRef.current.value}`);
+        const data = await response.json();
+        setOrders(data);
+    };
+
+    const fetchTotal = async () => {
+        const response = await fetch(`${import.meta.env.VITE_URL}/orders/allAmount/${dateRef.current.value}`);
+        const data = await response.json();
+        setTotal(data.total);
+    };
+
     useEffect(() => {
-        const fetchOrders = async () => {
-            const response = await fetch(`${import.meta.env.VITE_URL}/orders/ordersWithProducts/2024-10-23`);
-            const data = await response.json();
-            setOrders(data);
-        };
         fetchOrders();
-    }, []);
+        fetchTotal();
+    }, [date]);
+
+    const validateDate = () => {
+        const selectedDate = dateRef.current.value;
+        if (!selectedDate) {
+            toast.error("Por favor, seleccione una fecha.");
+            return false;
+        }
+        return true;
+    }
 
     const generatePDF = () => {
+        if (!validateDate()) return;
+
         const doc = new jsPDF();
 
         doc.setFontSize(22);
@@ -39,6 +60,8 @@ function GeneratorPdf() {
         doc.setFont("helvetica", "normal");
         doc.setTextColor(0, 0, 0);
         doc.text(`Fecha: ${formattedDate}`, 10, 45);
+
+        doc.text(`Total de ventas: $${total}`, 10, 55);
         
         const groupedOrdersByUser = orders.reduce((accumulator, currentOrder) => {
             const userKey = `${currentOrder.name} ${currentOrder.lastname} (${currentOrder.email})`;
@@ -49,7 +72,7 @@ function GeneratorPdf() {
             return accumulator;
         }, {});
 
-        let currentYPosition = 55;
+        let currentYPosition = 65;
         Object.keys(groupedOrdersByUser).forEach((userKey) => {
             if (currentYPosition > 250) {
                 doc.addPage();
@@ -84,26 +107,28 @@ function GeneratorPdf() {
 
     return (
         <>
-            <HeaderAdmin titule="Reporte de ventas"></HeaderAdmin>
+            
             <h1 className="text-5xl flex justify-center m-10">Descargar PDF</h1>
-            <FormField
-                id="date"
-                name="date"
-                type="datetime-local"
-                placeholder=""
-                autoComplete="time"
-                required={true}
-                label="Fecha"
-                innerRef={dateRef}
-            ></FormField>
             <h1 className="text-3xl flex justify-center m-10 text-gray-800 font-extralight">Reporte de ventas del {formattedDate}</h1>
             <div className="flex justify-center">
+                <div className='w-[15%]'> 
+                    <FormField
+                        id="date"
+                        name="date"
+                        type="date"
+                        placeholder=""
+                        autoComplete="time"
+                        required={true}
+                        label="Fecha de reporte de ventas"
+                        innerRef={dateRef}
+                    />
+                </div>
                 <button
                     className="bg-gray-800 px-7 py-5 m-4 rounded-2xl text-white hover:bg-slate-700"
                     onClick={generatePDF}>
                     Descargar PDF
                 </button>
-                <Toaster></Toaster>
+                <Toaster />
             </div>
         </>
     );

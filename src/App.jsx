@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
-import PagePay from './Pages/PagePay';
 import AllMeats from './Pages/AllMeats';
 import VerMesas from './Pages/VerMesas';
 import AddProduct from './Pages/AddProduct.jsx';
@@ -36,7 +35,6 @@ function App() {
           <Route path="/addStock" element={<ProtectedRoute element={<AddStock />} requiredRole={1} />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/confirmationPay" element={<ConfirmationPay />}/>
-          <Route path="/pay" element={<PagePay />} />
           <Route path="/orderStatus" element={<OrdersStatus />} />
           <Route path="/allMeats" element={<AllMeats />}/>
           <Route path="/allMeatsAdmin" element={<ProtectedRoute element={<AllMeatsAdmin />} requiredRole={1} />} />

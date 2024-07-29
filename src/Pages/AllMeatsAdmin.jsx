@@ -2,9 +2,15 @@ import CardsAllMeatsOrg from "../assets/components/Organism/OrganismAllMeats/Car
 import CardsAllMeatsAdminOrg from "../assets/components/Organism/OrganismAllMeats/CardAllMeatsAdminOrg";
 import HeaderAdmin from "../assets/components/Molecules/MoleculesInicioAdmin/HeaderAdmin";
 import carnita from '/CarnitaAbajo.png'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 function AllMeatsAdmin(){
     return(
         <>
+        <HelmetProvider>
+      <Helmet>
+        <title>Administrar productos</title>
+    </Helmet>
+    </HelmetProvider>
         <div className="bg-[#C29292] font-Raleway min-h-screen">
         <HeaderAdmin titule="Carnes agregadas"></HeaderAdmin>
 
