@@ -3,6 +3,7 @@ import Button from '../../Atoms/Register/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { getUser } from '../../../../service/User';
 import Loading from '../../Molecules/Loading';
+import { data } from 'autoprefixer';
 
 function DeleteProduct() {
   const [products, setProducts] = useState([]);
@@ -14,9 +15,11 @@ function DeleteProduct() {
       try {
         const response = await fetch(`${import.meta.env.VITE_URL}/products/product`);
         const data = await response.json();
+        console.log(data);
         setProducts(data);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
+        console.log(data)
         console.log(products);
         toast.error('Error al obtener los datos');
       }
