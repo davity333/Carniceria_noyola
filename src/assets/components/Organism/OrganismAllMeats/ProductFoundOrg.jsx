@@ -50,7 +50,7 @@ function ProductFoundOrg({nameFound, src, nameFoundApi, array}) {
         }
     };
     fetchData();
-    }, [{array}]);
+    }, []);
 
     return ( 
         <>
