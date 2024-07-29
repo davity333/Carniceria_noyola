@@ -82,13 +82,14 @@ function Form() {
       .then((data) => {
         const { role_id_fk: rolId, email, user_id, name } = data.user;
         setUser({ rolId, email, user_id, name });
+        if(rolId === 1) {
+          navigate("/homeAdmin")
+        }
         if (getUser().rolId === 3) {
         navigate('/home');
       } else if (getUser().rolId === 2) {
         navigate('/HomeEmployee');
-      } else if (getUser().rolId) {
-        navigate('/homeAdmin');
-  }})
+      }})
       .catch((error) => {
         console.error(error);
         toast.error('Uppsss, algo malo ocurrió intente más tarde');

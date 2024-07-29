@@ -31,7 +31,7 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <Routes>
-          <Route path="/" element={<ProtectedRoute element={<HomeAdmin />} requiredRole={1} />} />
+          <Route path="/homeAdmin" element={<ProtectedRoute element={<HomeAdmin />} requiredRole={1} />} />
           <Route path='/home' element={<Home />} />
           <Route path="/payComplete" element={<ProductModal />} />
           <Route path="/addStock" element={<ProtectedRoute element={<AddStock />} requiredRole={1} />} />
@@ -39,19 +39,19 @@ function App() {
           <Route path="/confirmationPay" element={<ConfirmationPay />} />
           <Route path="/orderStatus" element={<OrdersStatus />} />
           <Route path="/allMeats" element={<AllMeats />} />
-          <Route path="/allMeatsAdmin" element={<ProtectedRoute element={<AllMeatsAdmin />} requiredRole={1} />} />
-          <Route path="/verMesas" element={<ProtectedRoute element={<VerMesas />} requiredRole={1} />} />
+          <Route path="/allMeatsAdmin" element={<ProtectedRoute element={<AllMeatsAdmin />} requiredRole={[1, 2]} />} />
+          <Route path="/verMesas" element={<ProtectedRoute element={<VerMesas />} requiredRole={[1, 2]} />} />
           <Route path="/homeAdmin" element={<ProtectedRoute element={<HomeAdmin />} requiredRole={1} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reservarMesas" element={<ReservarMesas />} />
-          <Route path="/addProduct" element={<ProtectedRoute element={<AddProduct />} requiredRole={1} />} />
+          <Route path="/addProduct" element={<ProtectedRoute element={<AddProduct />} requiredRole={[1, 2]} />} />
           <Route path="/estadoMesa" element={<PageTableStatus />} />
           <Route path="/pdf" element={<ProtectedRoute element={<Pdf />} requiredRole={1} />} />
           <Route path="/addEmploye" element={<ProtectedRoute element={<AddEmploye />} requiredRole={1} />} />
-          <Route path="/Pedido" element={<ProtectedRoute element={<Pedidos />} requiredRole={1} />} />
+          <Route path="/Pedido" element={<ProtectedRoute element={<Pedidos />} requiredRole={[1, 2]} />} />
           <Route path="/ProductFound" element={<ProductFound />} />
-          <Route path="/HomeEmployee" element={<HomeEmployee />} />
+          <Route path="/HomeEmployee" element={<ProtectedRoute element={<HomeEmployee />} requiredRole={2} />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

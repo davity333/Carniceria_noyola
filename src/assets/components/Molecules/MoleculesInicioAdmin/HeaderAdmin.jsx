@@ -8,6 +8,7 @@ function HeaderAdmin({children, titule}){
     const navegar = useNavigate();
 
     const cerrarSesion = () => {
+        localStorage.removeItem('token')
         navegar("/login")
     }
 

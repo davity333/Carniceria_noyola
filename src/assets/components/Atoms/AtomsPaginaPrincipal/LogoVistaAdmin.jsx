@@ -6,7 +6,7 @@ function LogoVistaAdmin(){
     const navegar = useNavigate();
 
     const handleClick = () =>{
-        navegar("/homeAdmin")
+        navegar("/homeEmployee")
     };
 
     return(
