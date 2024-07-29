@@ -5,7 +5,8 @@ const ProtectedRoute = ({ element, requiredRole, ...rest }) => {
   const { user } = useUser();
 
   if (user.rolId === requiredRole || user.rolId === 1) {
-    return element;
+    
+    return element || <Navigate to="/homeAdmin" /> ;
   } else {
     return <Navigate to="/home" />;
   }

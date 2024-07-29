@@ -74,7 +74,7 @@ function Form() {
           toast.success('Inicio de sesión exitoso')
           return response.json();
         } else {
-          toast.error('Oh, hubo un problema intente más tarde');
+          toast.error('Oh, hubo un error en la auntenticación');
           throw new Error('Error en la autenticación');
         
         }
@@ -83,10 +83,13 @@ function Form() {
         const { role_id_fk: rolId, email, user_id, name } = data.user;
         setUser({ rolId, email, user_id, name });
         if (getUser().rolId === 3) {
-          navigate('/');
-        } else {
-          navigate('/home');
-        }
+        navigate('/home');
+      } else if (getUser().rolId === 2) {
+        navigate('/HomeEmployee');
+      } else if (getUser().rolId) {
+        navigate('/homeAdmin');
+        navigate('/homeAdmin');
+      }
       })
       .catch((error) => {
         console.error(error);
