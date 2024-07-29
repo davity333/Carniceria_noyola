@@ -25,8 +25,8 @@ function BotonsBody(){
     const downladPdf = () => {
         navegar("/pdf");
     }
-    const addStock = () =>{
-            navegar('/addStock')
+    const pedidos = () =>{
+            navegar('/pedido')
     }
     return(
     
@@ -76,10 +76,10 @@ function BotonsBody(){
         hover:bg-[#c69696]" id={style.botonAdmin}>
         <Button onClick={downladPdf} text="Productos"></Button>
         </div >
-        <div onClick={addStock} className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
+        <div onClick={pedidos} className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
         shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)]
         hover:bg-[#c69696]" id={style.botonAdmin}>
-        <Button onClick={addStock} text="Agregar cantidad"></Button>
+        <Button onClick={pedidos} text="Pedidos"></Button>
         </div >
         </div>
 

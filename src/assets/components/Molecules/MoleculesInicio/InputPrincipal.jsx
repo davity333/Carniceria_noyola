@@ -1,6 +1,7 @@
 import Input from "../../Atoms/AtomsPaginaPrincipal/Input";
 import LupaSilueta from '/lupa.png'
 import { useState } from "react";
+import { BoxIconElement } from "boxicons";
 function InputPrincipal({onClickLupa, children}){
 
  
@@ -12,7 +13,9 @@ function InputPrincipal({onClickLupa, children}){
 
             <div className="w-3/5 sm:w-auto py-2 h-14 flex justify-end sm:flex sm:justify-center ">
 
-            <img src={LupaSilueta} onClick={onClickLupa}  alt="Logo"  className="cursor-pointer block sm:hidden"/> 
+            <div className="cursor-pointer block sm:hidden mt-2" onClick={onClickLupa}>
+            <box-icon name='search' color='#ffffff' ></box-icon>
+            </div>
 
             <div className="hidden sm:block ">
                 <Input  />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { BoxIconElement } from "boxicons";
 function Input(){
     const navegar = useNavigate();
     const clickEnter = (e)=>{
@@ -14,6 +14,11 @@ function Input(){
             ProductList();
         }
     }
+
+    const clickLupa = () =>{
+        ProductList();
+    }
+
     ///////////////////////////////////////////////////////////////
     const [product, setProducts] = useState([]);
     const [data, setData] = useState('');
@@ -41,12 +46,16 @@ function Input(){
 return(
     
     <>
-    
+    <div className="w-[100%] rounded-full flex flex-row px-4  h-12  text-lg 
+               md:text-3xl font-thin  hover:shadow-[0px 7px 5px 2px #0000004f]
+               border-4 border-[#581a1ab5] focus:border-[#711818] bg-white">
+        <div className="w-[90%]">
     <input type="text" 
-               className="w-full px-4  h-12 focus:outline-none text-lg 
-               md:text-3xl font-thin rounded-full hover:shadow-[0px 7px 5px 2px #0000004f]
-               border-4 border-[#581a1ab5] focus:border-[#711818]
-               " placeholder="Buscar 🔍" value={nameProduct.split()} onChange={(e) => setNameProduct(e.target.value)} onKeyUp={clickEnter} title="Buscar"/>
+               className="focus:outline-none
+               " placeholder="Buscar..." value={nameProduct.split()} onChange={(e) => setNameProduct(e.target.value)} onKeyUp={clickEnter} title="Buscar"/>
+               </div>
+               <div onClick={clickLupa} className="w-[10%] flex items-center"><box-icon name='search' color='#000000' ></box-icon></div>
+               </div>
     </>
 );
 }
