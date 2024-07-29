@@ -8,7 +8,7 @@ function HomeEmployee() {
     return (
         <>
             <HeaderAdmin titule={`Bienvenido `}></HeaderAdmin>
-            <TitleHeaders text={`Hola ${userName} que haremos hoy`}></TitleHeaders>
+            <TitleHeaders text={`Hola! ${userName}, ¿Qué haremos hoy?`}></TitleHeaders>
             <div className="mt-14">
                 <BotonsBody></BotonsBody>
             </div>
