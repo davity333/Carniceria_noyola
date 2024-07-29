@@ -9,7 +9,13 @@ function DropDown({children, onClick}){
     }
 
     const clickReservation = () =>{
-        navegar("/reservarMesas");
+        if(localStorage.getItem('token')){
+            navegar("/reservarMesas");
+        }
+        else{
+            navegar("/login")
+        }
+      
     }
 
 
@@ -23,6 +29,9 @@ function DropDown({children, onClick}){
 
     const clickRegister = () =>{
         navegar("/register");
+    }
+    const statusOrder = () =>{
+        navegar("/orderStatus");
     }
 
 
@@ -39,7 +48,7 @@ function DropDown({children, onClick}){
                 sm:hover:bg-[#4c2d2d3d] sm:p-3 mt-12 sm:mt-0" title="Cerrar">x</p>
 
                 <div onClick={clickShope} className="cursor-pointer hover:bg-red-900 p-5">
-                <Button  text={"carrito"} ></Button>
+                <Button  text={"Carrito"} ></Button>
                 </div>
 
                 <div onClick={clickReservation}  className="cursor-pointer hover:bg-red-900 p-5">
@@ -52,6 +61,9 @@ function DropDown({children, onClick}){
 
                 {!localStorage.getItem('token') &&<div onClick={clickLogin} className="cursor-pointer hover:bg-red-900 p-5 block sm:hidden">
                 <Button  text={"Iniciar sesión"} ></Button>
+                </div>}
+                {localStorage.getItem('token') &&<div onClick={statusOrder} className="cursor-pointer hover:bg-red-900 p-5 block ">
+                <Button  text={"Estado de orden"} ></Button>
                 </div>}
 
                {!localStorage.getItem('token') && <div onClick={clickRegister} className="cursor-pointer hover:bg-red-900 p-5 block sm:hidden">

@@ -10,10 +10,15 @@ function DeleteProduct() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     async function fetchProducts() {
       setIsLoading(true);
       try {
-        const response = await fetch(`${import.meta.env.VITE_URL}/products/product`);
+        const response = await fetch(`${import.meta.env.VITE_URL}/products/product`,{
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
         const data = await response.json();
         console.log(data);
         setProducts(data);

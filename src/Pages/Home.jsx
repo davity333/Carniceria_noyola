@@ -6,6 +6,7 @@ import CardCarnesPublicadasOrg from "../assets/components/Organism/OrganismInici
 import PiePaginaOrg from "../assets/components/Organism/OrganismInicio/PiePaginaOrg";
 import { useState } from "react";
 import Input from "../assets/components/Atoms/AtomsPaginaPrincipal/Input";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 function Home(){
 
     const [buscador, setBuscador] = useState(false); 
@@ -15,6 +16,11 @@ function Home(){
     
     return(
         <>
+        <HelmetProvider>
+      <Helmet>
+        <title>Iniciar sesión</title>
+    </Helmet>
+    </HelmetProvider>
         <HeaderOrganism onClickLupa={buscadorResponsivo}></HeaderOrganism>
 
         <div className=" block sm:hidden">

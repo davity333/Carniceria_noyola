@@ -106,8 +106,13 @@ function Form() {
     }
 
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch(`${import.meta.env.VITE_URL}/products`, {
         method: 'POST',
+        headers: {
+          'Access-Control-Allow-Origin':'*',
+          'Authorization': `Bearer ${token}`,
+        },
         body: formData,
       });
 

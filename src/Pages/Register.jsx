@@ -1,4 +1,7 @@
 import RegisterForm from "../assets/components/Organism/ResgisterForm";
+import { useNavigate } from "react-router-dom/dist";
+import logo from '/logoCarnitas.png'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 function Register() {
     const navigate = useNavigate();
 

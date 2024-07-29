@@ -11,7 +11,9 @@ function Form() {
   const amountTablesRef = useRef(0);
   const userName = getUser().name;
   const id= getUser().user_id;
+
   const handerReservar = (e) => {
+    const token = localStorage.getItem('token');
     e.preventDefault();
     const solicitante = solicitanteRef.current.value;
     const amountTables = Number.parseInt(amountTablesRef.current.value);
@@ -30,6 +32,7 @@ function Form() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
         description: "Reservacion",

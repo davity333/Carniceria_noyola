@@ -3,7 +3,7 @@ import CardsMeats from "../../Molecules/MoleculesAllMeats/CardsMeats";
 const nameProduct = localStorage.getItem('nameProduct');
 import { useNavigate } from "react-router-dom";
 import { addProduct } from "../../../../../selectedProducts";
-function ProductFoundOrg({nameFound, src, nameFoundApi, array,onCardClick}) {
+function ProductFoundOrg({nameFound, src, nameFoundApi, onCardClick}) {
 
     const [products, setProducts] = useState([]);
     const [singularText, setSingularText] = useState(false);
@@ -14,7 +14,13 @@ function ProductFoundOrg({nameFound, src, nameFoundApi, array,onCardClick}) {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_URL}/products/productDescription/${nameFoundApi}`);
+            const token = localStorage.getItem('token');
+            const response = await fetch(`${import.meta.env.VITE_URL}/products/productDescription/${nameFoundApi}`, {
+              headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `Bearer ${token}`,
+              }
+            });
             if (response.ok) {
                 const data = await response.json();
                 const length = data.length;

@@ -28,9 +28,11 @@ function FormAddEmploye() {
     }
 
     try {
+        const token = localStorage.getItem('token');
         const response = await fetch(`${import.meta.env.VITE_URL}/users`, {     
           method: 'POST',
           headers: {
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(payload)

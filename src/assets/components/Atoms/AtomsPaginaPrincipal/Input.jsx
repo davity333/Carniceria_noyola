@@ -27,7 +27,13 @@ function Input(){
     const ProductList = async () => {
         console.log("PRODUCTOS");
         try {
-            const response = await fetch(`${import.meta.env.VITE_URL}/products/productDescription/${nameProduct}`);
+            const token = localStorage.getItem('token');
+            const response = await fetch(`${import.meta.env.VITE_URL}/products/productDescription/${nameProduct}`,{
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);

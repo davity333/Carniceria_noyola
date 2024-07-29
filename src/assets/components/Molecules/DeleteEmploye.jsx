@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Button from '../Atoms/Register/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { getUser } from '../../../service/User';
-import style from './../../../../fonts.module.css'
+import style from './../../../../fonts.module.css';
 import Loading from './Loading';
 
 function DeleteEmployee() {
@@ -13,11 +13,30 @@ function DeleteEmployee() {
     async function fetchEmployees() {
       setIsLoading(true);
       try {
-        const response = await fetch(`${import.meta.env.VITE_URL}/users/userRole/2`);
+        const token = localStorage.getItem('token');
+        if (!token) {
+          toast.error('No se encontró el token de autenticación.');
+          setIsLoading(false);
+          return;
+        }
+
+        const response = await fetch(`${import.meta.env.VITE_URL}/users/userRole/2`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.status === 401) {
+          toast.error('No autorizado. Por favor, inicia sesión de nuevo.');
+          setIsLoading(false);
+          return;
+        }
+
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
-        toast.error('Ocurrió un error en el servidor ');
+        toast.error('Ocurrió un error en el servidor.');
       }
       setIsLoading(false);
     }
@@ -27,33 +46,42 @@ function DeleteEmployee() {
   const deleteEmployee = async (id) => {
     setIsLoading(true);
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('No se encontró el token de autenticación.');
+        setIsLoading(false);
+        return;
+      }
+
       const response = await fetch(`${import.meta.env.VITE_URL}/users/delete/${id}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify({ deleted: 1, updated_by: getUser().name })
       });
 
       if (response.ok) {
         setEmployees(employees.filter(employee => employee.user_id !== id));
-        toast.success('Employee eliminado exitosamente');
+        toast.success('Empleado eliminado exitosamente.');
+      } else if (response.status === 401) {
+        toast.error('No autorizado. Por favor, inicia sesión de nuevo.');
       } else {
         console.error('Error deleting employee:', response.statusText);
-        toast.error('Ocurrió un error al eliminar un empleado');
+        toast.error('Ocurrió un error al eliminar un empleado.');
       }
     } catch (error) {
       console.error('Error eliminando empleados:', error);
-      toast.error('Error al eliminar el empleado');
+      toast.error('Error al eliminar el empleado.');
     }
     setIsLoading(false);
   };
 
   return (
     <>
-      {isLoading && (
-            <Loading/>
-      )}
+      {isLoading && <Loading />}
       <div className="min-h-screen bg-[#a84747] text-white flex flex-col items-center py-10">
         <h1 id={style.textDecoration} className="text-5xl font-bold mb-6 [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
         <div className="w-full max-w-4xl bg-[#d6ad94] p-8 shadow-[-17px_-6px_24px_-9px_rgba(0,0,0,0.49)]">
@@ -80,7 +108,7 @@ function DeleteEmployee() {
               ))}
             </tbody>
           </table>
-          <Toaster position="top-center"/>
+          <Toaster position="top-center" />
         </div>
       </div>
     </>
