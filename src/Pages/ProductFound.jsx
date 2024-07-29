@@ -11,7 +11,7 @@ import { getSelectedProducts,addProduct,updateProductQuantity,getProductsToPost 
 import ButtonCarne from "/carnesBoton.png";
 import BotonFixed from "../assets/components/Molecules/MoleculesAllMeats/BotonFixed";
 import ProductFoundOrg from "../assets/components/Organism/OrganismAllMeats/ProductFoundOrg";
-
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 function ProductFound() {
     const [products, setProducts] = useState([]);
     const [singularText, setSingularText] = useState(false);
@@ -48,7 +48,7 @@ function ProductFound() {
     }
     return (  
         <>
-        <div className="bg-[#C29292] min-h-screen w-full sm:w-full sm:min-h-screen">
+        <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
         <HeaderOrganism onClickLupa={buscadorResponsivo}></HeaderOrganism>
 
         <div className="block sm:hidden">

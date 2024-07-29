@@ -1,6 +1,4 @@
 import RegisterForm from "../assets/components/Organism/ResgisterForm";
-import { useNavigate } from "react-router-dom/dist";
-import logo from '/logoCarnitas.png'
 function Register() {
     const navigate = useNavigate();
 
@@ -8,6 +6,11 @@ function Register() {
         navigate('/home'); 
     };
     return ( <>
+    <HelmetProvider>
+      <Helmet>
+        <title>Registrarse</title>
+    </Helmet>
+    </HelmetProvider>
     <div className="min-h-screen bg-gradient-to-r bg-gradient-to-r from-[#6d3030] to-[#d73b3b]">
     <img 
     onClick={handleClick} 

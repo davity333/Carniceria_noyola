@@ -5,7 +5,7 @@ import DropDownOptionsOrg from "../assets/components/Organism/OrganismInicio/Dro
 import DropDownUserOrg from "../assets/components/Organism/OrganismInicio/DropDownUserOrg";
 import CarneIntroduccion from "../assets/components/Molecules/MoleculesAllMeats/CarneIntroduction";
 import CarneIntroduction from "../assets/components/Molecules/MoleculesAllMeats/CarneIntroduction";
-
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 function AllMeats(){
 
     const [dropDownMenu, setDropDown] = useState(false);
@@ -34,7 +34,11 @@ function AllMeats(){
 
     return(
         <>
-        
+         <HelmetProvider>
+      <Helmet>
+        <title>Todos los productos</title>
+    </Helmet>
+    </HelmetProvider>
         <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
         <HeaderOrganism onClick={clickDown} onClickLogin={clickDownUser}></HeaderOrganism>
 
