@@ -1,10 +1,10 @@
 import Logo from "/SiluetaCerdo.png";
 import Form from "../Molecules/Register/Form.jsx";
 import { Link } from "react-router-dom";
-
 function LoginForm() {
   return (
     <>
+
     <div className="flex flex-col w-4/5 rounded-3xl bg-white p-8
         shadow-[0px_7px_14px_10px_rgb(0, 0, 0)]
         sm:w-1/3">

@@ -5,7 +5,7 @@ function DropDown({children, onClick}){
     const navegar = useNavigate();
 
     const clickShope = () =>{
-        navegar("/confirmationPay");
+        navegar("/allMeats");
     }
 
     const clickReservation = () =>{

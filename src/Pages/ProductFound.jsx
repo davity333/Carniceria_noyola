@@ -48,10 +48,10 @@ function ProductFound() {
     }
     return (  
         <>
-        <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
+        <div className="bg-[#C29292] min-h-screen w-full sm:w-full sm:min-h-screen">
         <HeaderOrganism onClickLupa={buscadorResponsivo}></HeaderOrganism>
 
-        <div className=" block sm:hidden">
+        <div className="block sm:hidden">
         {buscador && (<Input ></Input>)}
         </div>
 
@@ -61,18 +61,17 @@ function ProductFound() {
             src={noExistente}
             nameFoundApi={nameProduct}
             array={nameProduct}
+            onCardClick={handleCardClick}
             ></ProductFoundOrg>
-            
-
         </div>
 
-        
+        <div className="">
         <BotonFixed
         src={ButtonCarne}
         title={"Sección de carnes"}
         onClick={meats}>
         </BotonFixed> 
-        
+        </div>
 
         </div>
         <div className="bg-[#C29292] h-[full] w-full">

@@ -95,7 +95,7 @@ function CardsAllMeatsOrg() {
 
 <div className='flex justify-center mt-20'> 
 
-  <div className="font-light m-auto grid grid-cols-3 gap-9">
+  <div className="font-light m-auto grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-8">
     {products.map((item, index) => (
       <CardsMeats 
         key={index}
