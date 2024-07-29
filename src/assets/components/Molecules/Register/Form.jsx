@@ -82,11 +82,13 @@ function Form() {
       .then((data) => {
         const { role_id_fk: rolId, email, user_id, name } = data.user;
         setUser({ rolId, email, user_id, name });
-        if (getUser().rolId === 3) {
-          navigate('/');
-        } else {
-          navigate('/home');
-        }
+        if (getUser().rolId === 1) {
+        navigate('/homeAdmin');
+      } else if (getUser().rolId === 2) {
+        navigate('/HomeEmployee');
+      } else {
+        navigate('/home');
+      }
       })
       .catch((error) => {
         console.error(error);
