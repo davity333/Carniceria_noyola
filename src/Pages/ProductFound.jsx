@@ -46,6 +46,11 @@ function ProductFound() {
     const meats = () =>{
         navegar("/allMeats")
     }
+
+    const handlePay = () => {
+        const productsToPost = getProductsToPost();
+        navegar('/confirmationPay', { state: { selectedProducts, productsToPost } });
+      };
     return (  
         <>
         <div className="bg-[#C29292] min-h-screen w-full sm:w-full">
@@ -83,6 +88,7 @@ function ProductFound() {
                 selectedProducts={selectedProducts}
                 onClose={() => {setIsModalOpen(false); setImg(true)}}
                 updateQuantity={updateQuantity}
+                handlePay={handlePay}
                 />
             )
         }

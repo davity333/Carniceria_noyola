@@ -3,6 +3,7 @@ import CardsAllMeatsAdminOrg from "../assets/components/Organism/OrganismAllMeat
 import HeaderAdmin from "../assets/components/Molecules/MoleculesInicioAdmin/HeaderAdmin";
 import carnita from '/CarnitaAbajo.png'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 function AllMeatsAdmin(){
     return(
         <>

@@ -90,10 +90,8 @@ function DeleteProduct() {
   return (
     <>
       {isLoading && <Loading />}
-      <div className="min-h-screen bg-[#a84747] text-white flex flex-col items-center py-10">
-        <h1 className="text-4xl font-bold mb-6 [text-shadow:_0px_3px_4px_rgba(0,0,0,0.68)]">Bienvenido</h1>
-        <div className="w-full max-w-4xl bg-[#d6ad94] p-8 shadow-[-17px_-6px_24px_-9px_rgba(0,0,0,0.49)]">
-          <h2 className="text-3xl font-semibold mb-4 [text-shadow:_0px_1px_4px_rgba(0,0,0,0.68)]">Productos</h2>
+        <div className="w-full max-w-4xl bg-[#d6ad94] p-8 shadow-[0px_-2px_34px_-21px_rgba(0,0,0,0.65)]">
+          <h1 className="text-3xl font-semibold mb-4 [text-shadow:_0px_1px_4px_rgba(0,0,0,0.68)] text-white">Productos</h1>
           <table className="min-w-full bg-[#dabebe] text-black rounded-lg overflow-hidden">
             <thead className="bg-[#ffffff]">
               <tr>
@@ -128,7 +126,7 @@ function DeleteProduct() {
           </table>
           <Toaster position="top-center"/>
         </div>
-      </div>
+      
     </>
   );
 }

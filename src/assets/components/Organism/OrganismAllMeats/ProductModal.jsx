@@ -5,7 +5,7 @@ function ProductModal({ selectedProducts, onClose, updateQuantity, handlePay, da
   if (!selectedProducts || selectedProducts.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 flex justify-end bg-gray-800 bg-opacity-50 font-light">
+    <div className="fixed inset-0 z-50 flex justify-end bg-gray-800 bg-opacity-50 font-light">
       <div className="bg-white w-96 p-6 m-4 rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold">Carrito</h2>

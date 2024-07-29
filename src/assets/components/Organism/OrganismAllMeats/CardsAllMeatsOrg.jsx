@@ -95,18 +95,18 @@ function CardsAllMeatsOrg() {
 
 <div className='flex justify-center mt-20'> 
 
-  <div className="font-light m-auto grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-8">
-    {products.map((item, index) => (
-      <CardsMeats 
-        key={index}
-        price={item.price}
-        productName={item.description}
-        amount={item.amount}
-        src={item.image}
-        onClick={() => handleCardClick(item)}
-      />
-    ))}
-  </div>
+<div className="font-light m-2 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-8 ">
+      {products.map((item, index) => (
+        <CardsMeats 
+          key={index}
+          price={item.price}
+          productName={item.description}
+          amount={item.amount}
+          src={item.image}
+          onClick={() => handleCardClick(item)}
+        />
+      ))}
+    </div>
 
 </div>
 

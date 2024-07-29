@@ -4,8 +4,8 @@ function CardsMeats({ src, productName, price, children, amount, onClick = true 
   const isOutOfStock = amount <= 0;
   return (
     <div 
-      className="product-card bg-[#c5c06324] p-8 m-4 rounded-2xl text-center w-36 h-auto max-h-[250px] flex flex-col col-span-2
-       sm:flex-col col-auto sm:w-80 sm:max-h-[600px] sm:col-span-1
+      className="product-card bg-[#c5c06324] p-6 m-2 rounded-2xl text-center w-36 h-[70%]  flex flex-col col-2
+       sm:flex-col col-auto sm:w-80 sm:h-[97%] sm:col-span-1
        shadow-[0px_18px_27px_-7px_rgba(0,0,0,0.25)]"
     >
       {children}
@@ -23,7 +23,7 @@ function CardsMeats({ src, productName, price, children, amount, onClick = true 
             <p className="text-[10px] sm:text-[15px] md:text-xl lg:text-2xl">Agotado</p>
           </div>
         ) : (
-          <div className="cursor-pointer relative mt-4 sm:mt-6 md:mt-8 rounded-lg flex items-center justify-center p-2 sm:p-3 md:p-4 group bg-[#304c6acc] overflow-hidden" onClick={onClick}>
+          <div className="cursor-pointer relative mt-4 sm:mt-6 md:mt-8 rounded-lg flex items-center justify-center p-5 sm:p-3 md:p-4 group bg-[#304c6acc] overflow-hidden" onClick={onClick}>
             <div className="hidden sm:block flex items-center ml-1 sm:ml-2 md:ml-3 relative z-10">
               <SiluetaSupermercado />
             </div>

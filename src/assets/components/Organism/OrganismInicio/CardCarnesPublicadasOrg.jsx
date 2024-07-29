@@ -45,7 +45,7 @@ function CardCarnesPublicadasOrg() {
   return (
     <>
     <div className="flex items-center justify-around flex-wrap grid-cols-1">
-      <div className="font-light m-auto grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="font-light m-auto grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:m-8">
     {products.slice(0, numCards).map((item, index) => (
         <CardsMeats 
             key={index}
