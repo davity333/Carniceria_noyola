@@ -88,9 +88,7 @@ function Form() {
         navigate('/HomeEmployee');
       } else if (getUser().rolId) {
         navigate('/homeAdmin');
-        navigate('/homeAdmin');
-      }
-      })
+  }})
       .catch((error) => {
         console.error(error);
         toast.error('Uppsss, algo malo ocurrió intente más tarde');
