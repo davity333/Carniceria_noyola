@@ -4,7 +4,7 @@ import { useUser } from '../../context/UserContext';
 const ProtectedRoute = ({ element, requiredRole, ...rest }) => {
   const { user } = useUser();
 
-  if (user.rolId === requiredRole || user.rolId === 3) {
+  if (user.rolId === requiredRole || user.rolId === 1) {
     return element;
   } else {
     return <Navigate to="/home" />;

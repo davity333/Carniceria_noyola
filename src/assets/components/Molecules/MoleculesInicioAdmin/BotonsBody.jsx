@@ -4,8 +4,10 @@ import canita from '/CarnitaAbajo.png'
 import AddStock from '../addStockProduct/AddStock';
 import Button from '../../Atoms/AtomsPaginaPrincipal/Buttons';
 import style from './../../../../../fonts.module.css'
+import { getUser } from '../../../../service/User';
 function BotonsBody(){
     const navegar = useNavigate();
+    const role = getUser().rolId;
 
     const showProducts = () => {
         navegar("/allMeatsAdmin");
@@ -34,10 +36,10 @@ function BotonsBody(){
          <div className="flex justify-center items-center">
   <img src={administrar} alt="log" className='h-28 flex flex-col -mt-10' />
 </div>
-
         <div className="flex text-5xl justify-evenly items-center font-light m-4">
 
         {/*BOTONES DE LA PRIMERA FILA*/}
+        
         <div className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
         shadow-[1px_5px_6px_5px_rgba(0,0,0,0.19)]
         hover:bg-[#c69696]" id={style.botonAdmin}>
@@ -53,20 +55,18 @@ function BotonsBody(){
 
         {/*BOTONES DE SEGUNDA FILA*/}
 
-        <div className="flex text-5xl justify-evenly items-center font-thin m-2">
+        {role !== 2 && (
+                <div className="flex text-5xl justify-evenly items-center font-thin m-2">
+                    <div onClick={employe} className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl shadow-[1px_5px_6px_5px_rgba(0,0,0,0.19)] hover:bg-[#c69696]" id={style.botonAdmin}>
+                        
+                        <Button onClick={employe} text="Empleados"></Button>
+                    </div>
 
-        <div onClick={employe} className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
-        shadow-[1px_5px_6px_5px_rgba(0,0,0,0.19)]
-        hover:bg-[#c69696]" id={style.botonAdmin}>
-        <Button onClick={employe} text="Empleados"></Button>
-        </div>
-
-        <div className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl
-        shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)]
-        hover:bg-[#c69696]" id={style.botonAdmin}>
-        <Button onClick={downladPdf} text="Reporte de ventas"></Button>
-        </div>
-        </div>
+                    <div className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl shadow-[1px_5px_6px_5px_rgba(0,0,0,0.24)] hover:bg-[#c69696]" id={style.botonAdmin}>
+                        <Button onClick={downladPdf} text="Reporte de ventas"></Button>
+                    </div>
+                </div>
+            )}
 
         {/*BOTONES DE TERCERA FILA*/}
         <div className="flex text-5xl justify-evenly items-center font-thin m-5">

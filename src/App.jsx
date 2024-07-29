@@ -22,7 +22,9 @@ import { UserProvider } from './context/UserContext.jsx';
 import ProtectedRoute from './assets/components/ProtectedRoute.jsx';
 import ProductFound from './Pages/ProductFound.jsx';
 import OrdersStatus from './Pages/OrdersStatus.jsx';
-
+import HeaderHome from './assets/components/Organism/OrganismInicioAdmin/HeaderHome.jsx';
+import Header from './assets/components/Atoms/AtomsPaginaPrincipal/header.jsx';
+import HomeEmployee from './Pages/HomeEmployee.jsx';
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
           <Route path="/addEmploye" element={<ProtectedRoute element={<AddEmploye />} requiredRole={1} />} />
           <Route path="/Pedido" element={<ProtectedRoute element={<Pedidos />} requiredRole={1} />} />
           <Route path="/ProductFound" element={<ProductFound />} />
+          <Route path="/HomeEmployee" element={<HomeEmployee></HomeEmployee>} />
         </Routes>
       </UserProvider>
     </BrowserRouter>
