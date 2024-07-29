@@ -10,12 +10,12 @@ function HomeEmployee() {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/HomeEmployee'); 
+        navigate('/homeEmployee'); 
     };
 
     const cerrarSesion = () => {
         localStorage.removeItem('token')
-        navegar("/login")
+        navigate("/login")
     }
     return (
         <>

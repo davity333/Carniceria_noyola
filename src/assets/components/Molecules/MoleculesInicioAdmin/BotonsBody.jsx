@@ -54,7 +54,7 @@ function BotonsBody({botones}){
         </div>
 
         {/*BOTONES DE SEGUNDA FILA*/}
-        {botones && role !== 2 && (
+        { getUser().rolId == 1 && (
                 <div className="flex text-5xl justify-evenly items-center font-thin m-2">
                     <div onClick={employe} className="p-6 bg-[#e9baba] px-8 py-4 text-4xl rounded-3xl shadow-[1px_5px_6px_5px_rgba(0,0,0,0.19)] hover:bg-[#c69696]" id={style.botonAdmin}>
                         <Button onClick={employe} text="Empleados"></Button>
