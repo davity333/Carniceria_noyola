@@ -41,12 +41,12 @@ function SectionOrderStatus() {
                     setGroupedOrders(grouped);
                 } else {
                     const errorData = await response.json();
-                    console.error('Failed to fetch orders:', response.statusText, errorData);
-                    toast.error('Sorry, please try again later.');
+                    console.error('Fallo al obtener las ordenes:', response.statusText, errorData);
+                    toast.error('Por favor intente más tarde.');
                 }
             } catch (error) {
-                console.error('An error occurred:', error);
-                toast.error('An error occurred. Please try again.');
+                console.error('Ha ocurrido un error:', error);
+                toast.error('Ha ocurrido un error, por favor intente de nuevo.');
             } finally {
                 setLoading(false);
             }
